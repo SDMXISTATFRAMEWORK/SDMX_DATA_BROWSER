@@ -1,0 +1,230 @@
+2016-06-24 10:34:15,543 [13] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 10:34:15,590 [13] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 10:34:15,668 [13] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 10:34:15,668 [13] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 10:41:20,083 [13] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 10:41:20,083 [13] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 10:41:20,129 [13] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 10:41:20,145 [13] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 10:42:34,496 [28] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 10:42:34,496 [28] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 10:42:34,574 [28] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 10:42:34,574 [28] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 10:43:55,882 [20] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 10:43:55,882 [20] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 10:43:55,944 [20] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 10:43:55,944 [20] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 10:46:17,438 [19] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 10:46:17,438 [19] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 10:46:17,438 [19] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 10:46:17,438 [19] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 11:02:58,990 [11] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 11:02:59,021 [11] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 11:02:59,083 [11] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 11:02:59,083 [11] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 11:03:43,107 [11] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 11:03:43,107 [11] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 11:03:43,169 [11] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 11:03:43,169 [11] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 11:12:39,704 [5] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 11:12:39,704 [5] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 11:12:39,844 [5] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 11:12:39,844 [5] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 11:19:14,776 [19] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 11:19:14,776 [19] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 11:19:14,839 [19] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 11:19:14,839 [19] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
+2016-06-24 11:22:16,022 [19] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:84]
+2016-06-24 11:22:16,022 [19] ERROR Errore del server remoto: (500) Errore interno del server. - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:85]
+System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+2016-06-24 11:22:16,022 [19] ERROR Error getting GetCodelist for Dataflow IT2+DSE+1.0, Component : Cross Reference : urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:CS_NA(1.5).REF_SECTOR , Codelist : ESTAT+CL_SECTOR+1.3. Error : SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:656]
+2016-06-24 11:22:16,022 [19] ERROR SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ - [c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:657]
+ISTAT.WebClient.WidgetComplements.Model.Exceptions.NsiClientException: SERVER RESPONSE ERROR:Errore del server remoto: (500) Errore interno del server.
+Received a SOAP FAULT:
+ ---> System.Net.WebException: Errore del server remoto: (500) Errore interno del server.
+   in System.Net.HttpWebRequest.GetResponse()
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 884
+   --- Fine della traccia dello stack dell'eccezione interna ---
+   in ISTAT.WebClient.WidgetComplements.Model.Settings.NsiClientHelper.HandleSoapFault(WebException ex) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\Settings\NsiClientHelper.cs:riga 86
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendRequest(XmlDocument request, SDMXWSFunction webServiceOperation, String tempFileName) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 903
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.SendQueryStructureRequest(IEnumerable`1 references, Boolean resolveReferences) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 719
+   in ISTAT.WebClient.WidgetComplements.Model.CallWS.GetSDMX_WSV20.GetCodelist(IDataflowObject dataflow, IStructureReference codelistRef, List`1 criterias, String info, Boolean Constrained) in c:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\Model\CallWS\GetSDMX_WSV20.cs:riga 633
