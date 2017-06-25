@@ -49,6 +49,29 @@ namespace ISTAT.WebClient.Controllers
             }
         }
 
+        public ActionResult WSDLisActive()
+        {
+            try
+            {
+
+                dynamic PostDataArrived = CS.GetPostData(this.Request);
+                string url=(string)PostDataArrived.url;
+
+                System.Net.WebRequest webRequest = System.Net.WebRequest.Create(url);
+                System.Net.WebResponse webResponse;
+                webResponse = webRequest.GetResponse();
+                return CS.ReturnForJQuery(new JavaScriptSerializer().Serialize(string.Empty));
+            }
+            catch (Exception ex)
+            {
+                return CS.ReturnForJQuery(new JavaScriptSerializer().Serialize(new ISTAT.WebClient.Models.ControllerSupport.StringResult() { Msg = ex.Message }));
+            }
+
+        }
+
+
+
+
         public ActionResult GetMessages()
         {
             try
@@ -80,6 +103,7 @@ namespace ISTAT.WebClient.Controllers
                 SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
 
                return CS.ReturnForJQuery(qw.Load());
+               // return CS.ReturnForJQuery(qw.LoadWS());
             }
             catch (Exception ex)
             {
@@ -99,6 +123,121 @@ namespace ISTAT.WebClient.Controllers
 
                 SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
                 return CS.ReturnForJQuery(qw.Save(PostDataArrived) ? JSONConst.Success : JSONConst.Error);
+            }
+            catch (Exception ex)
+            {
+
+                return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+        /*Reordering all ws with drag and drop*/
+        public ActionResult SetSettingsWS()
+        {
+            try
+            {
+                GetEndpointSettings PostDataArrived = CS.GetPostData<GetEndpointSettings>(this.Request);
+
+                if (connectionStringSetting == null || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
+                    throw new Exception("ConnectionString not set");
+
+                SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
+                return CS.ReturnForJQuery(qw.SaveWS(PostDataArrived) ? JSONConst.Success : JSONConst.Error);
+            }
+            catch (Exception ex)
+            {
+
+                return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+
+        /*Adding ws*/
+        public ActionResult AddWS()
+        {
+            try
+            {
+                EndpointSettings PostDataArrived = CS.GetPostData<EndpointSettings>(this.Request);
+
+                if (connectionStringSetting == null || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
+                    throw new Exception("ConnectionString not set");
+
+                SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
+                return CS.ReturnForJQuery(qw.SaveSingleWS(PostDataArrived) ? JSONConst.Success : JSONConst.Error);
+            }
+            catch (Exception ex)
+            {
+
+                return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+
+        public ActionResult DelWS()
+        {
+            try
+            {
+                EndpointSettings PostDataArrived = CS.GetPostData<EndpointSettings>(this.Request);
+
+                if (connectionStringSetting == null || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
+                    throw new Exception("ConnectionString not set");
+
+                SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
+                return CS.ReturnForJQuery(qw.DeleteSingleWS(PostDataArrived) ? JSONConst.Success : JSONConst.Error);
+            }
+            catch (Exception ex)
+            {
+
+                return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+
+        public ActionResult UpdWS()
+        {
+            try
+            {
+                EndpointSettings PostDataArrived = CS.GetPostData<EndpointSettings>(this.Request);
+
+                if (connectionStringSetting == null || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
+                    throw new Exception("ConnectionString not set");
+
+                SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
+                return CS.ReturnForJQuery(qw.UpdateSingleWS(PostDataArrived) ? JSONConst.Success : JSONConst.Error);
+            }
+            catch (Exception ex)
+            {
+
+                return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+
+        public ActionResult UpdOpt()
+        {
+            try
+            {
+                GetEndpointSettings PostDataArrived = CS.GetPostData<GetEndpointSettings>(this.Request);
+
+                if (connectionStringSetting == null || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
+                    throw new Exception("ConnectionString not set");
+
+                SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
+                return CS.ReturnForJQuery(qw.UpdateSettingsOPT(PostDataArrived) ? JSONConst.Success : JSONConst.Error);
+            }
+            catch (Exception ex)
+            {
+
+                return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+
+        public ActionResult GetSettingsWS()
+        {
+            try
+            {
+
+                if (connectionStringSetting == null || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
+                    throw new Exception("ConnectionString not set");
+
+                SettingsWidget qw = new SettingsWidget(connectionStringSetting.ConnectionString);
+
+                return CS.ReturnForJQuery(qw.LoadWS());
             }
             catch (Exception ex)
             {

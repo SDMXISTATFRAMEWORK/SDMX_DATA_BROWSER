@@ -326,6 +326,48 @@ namespace ISTAT.WebClient.Controllers
             //throw new NotImplementedException();
         }
 
+        public void GetDataSet(IDataSetRenderer renderer, DataObjectForStreaming dataStream, TextWriter streamResponse, string endPointType,SessionQuery sessionQuery)
+        {
+            EndpointSettings DataObjConfiguration = dataStream.Configuration;
+
+            IDataStructureObject kf = dataStream.structure.DataStructures.First();
+
+            //DataObjectForStreaming
+            SDMXWSFunction op = SDMXWSFunction.GetCompactData;
+            //DataObjConfiguration
+
+            bool cross = (DataObjConfiguration._TypeEndpoint == ISTAT.WebClient.WidgetComplements.Model.Enum.EndpointType.V21 || DataObjConfiguration._TypeEndpoint == ISTAT.WebClient.WidgetComplements.Model.Enum.EndpointType.REST)
+                          ? NsiClientHelper.DataflowDsdIsCrossSectional(kf) : !Utils.IsTimeSeries(kf);
+            if (cross)
+                op = SDMXWSFunction.GetCrossSectionalData;
+            var ser = new JavaScriptSerializer();
+            ser.MaxJsonLength = int.MaxValue;
+            try
+            {
+                //IGetSDMX GetSDMXObject = WebServiceSelector.GetSdmxImplementation(DataObjConfiguration);
+                IGetSDMX GetSDMXObject = (sessionQuery._IGetSDMX == null) ? WebServiceSelector.GetSdmxImplementation(DataObjConfiguration) : sessionQuery._IGetSDMX;
+                BaseDataObject BDO = new BaseDataObject(DataObjConfiguration, "tem.txt");
+
+                string fullPath = Utils.App_Data_Path + @"\Download\" + GetFileName(_iD, "xml");
+
+                IDataQuery query = BDO.CreateQueryBean(dataStream.structure.Dataflows.First(), kf, dataStream.Criterias);
+                GetSDMXObject.ExecuteQuery(query, op, fullPath);
+
+                //if (endPointType == "V21")
+                //{
+                //    SendAttachment(ConvertTo21(fullPath),GetFileName(_iD, "xml")) ;
+                //    return;
+                //}
+                SendAttachmentFile(fullPath);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            //throw new NotImplementedException();
+        }
+
 
 
         private byte[] ConvertTo21(string fullPath)
@@ -340,8 +382,8 @@ namespace ISTAT.WebClient.Controllers
             {
                 _iD = id;
                 InitObject();
-
-                GetDataSet(_datasetRenderer, _dataStream, _textWriter, sdmxVersion);
+                SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
+                GetDataSet(_datasetRenderer, _dataStream, _textWriter, sdmxVersion,query);
 
                 //var x = _dataStream.store;
 
@@ -464,7 +506,8 @@ namespace ISTAT.WebClient.Controllers
             DataObjConfiguration = query._endpointSettings;
             
 
-            IGetSDMX GetSDMXObject = WebServiceSelector.GetSdmxImplementation(DataObjConfiguration);
+            //IGetSDMX GetSDMXObject = WebServiceSelector.GetSdmxImplementation(DataObjConfiguration);
+            IGetSDMX GetSDMXObject = (query._IGetSDMX == null) ? WebServiceSelector.GetSdmxImplementation(DataObjConfiguration) : query._IGetSDMX;
             BaseDataObject BDO = new BaseDataObject(DataObjConfiguration, "appo.xml");
 
             ISdmxObjects structure = query.Structure;

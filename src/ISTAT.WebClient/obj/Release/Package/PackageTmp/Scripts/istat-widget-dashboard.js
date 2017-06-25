@@ -188,6 +188,7 @@ function CreateWidget(template_widget) {
                 EndPointV20: template_widget.endPointV20,
                 EndPointType: template_widget.endPointType,
                 EndPointSource: template_widget.endPointSource,
+                Title: template_widget.Title
             },
             layout: template_widget.layout,
             criteria: template_widget.criteria
@@ -212,6 +213,7 @@ function CreateWidget(template_widget) {
             EndPointV20: template_widget.endPointV20,
             EndPointType: template_widget.endPointType,
             EndPointSource: template_widget.endPointSource,
+            Title : template_widget.Title,
             dataflow: {
                 id: template_widget.dataflow_id,
                 agency: template_widget.dataflow_agency_id,

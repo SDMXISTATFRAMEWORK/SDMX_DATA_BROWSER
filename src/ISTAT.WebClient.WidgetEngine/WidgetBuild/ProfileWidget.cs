@@ -1,6 +1,7 @@
 ﻿using ISTAT.WebClient.WidgetComplements.Model.Enum;
 using ISTAT.WebClient.WidgetComplements.Model.JSObject;
 using ISTAT.WebClient.WidgetComplements.Model.JSObject.Input;
+
 using log4net;
 using Newtonsoft.Json.Linq;
 using System;
@@ -134,11 +135,12 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             string endpoint = SingleSignOnConf.Clone().ToString();
             if (!endpoint.EndsWith("/"))
                 endpoint += "/";
-            endpoint += "service/GetUsers";
+            endpoint += "SSO/GetUsers";
 
+            
             List<GetUserProfileObject> SSONUser = new List<GetUserProfileObject>();
             WebRequest req = HttpWebRequest.Create(endpoint);
-            req.Method = "GET";
+            req.Method = "POST";
             string Risposta = "";
             using (WebResponse response = req.GetResponse())
             {
@@ -166,6 +168,10 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 }
             return SSONUser;
         }
+
+
+
+
 
         public List<UserRoleObject> GetRoles()
         {

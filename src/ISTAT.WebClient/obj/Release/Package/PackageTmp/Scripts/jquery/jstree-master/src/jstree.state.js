@@ -1,7 +1,7 @@
 /**
  * ### State plugin
  *
- * Saves the state of the tree (selected nodes, opened nodes) on the user's computer using available options (sessionStorage, cookies, etc)
+ * Saves the state of the tree (selected nodes, opened nodes) on the user's computer using available options (localStorage, cookies, etc)
  */
 /*globals jQuery, define, exports, require */
 (function (factory) {
@@ -114,9 +114,9 @@
 	(function ($, undefined) {
 		$.vakata.storage = {
 			// simply specifying the functions in FF throws an error
-			set : function (key, val) { return window.sessionStorage.setItem(key, val); },
-			get : function (key) { return window.sessionStorage.getItem(key); },
-			del : function (key) { return window.sessionStorage.removeItem(key); }
+			set : function (key, val) { return window.localStorage.setItem(key, val); },
+			get : function (key) { return window.localStorage.getItem(key); },
+			del : function (key) { return window.localStorage.removeItem(key); }
 		};
 	}($));
 

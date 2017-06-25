@@ -40,6 +40,7 @@ namespace ISTAT.WebClient.Controllers
         public readonly static string Error = "{\"error\" : true }";
         public readonly static string ErrorMaxRecords = "{\"error\" : true }";
         public readonly static string Success = "{\"success\" : true }";
+        public readonly static string InvalidSession = "{\"sessionExpired\" : true }";
     }
 
     public class MainController : Controller
@@ -109,7 +110,7 @@ namespace ISTAT.WebClient.Controllers
                 query = SessionQueryManager.GetSessionQuery(Session);
             }
             query.Reset();
-
+            SessionQueryManager.SaveSessionQuery(Session, query);
 
             if (PostDataArrived.WidgetId > 0 && UseWidgetCache)
             {
@@ -120,6 +121,22 @@ namespace ISTAT.WebClient.Controllers
             return CS.ReturnForJQuery(JSONConst.Error);
         }
 
+
+        public ActionResult InvalidSession()
+        {
+            try
+            {
+                return CS.ReturnForJQuery(JSONConst.InvalidSession);
+            }
+            catch (Exception ex)
+            {
+                return CS.ReturnForJQuery(ex.Message);
+            }
+        }
+
+
+    
+    
         public ActionResult GetTreeLocale()
         {
             try
@@ -149,9 +166,9 @@ namespace ISTAT.WebClient.Controllers
                 PostDataArrived.Configuration.Locale = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
 
 
-                TreeWidget treeWidget = new TreeWidget(PostDataArrived, connectionStringSetting.ConnectionString);
+                /*TreeWidget treeWidget = new TreeWidget(PostDataArrived, connectionStringSetting.ConnectionString);
                 SessionImplObject ret = treeWidget.GetTree();
-
+                */
 
                 // Clear session on change ws
                 Session[SESSION_KEY] = null;
@@ -166,9 +183,14 @@ namespace ISTAT.WebClient.Controllers
                 {
                     query = new SessionQuery { CurrentCulture = System.Threading.Thread.CurrentThread.CurrentCulture };
                     SessionQueryManager.SaveSessionQuery(Session, query);
-                }
+                }               
                 query._endpointSettings = PostDataArrived.Configuration;
+                query._IGetSDMX = null;
+                query._IGetSDMXObject = null;
+                SessionQueryManager.SaveSessionQuery(Session, query);
 
+                TreeWidget treeWidget = new TreeWidget(PostDataArrived, connectionStringSetting.ConnectionString);
+                SessionImplObject ret = treeWidget.GetTree(query);
                 // Clear sessionQueryManager              
                 ISdmxObjects obj = ret.SdmxObject;
 
@@ -246,10 +268,12 @@ namespace ISTAT.WebClient.Controllers
                 // Clear session in All Codelist Costraint mode criteria
                 Session[SESSION_KEY] = null;
 
-                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, null);
-
                 SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
+
+                //CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, null);
+                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, null, query);
                 SessionImplObject ret = codemapWidget.GetCodemap(query,connectionStringSetting);
+
 
                 // store current SessionImplObject in session
                 Session[SESSION_KEY] = ret;
@@ -297,9 +321,8 @@ namespace ISTAT.WebClient.Controllers
                 // Clear session in All Codelist Costraint mode criteria
                 Session[SESSION_KEY] = null;
 
-                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, null);
-
                 SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
+                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, null,query);
                 SessionImplObject ret = codemapWidget.GetCodemap(query,connectionStringSetting);
 
                 // store current SessionImplObject in session
@@ -313,6 +336,130 @@ namespace ISTAT.WebClient.Controllers
             }
         }
 
+        public ActionResult GetSpecificCodemapDashboard()
+        {
+            try
+            {
+
+                GetCodemapObject PostDataArrived = CS.GetPostData<GetCodemapObject>(this.Request);
+                PostDataArrived.Configuration.Locale = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+
+                // Get parameter
+                //GetTreeObject PostDataArrived = CS.GetPostData<GetTreeObject>(this.Request);
+                //PostDataArrived.Configuration.Locale = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+                GetTreeObject TreeObj = new GetTreeObject() { Configuration = PostDataArrived.Configuration, Locale = PostDataArrived.Configuration.Locale };
+
+                /*TreeWidget treeWidget = new TreeWidget(TreeObj, connectionStringSetting.ConnectionString);
+                SessionImplObject ret = treeWidget.GetTree();
+                */
+
+                // Clear session on change ws
+                Session[SESSION_KEY] = null;
+
+                /*NUOVO */
+                var query = new SessionQuery { CurrentCulture = System.Threading.Thread.CurrentThread.CurrentCulture };
+                if (SessionQueryManager.SessionQueryExistsAndIsValid(Session))
+                {
+                    query = SessionQueryManager.GetSessionQuery(Session);
+                }
+                else
+                {
+                    query = new SessionQuery { CurrentCulture = System.Threading.Thread.CurrentThread.CurrentCulture };
+                    SessionQueryManager.SaveSessionQuery(Session, query);
+                }
+                query._endpointSettings = PostDataArrived.Configuration;
+
+                // Clear sessionQueryManager              
+                TreeWidget treeWidget = new TreeWidget(TreeObj, connectionStringSetting.ConnectionString);
+                SessionImplObject ret = treeWidget.GetTree(query);
+                ISdmxObjects obj = ret.SdmxObject;
+
+                // Get categories - first without annotations 
+                IList<ICategorySchemeObject> categoriesWithAnnotation = new List<ICategorySchemeObject>();
+                IList<ICategorySchemeObject> categoriesWithoutAnnotation = new List<ICategorySchemeObject>();
+
+                foreach (var categoryScheme in obj.CategorySchemes)
+                {
+                    if (categoryScheme.Annotations.Count > 0 && categoryScheme.Annotations[0].FromAnnotation() == CustomAnnotationType.CategorySchemeNodeOrder)
+                    {
+                        categoriesWithAnnotation.Add(categoryScheme);
+                    }
+                    else
+                    {
+                        categoriesWithoutAnnotation.Add(categoryScheme);
+                    }
+                }
+
+                IEnumerable<ICategorySchemeObject> categoriesWithAnnotationOrderedBy = categoriesWithAnnotation.OrderBy(category => Convert.ToInt64(category.Annotations[0].ValueFromAnnotation()));
+
+                IEnumerable<ICategorySchemeObject> categories = categoriesWithoutAnnotation.Concat(categoriesWithAnnotationOrderedBy);
+
+                //Get dataflows
+                ISet<IDataflowObject> dataflows = obj.Dataflows;
+
+                // Get categorisations - first without annotations
+                IList<ICategorisationObject> categorisationsWithAnnotation = new List<ICategorisationObject>();
+                IList<ICategorisationObject> categorisationsWithoutAnnotation = new List<ICategorisationObject>();
+
+                foreach (var categorisation in obj.Categorisations)
+                {
+                    if (categorisation.Annotations.Count > 0 && categorisation.Annotations[0].FromAnnotation() == CustomAnnotationType.CategorySchemeNodeOrder)
+                    {
+                        categorisationsWithAnnotation.Add(categorisation);
+                    }
+                    else
+                    {
+                        categorisationsWithoutAnnotation.Add(categorisation);
+                    }
+                }
+
+                IEnumerable<ICategorisationObject> categorisationsWithAnnotationOrderedBy = categorisationsWithAnnotation.OrderBy(categ => Convert.ToInt64(categ.Annotations[0].ValueFromAnnotation()));
+
+                IEnumerable<ICategorisationObject> categorisations = categorisationsWithoutAnnotation.Concat(categorisationsWithAnnotationOrderedBy);
+
+                query.InitializeDataflowMap(dataflows);
+
+                // Get dsds
+                ISet<IDataStructureObject> dataStructure = obj.DataStructures;
+                query.ResetDsds();
+                query.Dsds = dataStructure;
+
+                query.SetDataflowTree(categories, dataflows, categorisations, dataStructure);
+
+
+
+
+
+                //GetCodemapObject PostDataArrived = CS.GetPostData<GetCodemapObject>(this.Request);
+                //PostDataArrived.Configuration.Locale = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+
+                // Check if a SessionImplObject is store in session
+                SessionImplObject sdmxObj =
+                    (Session[SESSION_KEY] != null) ? Session[SESSION_KEY] as SessionImplObject : new SessionImplObject();
+
+                //Clear query datasetmodel and store
+                //SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
+                //if (PostDataArrived.Codelist != null && PostDataArrived.Codelist == query.KeyFamily.DimensionList.Dimensions.First().Id)
+                //{ query.ClearData(); }
+                query.ClearData();
+                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, sdmxObj,query);
+
+                SessionImplObject retCodemap = codemapWidget.GetSpecificCodemap(string.IsNullOrEmpty(PostDataArrived.Codelist) ? true : false, connectionStringSetting, query);
+
+                // store current SessionImplObject in session
+                if (Session[SESSION_KEY] == null) Session[SESSION_KEY] = ret;
+                else ((SessionImplObject)Session[SESSION_KEY]).MergeObject(ret);
+
+                return CS.ReturnForJQuery(ret.SavedCodemap);
+            }
+            catch (Exception ex)
+            {
+                return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+
+
+
         public ActionResult GetSpecificCodemap() {
             try
             {
@@ -325,9 +472,11 @@ namespace ISTAT.WebClient.Controllers
 
                 //Clear query datasetmodel and store
                 SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
+                //if (PostDataArrived.Codelist != null && PostDataArrived.Codelist == query.KeyFamily.DimensionList.Dimensions.First().Id)
+                //{ query.ClearData(); }
                 query.ClearData();
-
-                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, sdmxObj);
+                //CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, sdmxObj);
+                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, sdmxObj,query);
 
                 SessionImplObject ret = codemapWidget.GetSpecificCodemap(string.IsNullOrEmpty(PostDataArrived.Codelist) ? true : false, connectionStringSetting,query);
                 
@@ -354,11 +503,10 @@ namespace ISTAT.WebClient.Controllers
                     (Session[SESSION_KEY] != null) ? Session[SESSION_KEY] as SessionImplObject : new SessionImplObject();
 
 
-                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, sdmxObj);
                 SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
                 query.Criteria = PostDataArrived.PreviusCostraint;
-                
-                //Se è il primo constraint è vuoto
+                CodemapWidget codemapWidget = new CodemapWidget(PostDataArrived, sdmxObj,query);                
+                //Se Ã¨ il primo constraint Ã¨ vuoto
                 if (PostDataArrived.PreviusCostraint.Count > 0)
                 { string ret = codemapWidget.ComponentSave(PostDataArrived.Codelist, PostDataArrived.PreviusCostraint[PostDataArrived.Codelist].ToArray(), query); }
 
@@ -383,10 +531,11 @@ namespace ISTAT.WebClient.Controllers
                 // Check if a SessionImplObject is store in session
                 SessionImplObject sdmxObj =
                     (Session[SESSION_KEY] != null) ? Session[SESSION_KEY] as SessionImplObject : new SessionImplObject();
+                SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
                 
-                LayoutWidget layoutWidget = new LayoutWidget(PostDataArrived, sdmxObj);
+                LayoutWidget layoutWidget = new LayoutWidget(PostDataArrived, sdmxObj,query);
 
-                SessionImplObject ret = layoutWidget.GetLayout();
+                SessionImplObject ret = layoutWidget.GetLayout(query);
 
                 if (Session[SESSION_KEY] == null) Session[SESSION_KEY] = ret;
                 else ((SessionImplObject)Session[SESSION_KEY]).MergeObject(ret);
@@ -411,9 +560,9 @@ namespace ISTAT.WebClient.Controllers
                 SessionImplObject sdmxObj =
                     (Session[SESSION_KEY] != null) ? Session[SESSION_KEY] as SessionImplObject : new SessionImplObject();
                 
-                LayoutWidget layoutWidget = new LayoutWidget(PostDataArrived, sdmxObj);
+                LayoutWidget layoutWidget = new LayoutWidget(PostDataArrived, sdmxObj,query);
 
-                SessionImplObject ret = layoutWidget.GetLayout(connectionStringSetting);
+                SessionImplObject ret = layoutWidget.GetLayout(query,connectionStringSetting);
 
                 if (Session[SESSION_KEY] == null) Session[SESSION_KEY] = ret;
                 else ((SessionImplObject)Session[SESSION_KEY]).MergeObject(ret);
@@ -445,7 +594,7 @@ namespace ISTAT.WebClient.Controllers
                     CodemapWidget codemapWidget = new CodemapWidget(new GetCodemapObject()
                     {
                         Configuration = PostDataArrived.Configuration
-                    }, sdmxObj);
+                    }, sdmxObj,query);
 
                         CacheWidget cache = new CacheWidget(connectionStringSetting.ConnectionString);
 
@@ -468,7 +617,7 @@ namespace ISTAT.WebClient.Controllers
                         {
                         DataWidget dataWidget = new DataWidget(
                             PostDataArrived, sdmxObj,
-                            (ConfigurationManager.AppSettings["ParseSDMXAttributes"].ToString().ToLower() == "true"));
+                            (ConfigurationManager.AppSettings["ParseSDMXAttributes"].ToString().ToLower() == "true"),query);
 
                         object DataStream = null;
                         SessionImplObject ret = dataWidget.GetData(out DataStream, query);
@@ -512,13 +661,15 @@ namespace ISTAT.WebClient.Controllers
                 SessionImplObject sdmxObj =
                  (Session[SESSION_KEY] != null) ? Session[SESSION_KEY] as SessionImplObject : new SessionImplObject();
 
+                SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
+
                 DataWidget dataWidget = new DataWidget(
                     PostDataArrived, sdmxObj,
-                    (ConfigurationManager.AppSettings["ParseSDMXAttributes"].ToString().ToLower() == "true"));
+                    (ConfigurationManager.AppSettings["ParseSDMXAttributes"].ToString().ToLower() == "true"),query);
                 
                 object DataStream = null;
 
-                SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
+
                 SessionImplObject ret = dataWidget.GetData(out DataStream, query);
 
                 if (Session[SESSION_KEY] == null) Session[SESSION_KEY] = ret;
@@ -625,6 +776,8 @@ namespace ISTAT.WebClient.Controllers
 
                 SessionImplObject sdmxObj =
                     (Session[SESSION_KEY] != null) ? Session[SESSION_KEY] as SessionImplObject : new SessionImplObject();
+
+                SessionQuery query = SessionQueryManager.GetSessionQuery(Session);
                 
                 System.Globalization.CultureInfo cFrom =
                     new System.Globalization.CultureInfo(
@@ -637,9 +790,9 @@ namespace ISTAT.WebClient.Controllers
                 ChartWidget dataWidget = new ChartWidget(
                     PostDataArrived,
                     sdmxObj,
-                    cFrom, cTo);
+                    cFrom, cTo,query);
                 
-                SessionImplObject ret = dataWidget.GetDataChart();
+                SessionImplObject ret = dataWidget.GetDataChart(query);
 
                 if (Session[SESSION_KEY] == null) Session[SESSION_KEY] = ret;
                 else ((SessionImplObject)Session[SESSION_KEY]).MergeObject(ret);
@@ -675,7 +828,7 @@ namespace ISTAT.WebClient.Controllers
                             agency = PostDataArrived.Artefact.agency,
                             version = PostDataArrived.Artefact.version
                         }
-                    }, sdmxObj);
+                    }, sdmxObj,query);
                    /* ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings["ISTATWebClientConnection"];
                     if (connectionStringSetting == null
                         || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
@@ -914,7 +1067,8 @@ namespace ISTAT.WebClient.Controllers
                     CodelistObject cod = new CodelistObject();
 
                     var codelist =
-                        (from c in sdmxObj.SdmxObject.Codelists
+                        (from c in sdmxObj.SdmxObject.Codelists 
+                        //from c in query.GetCachedCodelist()
                          where c.Id.ToString() == PostDataArrived.Artefact.id.ToString()
                          && c.AgencyId.ToString() == PostDataArrived.Artefact.agency.ToString()
                          && c.Version.ToString() == PostDataArrived.Artefact.version.ToString()
@@ -999,6 +1153,37 @@ namespace ISTAT.WebClient.Controllers
             catch (Exception ex)
             {
                 return CS.ReturnForJQuery(JSONConst.Error);
+            }
+        }
+
+        public ActionResult AddWidgetPortfolio()
+        {
+            WidgetObject woRet;
+
+            try
+            {
+                DashboardWidget qw = new DashboardWidget(connectionStringSetting.ConnectionString);
+
+                //GetDashboardObject DashBoardObject = (GetDashboardObject)Session["DashBoard"];
+                WidgetObject PostDataArrived = CS.GetPostData<WidgetObject>(this.Request);
+
+                woRet = qw.AddWidgetPortfolio(PostDataArrived);
+
+                //DashboardRow dbRow = DashBoardObject.rows.Find(r => r.id == woRet.rowID);
+
+                //if (dbRow.widgets == null)
+                    //dbRow.widgets = new List<WidgetObject>();
+
+                //dbRow.widgets.Add(woRet);
+
+                //Session["DashBoard"] = DashBoardObject;
+
+                return CS.ReturnForJQuery(woRet);
+
+            }
+            catch (Exception ex)
+            {
+                return CS.ReturnForJQuery(new JavaScriptSerializer().Serialize(new ISTAT.WebClient.Models.ControllerSupport.StringResult() { Msg = ex.Message }));
             }
         }
 

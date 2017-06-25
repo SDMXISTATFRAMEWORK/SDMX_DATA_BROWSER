@@ -5,7 +5,7 @@
     <script src="<%=ResolveClientUrl("~/Scripts/istat-widget-manager.js")%>"></script>
     <script src="<%=ResolveClientUrl("~/Scripts/istat-widget-dataset.js")%>"></script>
     <script src="<%=ResolveClientUrl("~/Scripts/istat-client.js")%>"></script>
-    <script src="<%=ResolveClientUrl("~/Scripts/pages/redirectLogin.js")%>"></script>
+    <!--<script src="<%=ResolveClientUrl("~/Scripts/pages/redirectLogin.js")%>"></script>-->
     <script src="<%=ResolveClientUrl("~/Scripts/pages/dashboardElements.js")%>"></script>
      
     <link href="<%=ResolveClientUrl("~/Content/style/widgets/UserList.css")%>" rel="stylesheet" />
@@ -29,7 +29,8 @@
 
 <asp:Content ID="Footercontainer" ContentPlaceHolderID="ContentFooter" runat="server">
     <script type="text/javascript">
-        var _endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
+        //var _endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
+        var _endPoint = "<%=ResolveClientUrl("~/")%>";
         var curIdxPaging = 0;
         var elemnPaging = <%=ConfigurationManager.AppSettings["ElementInList"].ToString() %>;
         var users = [];
@@ -46,13 +47,14 @@
             var user_obj = "";
             $.ajax({
                 type: "POST",
-                url: _endPoint+"/service/GetUser",
+                url: _endPoint+"SSO/GetUser",
                 async: true,
                 data: JSON.stringify(userCode),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (msg_o) {
-                    var us = msg_o;
+                success: function (msg_o) {//alert(msg_o);
+                    //var us = msg_o;
+                    var us = clientParseJsonToObject(msg_o);
                     var age = us.Age;
                     var agency = us.Agency;
                     var country = us.Country;
@@ -65,9 +67,10 @@
                     var surname = us.Surname;
                     var theme = us.Themes;
                     var themes = new Array();
-                    for (ii = 0; ii < theme.length; ii++) {
+                    if (theme)
+                    {for (ii = 0; ii < theme.length; ii++) {
                         themes[ii] = '"' + theme[ii] + '"';
-                    }
+                    }}
                     var codice = us.UserCode;
                     
                     var dati = '{"Age":"' + age + '",' +
@@ -96,7 +99,7 @@
                             '<%=Messages.label_save%>': function () {
                                 $.ajax({
                                     type: "POST",
-                                    url: _endPoint + "/service/DelUser",
+                                    url: _endPoint + "SSO/DelUser",
                                     async: true,
                                     data: dati,
                                     contentType: "application/json; charset=utf-8",
@@ -173,7 +176,7 @@
         }
 
         function changeUser(code) { 
-            $("#DivLogin").load(_endPoint + "/Widget/widgetChangeUser.html", null,
+            $("#DivLogin").load(_endPoint + "Widget/widgetChangeUser.html", null,
                 function (responseTxt, statusTxt, xhr) {
                 if (statusTxt == "success") {
                     var data = {
@@ -296,7 +299,7 @@
         }
 
         function changePDW(code) {
-            $("#DivLogin").load(_endPoint + "/Widget/widgetChangePassword.html", null, function (responseTxt, statusTxt, xhr) {
+            $("#DivLogin").load(_endPoint + "Widget/widgetChangePassword.html", null, function (responseTxt, statusTxt, xhr) {
                 if (statusTxt == "success") {
                     var data = {
                         endpoint: _endPoint,
@@ -400,35 +403,39 @@
             $(dest).empty();
             $(dest).append("<i class='icon-spin6 animate-spin'></i>"+client.main.messages.text_wait);
             var dati = _endPoint;
-
+            //alert(_endPoint);
             clientPostJSON(
                 "Profile/GetUserList",
+                //"SSO/GetUserList",
                 dati,
                 function (jsonString) {
-                    
                     var user_container=document.createElement("div");
 
                     var disabledIdRole=500;
-
                     var dat = clientParseJsonToObject(jsonString);
+                    
+
                     var idUs = JSON.parse(sessionStorage.user_isSA);
-
+                    
                     dat.Roles.sort(dynamicSort('RoleId'));
+                    //dat["Roles"].sort(dynamicSort('RoleId'));
 
+
+                    
+                    
                     if (dat == "" || dat==undefined) { 
                         $(user_container).append("<div class='lista_vuota'><%= Messages.label_queryList_empty %></div>");
                     } else {
-
+                        
                         var cont = 0;
                         var obj_SA = "";
                         $.each(dat.UserList, function () {
-                            if (this.IsSuperAdmin) 
-                                obj_SA = dat.UserList.splice(cont, 1);
+                            if (this.IsSA) 
+                            {obj_SA = dat.UserList.splice(cont, 1)};
                             cont++;
                         });
 
                         var fon = obj_SA.concat(dat.UserList);
-
                         var div_pag = DrawHTML_Pagging(
                             curIdxPaging,
                             fon.length,
@@ -451,7 +458,6 @@
                         var ii = 0;
 
                         $.each(fon, function () {
-
                             idxPag++;
                             
                             var hideDiv = (idxPag < pagFrom || idxPag > (pagTo - 1));
@@ -460,12 +466,16 @@
 
                             var contSel = ii;
 
-                            var nome = this.Nome;
-                            var cognome = this.Cognome;
-                            var isSA = this.IsSuperAdmin;
+                            //var nome = this.Nome;
+                            //var cognome = this.Cognome;
+                            var nome = this.Name;
+                            var cognome = this.Surname;
+                            //var isSA = this.IsSuperAdmin;
+                            var isSA = this.IsSA;
                             var user_code = this.UserCode;
                             var user_email = this.Email;
-                            var role = this.UserRole.RoleId;
+                            //var role = this.UserRole.RoleId;
+                            var role = this.IsSA ? 1 :0;
                             var user_name = nome + " " + cognome;
 
                             var optionRole = "";
@@ -539,9 +549,9 @@
 
                                 var buttons=document.createElement("div");
                                 $(buttons).addClass('buttons');
-                                $(buttons).append("<span class='button'><i class='icon-upload-2'></i><input class='button' title='execute query' type='button' id='id_button_O_" + i + "' value='<%=Messages.button_userListChange %>'/></span>");
-                                $(buttons).append("<span class='button'><i class='icon-key-inv'></i><input class='button' title='delete query' type='button' id='id_button_C_" + i + "' value='<%=Messages.button_userListChangePsw %>'/></span>");
-                                $(buttons).append("<span class='button'><i class='icon-trash " + dis + "'></i><input " + but + " class='button' title='delete query' type='button' id='id_button_R_" + i + "' value='<%=Messages.button_userListRemove %>'/></span>");
+                                $(buttons).append("<span class='button'><i class='icon-upload-2'></i><input class='button' title='' type='button' id='id_button_O_" + i + "' value='<%=Messages.button_userListChange %>'/></span>");
+                                $(buttons).append("<span class='button'><i class='icon-key-inv'></i><input class='button' title='' type='button' id='id_button_C_" + i + "' value='<%=Messages.button_userListChangePsw %>'/></span>");
+                                $(buttons).append("<span class='button'><i class='icon-trash " + dis + "'></i><input " + but + " class='button' title='' type='button' id='id_button_R_" + i + "' value='<%=Messages.button_userListRemove %>'/></span>");
                                 $(buttons).append("<div class='clear-box'>");
                                 $(buttons).appendTo(id_use);
 
@@ -564,7 +574,7 @@
                             ii++;
 
                         });
-                        
+
                         $(dest).empty();
                         $(user_container).appendTo(dest);
 

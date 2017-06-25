@@ -104,6 +104,7 @@
             configuration: {
                 DecimalSeparator: data.configuration.DecimalSeparator,
                 Active: false,
+                //Active: data.configuration.Active,
                 EndPoint: data.configuration.EndPoint,
                 EndPointType: data.configuration.EndPointType,
                 EndPointV20: data.configuration.EndPointV20,
@@ -121,9 +122,11 @@
                 UserName: data.configuration.UserName,
                 Wsdl: data.configuration.Wsdl,
                 UseUncategorysed: data.configuration.UseUncategorysed,
-                UseVirtualDf: data.configuration.UseVirtualDf
+                UseVirtualDf: data.configuration.UseVirtualDf,
+                //Title: data.configuration.Title
             }
         };
+
 
 
         LoadJsTree(
@@ -206,7 +209,7 @@ function DrawHTML_Ws(dest, configurations, selectedItem, callBack,target) {
     });
     $(menuSelect).on("selectmenuchange", function (event, ui) {
 
-        sessionStorage.setItem("select-ws", $("#select-ws option:selected").text());
+        //sessionStorage.setItem("select-ws", $("#select-ws option:selected").text());
 
         $("#main-dashboard").empty();
 
@@ -235,10 +238,23 @@ function CollapseAll(container) {
 }
 function ExpandCategories(jstree_container) {
 
+    //var nodeID = 'C_8f_e40377b455ac4d828284253065e47a48';
+
+        // Expand all nodes up to the root (the id of the root returns as '#')
+        /*while (nodeID != '#') {
+            // Open this node
+            $("#jstree").jstree("open_node", nodeID)
+            // Get the jstree object for this node
+            var thisNode = $("#jstree").jstree("get_node", nodeID);
+            // Get the id of the parent of this node
+            nodeID = $("#jstree").jstree("get_parent", thisNode);
+        }*/
+    
+
     $(jstree_container).find("li").each(
-        function (index) {
+        function (index) {            
             var category = $(this);
-            var children = category.find("li[rel='category']");
+            var children = category.find('li[rel="category"]');
             if (children.length > 0) {
                 $(jstree_container).jstree('open_node', category);
             }
@@ -249,8 +265,7 @@ function ExpandCategories(jstree_container) {
                 }
             }
         }
-    );
-
+    );  
 }
 function ExpandFirstCategories(jstree_container) {
 
@@ -263,15 +278,16 @@ function ExpandFirstCategories(jstree_container) {
     );
 
     //if selector is defined open default on change language
-    if (sessionStorage.getItem("select-jstree") != null && sessionStorage.getItem("select-jstree") != undefined)
+    /*if (sessionStorage.getItem("select-jstree") != null && sessionStorage.getItem("select-jstree") != undefined)
     { $(jstree_container).jstree('select_node', sessionStorage.getItem("select-jstree")); }
+    */
 
 }
 
 function LoadJsTree(dest, url, data, query, target, callBack) {
 
     dest.empty();
-    
+
 
     var conf = {
         configuration: {
@@ -282,9 +298,29 @@ function LoadJsTree(dest, url, data, query, target, callBack) {
             EndPointType: data.configuration.EndPointType,
             EndPointSource: data.configuration.EndPointSource,
             UseUncategorysed: data.configuration.UseUncategorysed,
-            UseVirtualDf: data.configuration.UseVirtualDf
+            UseVirtualDf: data.configuration.UseVirtualDf,
+            Domain: data.configuration.Domain,
+
+            EnableHTTPAuthentication: data.configuration.EnableHTTPAuthentication,
+            EnableProxy: data.configuration.EnableProxy,
+            Password: data.configuration.Password,
+            //Prefix: data.configuration.Prefix,
+            ProxyPassword: data.configuration.ProxyPassword,
+            ProxyServer: data.configuration.ProxyServer,
+            ProxyServerPort: data.configuration.ProxyServerPort,
+            ProxyUserName: data.configuration.ProxyUserName,
+            UseSystemProxy: data.configuration.UseSystemProxy,
+            UserName: data.configuration.UserName,
+            //Wsdl: data.configuration.Wsdl,
+            //UseUncategorysed: data.configuration.UseUncategorysed,
+            //UseVirtualDf: data.configuration.UseVirtualDf,
+            //Title: data.configuration.Title
+
+
+
         }
     };
+
     clientPostJSON(
         url, clientParseObjectToJson(conf),
         function (jsonString) {
@@ -296,7 +332,7 @@ function LoadJsTree(dest, url, data, query, target, callBack) {
 
                 DrawHTML_ButtonControl(dest);
 
-                SetupJsTree(dest, jsonData, query, target, callBack);
+                SetupJsTree(dest, jsonData, query, target, callBack,conf);
 
             } else {
                 dest.empty();
@@ -315,7 +351,7 @@ function LoadJsTree(dest, url, data, query, target, callBack) {
     );
     
 }
-function SetupJsTree(dest, data, query, target, callBack) {
+function SetupJsTree(dest, data, query, target, callBack,conf) {
    
 
     var options = {
@@ -326,6 +362,7 @@ function SetupJsTree(dest, data, query, target, callBack) {
             "icons": false
         },
         "core": {
+            "animation" :0,
             "data": data,
             'multiple': false,
             "progressive_render": true
@@ -397,7 +434,7 @@ function SetupJsTree(dest, data, query, target, callBack) {
                 jstree_container,
                 data.instance.get_node(data.selected[0]),
                 $(jstree_container).data('target'),
-                $(jstree_container).data('callBack'));
+                $(jstree_container).data('callBack'),conf);
 
         }
     })
@@ -408,7 +445,7 @@ function SetupJsTree(dest, data, query, target, callBack) {
     $(jstree_container).appendTo(dest);
 }
 
-function OnTreeNodeSelected(jstree_container, anchorElm, target, callBack) {
+function OnTreeNodeSelected(jstree_container, anchorElm, target, callBack,conf) {
 
     if (anchorElm.type == "xs-dataflow"
         || anchorElm.type == "dataflow"
@@ -419,7 +456,7 @@ function OnTreeNodeSelected(jstree_container, anchorElm, target, callBack) {
         var version = anchorElm.original.a_attr.DataflowVersion;
         var name = anchorElm.original.a_attr.DataflowName;
 
-        var configuration = {
+      var configuration = {
             Title: anchorElm.original.a_attr.Title,
             active: true,
             DecimalSeparator: anchorElm.original.a_attr.DataflowDecimalCulture,
@@ -427,19 +464,20 @@ function OnTreeNodeSelected(jstree_container, anchorElm, target, callBack) {
             EndPointType: anchorElm.original.a_attr.DataflowUrlType,
             EndPointV20: anchorElm.original.a_attr.DataflowUrlV20,
             EndPointSource: anchorElm.original.a_attr.DataflowSource,
-            /*Domain: "",
-            EnableHTTPAuthentication: false,
-            EnableProxy: false,
-            Password: "",
-            Prefix: "",
-            ProxyPassword: "",
-            ProxyServer: "",
-            ProxyServerPort: "",
-            ProxyUserName: "",
-            UseSystemProxy: false,
-            UserName: "",
-            Wsdl: "",
-            */
+            Domain: conf.configuration.Domain,
+            
+            EnableHTTPAuthentication: conf.configuration.EnableHTTPAuthentication,
+            EnableProxy: conf.configuration.EnableProxy,
+            Password: conf.configuration.Password,
+            Prefix: conf.configuration.Prefix,
+            ProxyPassword: conf.configuration.ProxyPassword,
+            ProxyServer: conf.configuration.ProxyServer,
+            ProxyServerPort: conf.configuration.ProxyServerPort,
+            ProxyUserName: conf.configuration.ProxyUserName,
+            UseSystemProxy: conf.configuration.UseSystemProxy,
+            UserName: conf.configuration.UserName
+            //Wsdl: "",
+            
         };
 
         var ret = false;
@@ -523,16 +561,16 @@ function ShowInfoExtraDF(sender) {
     });
 
     $('#panel_info_extra').css('display','block');
-
     return false;
 }
 
 function CloseInfoExtraDF(sender) {
 
-    //var div = $('#panel_info_extra'); //document.createElement('div');
-    //$(div).empty();
+    var div = $('#panel_info_extra .content'); 
+    $(div).empty();
     $('#panel_info_extra').css('display', 'none');
 
     return false;
 
 }
+

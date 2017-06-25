@@ -5,7 +5,7 @@
     <script src="<%=ResolveClientUrl("~/Scripts/istat-widget-manager.js")%>"></script>
     <script src="<%=ResolveClientUrl("~/Scripts/istat-widget-dataset.js")%>"></script>
     <script src="<%=ResolveClientUrl("~/Scripts/istat-client.js")%>"></script>
-    <script src="<%=ResolveClientUrl("~/Scripts/pages/redirectLogin.js")%>"></script>
+    <!--<script src="<%=ResolveClientUrl("~/Scripts/pages/redirectLogin.js")%>"></script>-->
     <script src="<%=ResolveClientUrl("~/Scripts/pages/dashboardElements.js")%>"></script>
     <link href="<%=ResolveClientUrl("~/Scripts/jquery/jstree-master/dist/themes/default/style.min.css")%>" rel="stylesheet" />
     <script src="<%=ResolveClientUrl("~/Scripts/jquery/jstree-master/dist/jstree.js")%>"></script>
@@ -43,7 +43,7 @@
         maxNumObservation=<%=ISTAT.WebClient.WidgetComplements.Model.Settings.WebClientSettings.Instance.MaxResultObs %>;
 
         //var dashboards;
-        _endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
+        //_endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
         
         elemnPaging = <%=ConfigurationManager.AppSettings["ElementInList"].ToString() %>;
         

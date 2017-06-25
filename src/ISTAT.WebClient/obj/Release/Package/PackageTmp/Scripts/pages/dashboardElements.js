@@ -812,6 +812,7 @@ function ConfigWidget(div) {
                 var wdg_type = $(divWidget).children(".valConf").val();
 
                 var ok = false;
+                var messageError = "";
 
                 if (wdg_type == "text"
                     && ($(this).find("textarea").val().trim() != "")
@@ -1464,7 +1465,7 @@ function DrawHTML_Filter(df, kf, target,filters, sender) {
 
                 $(sender).find("input[name='criteria']").val(clientParseObjectToJson(args));
             }
-
+            clientCloseWaitDialog();
         },
         {
             table_layout: "tb_layout",  // layout table
@@ -1481,7 +1482,7 @@ function DrawHTML_Filter(df, kf, target,filters, sender) {
 
         },
         client.main.messages,
-        "TIME_PERIOD", maxNumObservation);
+        "TIME_PERIOD", maxNumObservation,"","dashboard");
 
 }
 /*************************************/
@@ -1578,8 +1579,41 @@ function DrawHTML_Layout(layout, sender) {
 function testWBS(sender, input) {
     var wdgContainer = $(sender).parent().parent(".widgetSettings");
     var endpoint = $(wdgContainer).find('input[name=' + input + ']').val();
+    //clientPostJSON(url, data, callback, errorCallback,useWait) {}
 
-    OnDashboardError(client.main.messages.messageWorkProg);
+    clientPostJSON(
+        "Settings/WSDLisActive",
+         endpoint,
+         function (jsonString) {
+             
+             /*
+             if (jsonString != undefined) {
+
+                 var dashBoard = clientParseJsonToObject(jsonString);
+
+                 $("#div_Dashboard").append("<div id='div_table' class='container_div'></div>");
+
+                 DrawTable(dashBoard[0], dashboardId);
+
+             }*/
+         },
+         function (event, status, errorThrown) {
+             clientAjaxError(event, status, errorThrown);
+             return;
+         }, false);
+
+    //alert(endpoint);
+    /*
+    $.get(endpoint + "?wsdl",
+    function (response) {
+        console.log("> ", response);
+        //$("#viewer").html(response);
+    });
+    */
+    //clientGETtestWS(endpoint + "?wsdl",  callback, errorCallback, useWait) {
+    
+
+    //OnDashboardError(client.main.messages.messageWorkProg);
 }
 /*************************************/
 function GetHTML_SettingsChart() {
@@ -1632,7 +1666,7 @@ function GetHTML_SettingsChart() {
     settingsChart += '<div class="clear-box"></div>';
     settingsChart += '<div class="title-half">' + client.main.messages.label_endPoint + '*</div>';
     settingsChart += '<div class="area-half-1">';
-    settingsChart += '<input type="text" name="endPoint"/>';
+    settingsChart += '<input type="text" name="endPoint" readonly/>';
     settingsChart += '</div>';
     settingsChart += '<div class="area-half-2">';
     settingsChart += '<input type="button" value="Test" onclick="testWBS(this,\'endPoint\');"/>';
@@ -1640,12 +1674,12 @@ function GetHTML_SettingsChart() {
     settingsChart += '<div class="clear-box"></div>';
     settingsChart += '<div class="title-half">' + client.main.messages.label_endpointType + '*</div>';
     settingsChart += '<div class="area-half-1">';
-    settingsChart += '<input type="text" name="endPointType"/>';
+    settingsChart += '<input type="text" name="endPointType" readonly/>';
     settingsChart += '</div>';
     settingsChart += '<div class="clear-box"></div>';
     settingsChart += '<div class="title-half downMargin">' + client.main.messages.label_endPointV20 + '*</div>';
     settingsChart += '<div class="area-half-1 downMargin">';
-    settingsChart += '<input type="text" name="endPointV20"/>';
+    settingsChart += '<input type="text" name="endPointV20" readonly/>';
     settingsChart += '</div>';
     settingsChart += '<div class="area-half-2">';
     settingsChart += '<input type="button" value="Test" value="Test" onclick="testWBS(this,\'endPointV20\');"/>';
@@ -1653,17 +1687,17 @@ function GetHTML_SettingsChart() {
     settingsChart += '<div class="clear-box"></div>';
     settingsChart += '<div class="title-half">' + client.main.messages.label_id + '*</div>';
     settingsChart += '<div class="area-half">';
-    settingsChart += '<input type="text" name="id"/>';
+    settingsChart += '<input type="text" name="id" readonly/>';
     settingsChart += '</div>';
     settingsChart += '<div class="clear-box"></div>';
     settingsChart += '<div class="title-half">' + client.main.messages.label_agency + '*</div>';
     settingsChart += '<div class="area-half">';
-    settingsChart += '<input type="text" name="agency"/>';
+    settingsChart += '<input type="text" name="agency" readonly/>';
     settingsChart += '</div>';
     settingsChart += '<div class="clear-box"></div>';
     settingsChart += '<div class="title-half">' + client.main.messages.label_version + '*</div>';
     settingsChart += '<div class="area-half">';
-    settingsChart += '<input type="text" name="version"/>';
+    settingsChart += '<input type="text" name="version" readonly/>';
     settingsChart += '</div>';
     settingsChart += '<div class="clear-box"></div>';
     settingsChart += '<hr/>';
@@ -1753,7 +1787,7 @@ function GetHTML_SettingsTable() {
     settingsTable += '<div class="clear-box"></div>';
     settingsTable += '<div class="title-half">' + client.main.messages.label_endPoint + '*</div>';
     settingsTable += '<div class="area-half-1">';
-    settingsTable += '<input type="text" name="endPoint"/>';
+    settingsTable += '<input type="text" name="endPoint" readonly/>';
     settingsTable += '</div>';
     settingsTable += '<div class="area-half-2">';
     settingsTable += '<input type="button" value="Test" value="Test" onclick="testWBS(this,\'endPoint\');"/>';
@@ -1761,12 +1795,12 @@ function GetHTML_SettingsTable() {
     settingsTable += '<div class="clear-box"></div>';
     settingsTable += '<div class="title-half">' + client.main.messages.label_endpointType + '*</div>';
     settingsTable += '<div class="area-half-1">';
-    settingsTable += '<input type="text" name="endPointType"/>';
+    settingsTable += '<input type="text" name="endPointType" readonly/>';
     settingsTable += '</div>';
     settingsTable += '<div class="clear-box"></div>';
     settingsTable += '<div class="title-half downMargin">' + client.main.messages.label_endPointV20 + '*</div>';
     settingsTable += '<div class="area-half-1 downMargin">';
-    settingsTable += '<input type="text" name="endPointV20"/>';
+    settingsTable += '<input type="text" name="endPointV20" readonly/>';
     settingsTable += '</div>';
     settingsTable += '<div class="area-half-2">';
     settingsTable += '<input type="button" value="Test" value="Test" onclick="testWBS(this,\'endPointV20\');"/>';
@@ -1774,17 +1808,17 @@ function GetHTML_SettingsTable() {
     settingsTable += '<div class="clear-box"></div>';
     settingsTable += '<div class="title-half">' + client.main.messages.label_id + '*</div>';
     settingsTable += '<div class="area-half">';
-    settingsTable += '<input type="text" name="id"/>';
+    settingsTable += '<input type="text" name="id" readonly/>';
     settingsTable += '</div>';
     settingsTable += '<div class="clear-box"></div>';
     settingsTable += '<div class="title-half">' + client.main.messages.label_agency + '*</div>';
     settingsTable += '<div class="area-half">';
-    settingsTable += '<input type="text" name="agency"/>';
+    settingsTable += '<input type="text" name="agency" readonly/>';
     settingsTable += '</div>';
     settingsTable += '<div class="clear-box"></div>';
     settingsTable += '<div class="title-half">' + client.main.messages.label_version + '*</div>';
     settingsTable += '<div class="area-half">';
-    settingsTable += '<input type="text" name="version"/>';
+    settingsTable += '<input type="text" name="version" readonly/>';
     settingsTable += '</div>';
     settingsTable += '<div class="clear-box"></div>';
     settingsTable += '<hr/>';

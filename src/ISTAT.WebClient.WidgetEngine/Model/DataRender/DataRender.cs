@@ -65,7 +65,8 @@ namespace ISTAT.WebClient.WidgetEngine.Model.DataRender
 
                 //query.DatasetModel.UpdateAxis(layObj.axis_z, layObj.axis_x, layObj.axis_y);
                 query.DatasetModel.UpdateAxis(layObj.axis_z, layObj.axis_x, layObj.axis_y, this.Criterias);
-                query._store.SetCriteria(this.Criterias);
+                //fabio baco multilista
+                //query._store.SetCriteria(this.Criterias);
             }
             else
             {

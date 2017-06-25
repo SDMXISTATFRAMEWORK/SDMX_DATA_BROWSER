@@ -74,6 +74,24 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             this._useAttr = useAttr;
         }
 
+        public DataWidget(GetDataObject dataObj, SessionImplObject sessionObj, bool useAttr,SessionQuery sessionQuery)
+        {
+            DataObj = dataObj;
+            SessionObj = sessionObj;
+
+            if (sessionQuery._IGetSDMX == null || (sessionQuery._endpointSettings!=null && this.DataObj.Configuration.EndPoint != sessionQuery._endpointSettings.EndPoint))
+            {
+                GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.DataObj.Configuration);
+                sessionQuery._IGetSDMX = GetSDMXObject;
+            }
+            else
+            { GetSDMXObject = sessionQuery._IGetSDMX; }
+
+            BDO = new BaseDataObject(dataObj.Configuration, System.IO.Path.GetTempFileName());
+
+            this._useAttr = useAttr;
+        }
+
         public SessionImplObject GetData(out object DataStream,SessionQuery query)
         {
             try
@@ -94,7 +112,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                     Configuration = this.DataObj.Configuration, 
                     Dataflow = this.DataObj.Dataflow,
                     PreviusCostraint=this.DataObj.Criteria },
-                    this.SessionObj);
+                    this.SessionObj,query);
                 //ISdmxObjects structure = codemapWidget.GetDsd();
                 ISdmxObjects structure = query.Structure;
                 IDataflowObject df = structure.Dataflows.FirstOrDefault();
@@ -119,10 +137,11 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 //codemapWidget.GetCodeListCostraint(df,kf,component)
 
                 this.SessionObj.MergeObject(codemapWidget.SessionObj);
-
+                int num1;
                 #region Gestione last period
                 if (this.DataObj.Criteria.ContainsKey(kf.TimeDimension.Id)
                  && this.DataObj.Criteria[kf.TimeDimension.Id].Count == 1
+                 && int.TryParse(this.DataObj.Criteria[kf.TimeDimension.Id].First(), out num1)
                  && !this.DataObj.Layout.axis_z.Contains(kf.TimeDimension.Id))
                 {
                     int offsetTime = int.Parse(this.DataObj.Criteria[kf.TimeDimension.Id].First());
@@ -188,7 +207,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 else
                 {
                     //store = BDO.GetDataset(df, kf, Criterias, ref DataCache, _useAttr);
-                    store = BDO.GetDataset(df, kf, QueryCriterias, ref DataCache, _useAttr);
+                    store = BDO.GetDataset(df, kf, QueryCriterias, ref DataCache, _useAttr,query);
                     query._store = store;
                 }
                 //fine nuovo

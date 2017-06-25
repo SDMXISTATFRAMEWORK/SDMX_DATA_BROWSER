@@ -44,6 +44,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
     //using ISTAT.WebClient.WidgetComplements.Model.Tree;
     using ISTAT.WebClient.WidgetComplements.Model.NSIWC;
     using ISTAT.WebClient.WidgetEngine.Model;
+    using ISTAT.WebClient.WidgetComplements.Model.CallWS;
 
     //using ISTAT.WebClient.WidgetComplements.Model.NSIWC;
 
@@ -170,7 +171,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         /// <summary>
         /// The session prefix.
         /// </summary>
-        private string _sessionPrefix = Guid.NewGuid().ToString();
+        public string _sessionPrefix = Guid.NewGuid().ToString();
 
         /// <summary>
         /// The _store.
@@ -247,6 +248,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             return criterias;
 
         }
+
+
         /*
         public Dictionary<string, List<string>> GetCriteria(List<DataCriteria> Criterias)
         {
@@ -278,6 +281,19 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
 
             return codeTree;
         }*/
+
+
+        public IGetSDMX _IGetSDMX
+        {
+            get;
+            set;
+        }
+
+        public ISdmxObjects _IGetSDMXObject
+        {
+            get;
+            set;
+        }
 
 
         /// <summary>
@@ -961,6 +977,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             this._conceptMap.Clear();
             this._criteriaComponentIdx = 0;
             this._workPageIdx = 0;
+            //this._IGetSDMX = null;
+            //this._IGetSDMXObject = null;
             this.Clear();
             this._sessionPrefix = Guid.NewGuid().ToString();
         }

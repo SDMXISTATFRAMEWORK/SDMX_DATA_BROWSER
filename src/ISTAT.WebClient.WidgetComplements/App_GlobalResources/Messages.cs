@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -85,6 +86,8 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
         public static string label_sdmxml_structure { get { return GetString("label_sdmxml_structure"); } }
         public static string label_sdmxml_zip { get { return GetString("label_sdmxml_zip"); } }
         public static string label_select_all { get { return GetString("label_select_all"); } }
+        public static string label_open_all { get { return GetString("label_open_all"); } }
+        public static string label_close_all { get { return GetString("label_close_all"); } }
         public static string label_time_end { get { return GetString("label_time_end"); } }
         public static string label_time_start { get { return GetString("label_time_start"); } }
         public static string label_view_results { get { return GetString("label_view_results"); } }
@@ -179,6 +182,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
         public static string text_remove_query { get { return GetString("text_remove_query"); } }
         public static string label_open_query { get { return GetString("label_open_query"); } }
         public static string label_remove_query { get { return GetString("label_remove_query"); } }
+        public static string label_modify_query { get { return GetString("label_modify_query"); } }
         public static string label_error_data { get { return GetString("label_error_data"); } }
         public static string query_saved { get { return GetString("query_saved"); } }
         public static string dashboard_userList { get { return GetString("dashboard_userList"); } }
@@ -188,6 +192,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
         public static string text_errorListUser { get { return GetString("text_errorListUser"); } }
         public static string text_emptyList { get { return GetString("text_emptyList"); } }
         public static string text_confirmDelUser { get { return GetString("text_confirmDelUser"); } }
+        public static string text_confirmDelTemplate { get { return GetString("text_confirmDelTemplate"); } }
         public static string text_userRemoved { get { return GetString("text_userRemoved"); } }
         public static string text_operationKO { get { return GetString("text_operationKO"); } }
         public static string label_psw { get { return GetString("label_psw"); } }
@@ -243,6 +248,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
         public static string label_linkOS { get { return GetString("label_linkOS"); } }
         public static string label_ISTAT { get { return GetString("label_ISTAT"); } }
         public static string label_save_template { get { return GetString("label_save_template"); } }
+        public static string label_delete_template { get { return GetString("label_delete_template"); } }
         public static string label_changeSuccess { get { return GetString("label_changeSuccess"); } }
         public static string label_open_criteria { get { return GetString("label_open_criteria"); } }
         public static string label_open_layout { get { return GetString("label_open_layout"); } }
@@ -266,6 +272,12 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
         public static string label_rowRemove { get { return GetString("label_rowRemove"); } }
         public static string label_rowConfirmRemove { get { return GetString("label_rowConfirmRemove"); } }
         public static string label_allFieldsInserted { get { return GetString("label_allFieldsInserted"); } }
+
+        public static string label_criteriaFieldsInserted { get { return GetString("label_criteriaFieldsInserted"); } }
+        public static string label_layoutFieldsInserted { get { return GetString("label_layoutFieldsInserted"); } }
+        public static string label_variationFieldsInserted { get { return GetString("label_variationFieldsInserted"); } }
+        public static string label_titleFieldsInserted { get { return GetString("label_allFieldsInserted"); } }
+
         public static string label_addWidget { get { return GetString("label_addWidget"); } }
         public static string label_out_max_results { get { return GetString("label_out_max_results"); } }
         public static string label_addDashboard { get { return GetString("label_addDashboard"); } }
@@ -314,7 +326,6 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
         public static string emptylistTemplate { get { return GetString("emptylistTemplate"); } }
         public static string emptylistQuery { get { return GetString("emptylistQuery"); } }
         public static string label_templateDelete { get { return GetString("label_templateDelete"); } }
-        public static string text_confirmDelTemplate { get { return GetString("text_confirmDelTemplate"); } }
         public static string text_remove_template { get { return GetString("text_remove_template"); } }
         public static string dashboard_Themes { get { return GetString("dashboard_Themes"); } }
         public static string label_invalidWidgets { get { return GetString("label_invalidWidgets"); } }
@@ -414,6 +425,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
 
             if (AllMessages == null)
                 LoadXmlMessages();
+            var appo = new CultureInfo(DefaultCulture.TwoLetterISOLanguageName);
 
             ci = AllMessages.ContainsKey(DefaultCulture) ? DefaultCulture : (AllMessages.ContainsKey(new CultureInfo(DefaultCulture.TwoLetterISOLanguageName)) ? new CultureInfo(DefaultCulture.TwoLetterISOLanguageName) : null);
 
@@ -432,9 +444,61 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
             try
             {
                 AllMessages = new Dictionary<CultureInfo, List<DictionaryEntry>>();
-                string path = System.Web.Hosting.HostingEnvironment.MapPath("~/bin/App_GlobalResources/GlobalResources.xml");
+                string path = System.Web.Hosting.HostingEnvironment.MapPath("~/bin/App_GlobalResources/");
 
                 if(path == null)
+                    path = AppDomain.CurrentDomain.BaseDirectory + @"App_GlobalResources\";
+
+                string[] listFileResource = Directory.GetFiles(path, "GlobalResources_*.xml");
+                XmlDocument doc = new XmlDocument();
+
+                foreach (string fileName in listFileResource)
+                {
+                    doc.Load(fileName);
+
+                    string locale = Path.GetFileNameWithoutExtension(fileName).Replace("GlobalResources_", "");
+
+                    CultureInfo cult = GetLocale(locale);
+                    if (cult == null)
+                        continue;
+                    if (!AllMessages.ContainsKey(cult))
+                        AllMessages[cult] = new List<DictionaryEntry>();
+
+
+                if (doc.ChildNodes.Count == 0)
+                    return;
+                foreach (XmlNode Res in doc.ChildNodes[0].ChildNodes)
+                {
+                    if (Res.Name == "Resource" && Res.Attributes["key"] != null)
+                    {
+                        string Reskey = Res.Attributes["key"].Value;
+                        foreach (XmlNode Names in Res.ChildNodes)
+                        {
+                            if (Names.Name == "Name")
+                            {
+
+                                AllMessages[cult].Add(new DictionaryEntry(Reskey, Names.InnerText));
+                            }
+                        }
+                    }
+                }
+            }
+            }
+            catch (Exception)
+            {
+
+                AllMessages = null;
+            }
+        }
+
+        private static void LoadXmlMessagesOneFile()
+        {
+            try
+            {
+                AllMessages = new Dictionary<CultureInfo, List<DictionaryEntry>>();
+                string path = System.Web.Hosting.HostingEnvironment.MapPath("~/bin/App_GlobalResources/GlobalResources.xml");
+
+                if (path == null)
                     path = AppDomain.CurrentDomain.BaseDirectory + @"App_GlobalResources\GlobalResources.xml";
 
                 XmlDocument doc = new XmlDocument();
@@ -469,6 +533,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.App_GlobalResources
                 AllMessages = null;
             }
         }
+
 
         private static CultureInfo DefaultCulture = CultureInfo.CurrentUICulture;
 

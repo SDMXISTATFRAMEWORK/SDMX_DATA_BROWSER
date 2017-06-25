@@ -443,5 +443,8 @@ tr:not(.hvkeys):nth-child(even) .notMeasure {
   background-color: #E1E1E1 !important;
 }
 
+
 .jstree-anchor > i.jstree-icon.jstree-checkbox:hover:before { color: #F39700 !important; }
 .jstree-anchor.jstree-checked > i.jstree-icon.jstree-checkbox:hover:before { color:#F39700 !important;}
+
+

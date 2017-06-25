@@ -70,7 +70,6 @@ C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\bin\Release\SdmxEd
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\bin\Release\ISTAT.WebClient.WidgetComplements.pdb
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\bin\Release\ISTAT.WebClient.WidgetEngine.pdb
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\bin\Release\log4net.xml
-C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\bin\Release\Newtonsoft.Json.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\obj\Release\ISTAT.WebClient.CacheManager.csprojResolveAssemblyReference.cache
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\obj\Release\ISTAT.WebClient.CacheManager.dll
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.CacheManager\obj\Release\ISTAT.WebClient.CacheManager.pdb

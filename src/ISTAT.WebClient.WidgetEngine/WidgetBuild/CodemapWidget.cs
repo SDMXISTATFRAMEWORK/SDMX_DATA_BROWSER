@@ -3,7 +3,7 @@ using ISTAT.WebClient.WidgetComplements.Model;
 using ISTAT.WebClient.WidgetComplements.Model.CallWS;
 using ISTAT.WebClient.WidgetComplements.Model.JSObject;
 using ISTAT.WebClient.WidgetComplements.Model.Properties;
-//using ISTAT.WebClient.WidgetComplements.Model.NSIWC;
+using ISTAT.WebClient.WidgetComplements.Model.NSIWC;
 using ISTAT.WebClient.WidgetEngine.Model;
 using log4net;
 using Org.Sdmxsource.Sdmx.Api.Model.Mutable.Codelist;
@@ -51,16 +51,37 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
 
         }
 
+        public CodemapWidget(GetCodemapObject codemapObj, SessionImplObject sessionObj, SessionQuery sessionQuery)
+        {
+            CodemapObj = codemapObj;
+            SessionObj = sessionObj;
+            if (sessionQuery==null || sessionQuery._IGetSDMX == null || (sessionQuery._endpointSettings!=null && this.CodemapObj.Configuration.EndPoint != sessionQuery._endpointSettings.EndPoint))
+            { //GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.CodemapObj.Configuration);
+                GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.CodemapObj.Configuration);
+              sessionQuery._IGetSDMX = GetSDMXObject;
+             }
+            else
+            { GetSDMXObject = sessionQuery._IGetSDMX; }
+            
+            if (this.SessionObj == null)
+            {
+                this.SessionObj = new SessionImplObject();
+                this.SessionObj.SdmxObject = new SdmxObjectsImpl();
+            }
+
+        }
+        
 
 
         public SessionImplObject GetCodemap(SessionQuery query, ConnectionStringSettings connectionStringSetting)
         {
             try
             {
-                ISdmxObjects structure = query.Structure;// GetDsd();
-                IDataflowObject df = structure.Dataflows.First();
-                IDataStructureObject kf = structure.DataStructures.First();
-                
+                ISdmxObjects structure = query.Structure;
+                //IDataflowObject df = structure.Dataflows.First();
+                IDataflowObject df = query.Dataflow;
+                //IDataStructureObject kf = structure.DataStructures.First();
+                IDataStructureObject kf = query.KeyFamily;
 
                 if (kf == null)
                     throw new InvalidOperationException("DataStructure is not set");
@@ -99,7 +120,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 
                 CodemapSpecificResponseObject codemapret = new CodemapSpecificResponseObject()
                 {
-                    codemap = ParseCodelist(ConceptCodelists),
+                    //codemap = ParseCodelist(ConceptCodelists),
+                    codemap = ParseCodelist(query),
                     costraint = (template != null) ? template.Criteria : null,
                     hideDimension = (template != null) ? template.HideDimension : null,
                     //enabledVar = (template != null) ? template.EnableVaration : true,
@@ -115,7 +137,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                         version = df.Version,
                         name = TextTypeHelper.GetText(df.Names, this.CodemapObj.Configuration.Locale),
                         description = TextTypeHelper.GetText(df.Descriptions, this.CodemapObj.Configuration.Locale)
-                    }
+                    },
+                    templateId = (template != null) ? template.TemplateId: ""
                 };
 
 
@@ -138,16 +161,21 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 ISdmxObjects structure;
                 //ISdmxObjects structure = query._structure;
                 if (query.Structure == null)
-                { structure = GetDsd(); }
+                {
+                  structure = GetDsd();
+                  query.Structure = structure;
+                  query.Dataflow = query.Structure.Dataflows.First();
+                }
                 else
-                { structure = 
-                    query.Structure; }
+                { structure = query.Structure; }
 
-                IDataflowObject df = structure.Dataflows.First();
-                IDataStructureObject kf = structure.DataStructures.First();
-                
-                query.Structure = structure;
-                query.Dataflow = df;
+                //IDataflowObject df = structure.Dataflows.First();
+                //IDataStructureObject kf = structure.DataStructures.First();                                
+                //query.Dataflow = df;
+
+                IDataflowObject df = query.Dataflow;
+                IDataStructureObject kf = query.KeyFamily;
+
 
                 if (kf == null)
                     throw new InvalidOperationException("DataStructure is not set");
@@ -155,7 +183,6 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
 
                 TemplateWidget templateWidget = new TemplateWidget();
                 var template = new TemplateObject();
-                //if (connectionStringSetting.ConnectionString !=null && connectionStringSetting.ConnectionString.ToLower() != "file")
                 if (connectionStringSetting.ConnectionString != null)
                 {
                     templateWidget = new TemplateWidget(connectionStringSetting.ConnectionString);
@@ -190,14 +217,15 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 }
                 else
                  {
-                    dimension = (firstDimension) ? kf.DimensionList.Dimensions.FirstOrDefault().Id : CodemapObj.Codelist;                    
+                    dimension = (firstDimension) ? kf.DimensionList.Dimensions.FirstOrDefault().Id : CodemapObj.Codelist;
+                    
+                    //se chiedo una codelist alla volta
                     IComponent component = kf.GetComponent(dimension);
                     ICodelistObject ConceptCodelistsComponent = GetCodeList(query, component);
+                    ConceptCodelistsComponent = GetCodeList(query, query.KeyFamily.FrequencyDimension);
+                    
                     //se chiedo tutte le codelist insieme
                     //ConceptCodelists = GetCodelistMap(query, false);
-                    //se chiedo una codelist alla volta
-                    //ConceptCodelists = GetCodelistMap(component.Id, df, kf;
-                    ConceptCodelists = GetCodelistMap(component.Id, df, kf,query);
 
 
                   }
@@ -205,7 +233,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
 
                 CodemapSpecificResponseObject codemapret = new CodemapSpecificResponseObject()
                 {
-                    codemap = ParseCodelist(ConceptCodelists,kf,query),
+                    //codemap = ParseCodelist(ConceptCodelists,kf,query),
+                    codemap = ParseCodelist(query),
                     costraint = (template != null) ? template.Criteria : null,
                     hideDimension = (template != null) ? template.HideDimension : null,
                     //enabledVar = (template != null) ? template.EnableVaration : true,
@@ -222,7 +251,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                         version = df.Version,
                         name = TextTypeHelper.GetText(df.Names, this.CodemapObj.Configuration.Locale),
                         description = TextTypeHelper.GetText(df.Descriptions, this.CodemapObj.Configuration.Locale)
-                    }
+                    },
+                    templateId = (template != null) ? template.TemplateId: ""
                 };
 
                 this.SessionObj.SavedCodemap = new JavaScriptSerializer().Serialize(codemapret);
@@ -299,65 +329,6 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 if (this.SessionObj.CodelistConstrained == null) this.SessionObj.CodelistConstrained = new Dictionary<string, Dictionary<string, ICodelistObject>>();
                 this.SessionObj.CodelistConstrained[Utils.MakeKey(df)] = Conceptcodelist;
 
-            }
-            return Conceptcodelist;
-        }
-
-        public Dictionary<string, ICodelistObject> GetCodelistMap(
-            string dim,
-            IDataflowObject df,
-            IDataStructureObject kf,
-            SessionQuery query)
-        {
-
-            Dictionary<string, ICodelistObject> Conceptcodelist = new Dictionary<string, ICodelistObject>();
-
-
-
-            foreach (IDimension component in kf.DimensionList.Dimensions)
-
-                Conceptcodelist.Add(component.Id, null);
-
-            if (dim != kf.TimeDimension.Id)
-            {
-                var dimCodelist = kf.DimensionList.Dimensions.Where(
-                    c => c.HasCodedRepresentation()
-                    && !string.IsNullOrEmpty(c.Representation.Representation.MaintainableReference.MaintainableId)
-                    && c.Id == dim).FirstOrDefault();
-
-
-
-                //fabio nuovo 25/11/2015
-                //var dimCodelistSession = this.SessionObj.SdmxObject.Codelists.Where(c => c.Id == dimCodelist.Representation.Representation.MaintainableReference.MaintainableId).FirstOrDefault();
-                var dimCodelistSession = this.SessionObj.SdmxObject.Codelists.Where(c => c.Id == dimCodelist.ConceptRef.FullId).FirstOrDefault();
-                if (dimCodelistSession != null)
-                { Conceptcodelist[dimCodelist.Id] = dimCodelistSession; }
-                else
-                {
-                    //Conceptcodelist[dimCodelist.Id] = this.GetCodeListCostraint(df, kf, dimCodelist);
-                    Conceptcodelist[dimCodelist.Id] = GetCodeList(query, dimCodelist);
-                }
-                //fine 
-            }
-            else
-            {
-                //fabio nuovo 25/11/2015
-                var freqCodelist = this.SessionObj.SdmxObject.Codelists.Where(c => c.Id == kf.FrequencyDimension.Representation.Representation.MaintainableId).FirstOrDefault();
-                if (freqCodelist != null)
-                { Conceptcodelist[kf.FrequencyDimension.Id] = freqCodelist; }
-                else
-                { freqCodelist = (Conceptcodelist[kf.FrequencyDimension.Id] != null) ? Conceptcodelist[kf.FrequencyDimension.Id] : this.GetCodeListCostraint(df, kf, kf.FrequencyDimension); }
-
-                var TimeDimensionCodelist = this.SessionObj.SdmxObject.Codelists.Where(c => c.Id == "CL_" + kf.TimeDimension.Id).FirstOrDefault();
-
-                if (TimeDimensionCodelist != null)
-                { Conceptcodelist[kf.TimeDimension.Id] = TimeDimensionCodelist; }
-                else
-                { Conceptcodelist[kf.TimeDimension.Id] = this.GetTimeCodeListCostraint(freqCodelist, df, kf); }
-                //fine
-
-                //var freqCodelist = (Conceptcodelist[kf.FrequencyDimension.Id] != null) ? Conceptcodelist[kf.FrequencyDimension.Id] : this.GetCodeListCostraint(df, kf, kf.FrequencyDimension);
-                //Conceptcodelist[kf.TimeDimension.Id] = this.GetTimeCodeListCostraint(freqCodelist, df, kf);
             }
             return Conceptcodelist;
         }
@@ -460,8 +431,10 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         {
 
             ISdmxObjects structure = query.Structure;
-            IDataflowObject df = structure.Dataflows.First();
-            IDataStructureObject kf = structure.DataStructures.First();
+            //IDataflowObject df = structure.Dataflows.First();
+            //IDataStructureObject kf = structure.DataStructures.First();
+            IDataflowObject df = query.Dataflow;
+            IDataStructureObject kf = query.KeyFamily;
 
             if (kf == null)
                 throw new InvalidOperationException("DataStructure is not set");
@@ -527,7 +500,10 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             }
             criteria.IncludedCubeRegion = region;
             
-            GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.CodemapObj.Configuration);
+            if (query._IGetSDMX == null)
+            { GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.CodemapObj.Configuration); }
+            else
+            { GetSDMXObject = query._IGetSDMX; }
 
             int count = GetSDMXObject.GetDataflowDataCount(df, criteria);
 
@@ -621,47 +597,88 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         }
 
 
-        /*ParseCodelist(Dictionary<string, ICodelistObject> Codemap) è errata perchè non riporta i title del concept schema*/
-        private Dictionary<string, CodemapObj> ParseCodelist(Dictionary<string, ICodelistObject> Codemap)
+        private Dictionary<string, CodemapObj> ParseCodelist(SessionQuery query)
         {
-            Dictionary<string, CodemapObj> dr_codemap = new Dictionary<string, CodemapObj>();
 
-            foreach (string conceptId in Codemap.Keys)
-            {
-                //List<string> criteri = new List<string>();
-                ICodelistObject codelist = Codemap[conceptId];
-                if (codelist != null)
+               Dictionary<string, CodemapObj> dr_codemap = new Dictionary<string, CodemapObj>();
+
+               foreach (IComponent component in query.KeyFamily.Components)
                 {
+                    var concept = query.GetCachedConcept(component);
 
-                    if (this.SessionObj != null && this.SessionObj.SdmxObject != null)
+                    if (concept != null)
                     {
-                        this.SessionObj.SdmxObject.AddCodelist(codelist);
-                    }
+                        ICodelistObject codelist;
+                        if (query.KeyFamily.TimeDimension.Id != component.Id)
+                        {
 
-                    CodemapObj codemap = new CodemapObj()
-                    {
-                        title = TextTypeHelper.GetText(codelist.Names, this.CodemapObj.Configuration.Locale),
-                        codes = new Dictionary<string, CodeObj>()
-                    };
-
-                    foreach (ICode codeItem in codelist.Items)
-                        codemap.codes.Add(
-                            codeItem.Id.ToString(),
-                            new CodeObj()
+                        CodemapObj codemap = new CodemapObj()
+                                    {
+                                        title = TextTypeHelper.GetText(concept.Names, this.CodemapObj.Configuration.Locale),
+                                        codes = new Dictionary<string, CodeObj>()
+                                    };
+                        
+                            codelist = query.GetCachedCodelist(component);
+                            if (codelist != null)
                             {
-                                name = TextTypeHelper.GetText(codeItem.Names, this.CodemapObj.Configuration.Locale),
-                                parent = codeItem.ParentCode
-                            });
+                                foreach (ICode codeItem in codelist.Items)
+                                    codemap.codes.Add(
+                                        codeItem.Id.ToString(),
+                                        new CodeObj()
+                                        {
+                                            name = TextTypeHelper.GetText(codeItem.Names, this.CodemapObj.Configuration.Locale),
+                                            parent = codeItem.ParentCode
+                                        });
 
-                    codemap.codes = codemap.codes.OrderBy(c => c.Value.parent == null).ToDictionary(c => c.Key, c => c.Value);
-                    dr_codemap.Add(conceptId, codemap);
+                                codemap.codes = codemap.codes.OrderBy(c => c.Value.parent == null).ToDictionary(c => c.Key, c => c.Value);
+                            }
 
+
+                            dr_codemap.Add(concept.Id, codemap);
+
+                        }
+                        else
+                        {
+                            //time code list before get frequency dimension
+                            //var freqCodelist = GetCodeList(query, query.KeyFamily.FrequencyDimension);                            
+                            //codelist = GetTimeCodeListCostraint(freqCodelist, query.Dataflow, query.KeyFamily);
+                            //bug fix 08/11/2016
+                            //codelist  = GetCodeList(query, query.KeyFamily.TimeDimension);
+                            codelist = query.GetCachedCodelist(component);
+
+                            CodemapObj codemap = new CodemapObj()
+                            {
+                                //bug fix 08/11/2016
+                                //title = TextTypeHelper.GetText(codelist.Names, this.CodemapObj.Configuration.Locale),
+                                title = TextTypeHelper.GetText(concept.Names, this.CodemapObj.Configuration.Locale),
+                                codes = new Dictionary<string, CodeObj>()
+                            };
+
+                            if (codelist != null)
+                            {
+                                foreach (ICode codeItem in codelist.Items)
+                                    codemap.codes.Add(
+                                        codeItem.Id.ToString(),
+                                        new CodeObj()
+                                        {
+                                            name = TextTypeHelper.GetText(codeItem.Names, this.CodemapObj.Configuration.Locale),
+                                            parent = codeItem.ParentCode
+                                        });
+
+                                codemap.codes = codemap.codes.OrderBy(c => c.Value.parent == null).ToDictionary(c => c.Key, c => c.Value);
+                            }
+
+
+                            dr_codemap.Add(component.Id, codemap);
+                        }
+                    }
                 }
-                else { dr_codemap.Add(conceptId, null); }
 
-            }
-            return dr_codemap;
+               return dr_codemap;
         }
+
+
+
      /*NUOVO SESSION QUERY*/   
         /// <summary>
         /// Get a CodeList for the specified component from either <see cref="INsiClient"/> or from <see cref="SessionQuery"/> cache.
@@ -688,7 +705,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 //NEL CASO DI CODE TIME LIST VENGONO RIPARSATE
                 codes = query.GetCachedCodelist(component);
             }
-            /*cort code @order@
+            /*cort code @order@*/
             var sortedCodes = codes.Items.OrderBy<ICode, int>(
                  o =>
                  {
@@ -701,7 +718,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
 
             foreach (ICode obj in sortedCodes)
                 codes.Items.Add(obj);
-            */
+            
 
             return codes;
         }
@@ -755,9 +772,10 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 }
 
                 var codesList = new List<ICode>();
-
+                int num1;
                 //time dimensione with region period
-                if (component.TimeDimension && ids.Length == 1)
+                if (component.TimeDimension && ids.Length == 1
+                    && int.TryParse(ids.First(), out num1))
                 {
                     {
                         int offsetTime = int.Parse(ids.First());
@@ -1195,7 +1213,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             ICodelistObject codes = null;
 
             bool Contrained = component.StructureType.EnumType != Org.Sdmxsource.Sdmx.Api.Constants.SdmxStructureEnumType.DataAttribute;
-
+            //Contrained = true;
             #region Criteria
             List<IContentConstraintMutableObject> criterias = new List<IContentConstraintMutableObject>();
             if (Contrained)
@@ -1275,6 +1293,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         {
 
             ICodelistObject CL_TIME_MA = GetCodeListCostraint(df, kf, kf.TimeDimension);
+
+
             if (CL_TIME_MA == null
                 || CL_TIME_MA.Items == null
                 || CL_TIME_MA.Items.Count != 2)

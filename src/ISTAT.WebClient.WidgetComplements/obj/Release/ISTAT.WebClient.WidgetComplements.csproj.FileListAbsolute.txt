@@ -35,8 +35,9 @@ C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\bin\Release\A
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\bin\Release\Model\XMLQueryTemplate\DOTSTAT_GetDataStructureDefinition.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\bin\Release\ISTAT.WebClient.WidgetComplements.dll
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\bin\Release\ISTAT.WebClient.WidgetComplements.pdb
-C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\obj\Release\ISTAT.WebClient.WidgetComplements.csprojResolveAssemblyReference.cache
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\obj\Release\ISTAT.WebClient.WidgetComplements.dll
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\obj\Release\ISTAT.WebClient.WidgetComplements.pdb
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\bin\Release\Estat.Nsi.Client.dll
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\bin\Release\Estat.Nsi.Client.pdb
+C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\bin\Release\Newtonsoft.Json.dll
+C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetComplements\obj\Release\ISTAT.WebClient.WidgetComplements.csprojResolveAssemblyReference.cache

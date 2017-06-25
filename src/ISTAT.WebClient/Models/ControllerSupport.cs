@@ -1,4 +1,5 @@
 ﻿using log4net;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -65,8 +66,10 @@ namespace ISTAT.WebClient.Models
             JsonResult jr = new JsonResult();
             jr.Data = deserializedObject;
             jr.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            
             return jr;
         }
+
 
 
         internal dynamic GetPostData(System.Web.HttpRequestBase Req)
@@ -76,7 +79,7 @@ namespace ISTAT.WebClient.Models
             {
                 using (StreamReader readStream = new StreamReader(receiveStream, Req.ContentEncoding))
                 {
-                    myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(readStream.ReadToEnd());
+                    myObject = JsonConvert.DeserializeObject<dynamic>(readStream.ReadToEnd());
                 }
             }
             return myObject;
@@ -89,7 +92,7 @@ namespace ISTAT.WebClient.Models
                 using (StreamReader readStream = new StreamReader(receiveStream, Req.ContentEncoding))
                 {
                     string eee = readStream.ReadToEnd();
-                    return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(eee);
+                    return JsonConvert.DeserializeObject<T>(eee);
                 }
             }
         }

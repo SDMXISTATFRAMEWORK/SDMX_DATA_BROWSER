@@ -866,13 +866,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.CallWS
             // webRequest.Accept = "text/xml";
             webRequest.Method = HttpConstants.Post;
             webRequest.Timeout = 1800 * 1000;
-            // webRequest.CookieContainer = new CookieContainer();
             this.SetupWebRequestAuth(webRequest);
-
-            webRequest.UseDefaultCredentials = true;
-            var webProxy = System.Net.WebProxy.GetDefaultProxy();
-            webProxy.UseDefaultCredentials = true;
-            webRequest.Proxy = webProxy;
 
             using (Stream stream = webRequest.GetRequestStream())
             {
@@ -991,6 +985,41 @@ namespace ISTAT.WebClient.WidgetComplements.Model.CallWS
                 }
             }
         }
+
+        public void SetupWebRequestAuth(HttpWebRequest webRequest)
+        {
+            webRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
+
+            if (this._config.EnableHTTPAuthentication)
+            {
+                webRequest.Credentials = new NetworkCredential(this._config.UserName, this._config.Password, this._config.Domain);
+            }
+
+            if (this._config.EnableProxy)
+            {
+                if (this._config.UseSystemProxy)
+                {
+                    webRequest.Proxy = WebRequest.DefaultWebProxy;
+                }
+                else
+                {
+                    WebProxy proxy = new WebProxy(this._config.ProxyServer, this._config.ProxyServerPort);
+                    if (!string.IsNullOrEmpty(this._config.ProxyUserName) || !string.IsNullOrEmpty(this._config.ProxyPassword))
+                    {
+                        proxy.Credentials = new NetworkCredential(this._config.ProxyUserName, this._config.ProxyPassword);
+                    }
+
+                    webRequest.Proxy = proxy;
+                }
+            }
+            else
+            {
+                //webRequest.Proxy = WebRequest.DefaultWebProxy;
+                webRequest.Proxy = WebRequest.GetSystemWebProxy();
+            }
+
+        }
+
 
         #endregion
     }

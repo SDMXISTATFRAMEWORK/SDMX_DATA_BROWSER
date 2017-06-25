@@ -16,6 +16,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.Settings
     using System.Collections.Generic;
     using System.Globalization;
     using System.Web.Services.Description;
+    using System.Net;
     using System.Xml;
     using System.Xml.Schema;
 
@@ -43,6 +44,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.Settings
         /// </summary>
         private ServiceDescription _wsdl;
 
+        private EndpointSettings _config;
         #endregion
 
         #region Constructors and Destructors
@@ -145,6 +147,8 @@ namespace ISTAT.WebClient.WidgetComplements.Model.Settings
             }
         }
 
+
+
         /// <summary>
         /// Gets the WSDL.
         /// </summary>
@@ -155,6 +159,8 @@ namespace ISTAT.WebClient.WidgetComplements.Model.Settings
         {
             try
             {
+                this._config = config;
+
                 var resolver = new XmlProxyUrlResolver();
                 resolver.SetConfig(config);
 
@@ -167,20 +173,11 @@ namespace ISTAT.WebClient.WidgetComplements.Model.Settings
                 }
 
 
-                //System.Net.WebProxy myProxy = new System.Net.WebProxy();
-                //myProxy.UseDefaultCredentials = true;
-                //System.Uri newUri = new System.Uri("http://proxy.istat.it:3128");
-                //myProxy.Address = newUri;
+                //nuova fabio                
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(wsdlUrl);
+                request.Timeout = 10 * 1000;//10 seconds
+                this.SetupWebRequestAuth(request);
 
-                System.Net.WebRequest.DefaultWebProxy.Credentials = System.Net.CredentialCache.DefaultNetworkCredentials;
-                System.Net.WebRequest request = System.Net.WebRequest.Create(wsdlUrl);
-
-                request.UseDefaultCredentials = true;
-                
-                var webProxy = System.Net.WebProxy.GetDefaultProxy();
-                webProxy.UseDefaultCredentials = true;
-                request.Proxy = webProxy;
-               
                 using (System.Net.WebResponse response = request.GetResponse())
                 using (XmlReader reader = XmlReader.Create(response.GetResponseStream()))
                 {
@@ -221,6 +218,69 @@ namespace ISTAT.WebClient.WidgetComplements.Model.Settings
                     }
                 }
             }
+        }
+
+
+        public void SetupWebRequestAuth(WebRequest webRequest)
+        {
+            if (this._config.EnableHTTPAuthentication)
+            {
+                webRequest.Credentials = new NetworkCredential(this._config.UserName, this._config.Password, this._config.Domain);
+            }
+
+            if (this._config.EnableProxy)
+            {
+                if (this._config.UseSystemProxy)
+                {
+                    webRequest.Proxy = WebRequest.DefaultWebProxy;
+                }
+                else
+                {
+                    WebProxy proxy = new WebProxy(this._config.ProxyServer, this._config.ProxyServerPort);
+                    if (!string.IsNullOrEmpty(this._config.ProxyUserName) || !string.IsNullOrEmpty(this._config.ProxyPassword))
+                    {
+                        proxy.Credentials = new NetworkCredential(this._config.ProxyUserName, this._config.ProxyPassword);
+                    }
+
+                    webRequest.Proxy = proxy;
+                }
+            }
+
+        }
+
+
+        public void SetupWebRequestAuth(HttpWebRequest webRequest)
+        {
+            webRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
+
+            if (this._config.EnableHTTPAuthentication)
+            {
+                webRequest.Credentials = new NetworkCredential(this._config.UserName, this._config.Password, this._config.Domain);
+            }
+
+            if (this._config.EnableProxy)
+            {
+                if (this._config.UseSystemProxy)
+                {
+                    webRequest.Proxy = WebRequest.DefaultWebProxy;
+                }
+                else
+                {
+                    WebProxy proxy = new WebProxy(this._config.ProxyServer, this._config.ProxyServerPort);
+                    if (!string.IsNullOrEmpty(this._config.ProxyUserName) || !string.IsNullOrEmpty(this._config.ProxyPassword))
+                    {
+                        proxy.Credentials = new NetworkCredential(this._config.ProxyUserName, this._config.ProxyPassword);
+                    }
+
+                    webRequest.Proxy = proxy;
+                }
+            }
+            else
+            {
+                //webRequest.Proxy = WebRequest.DefaultWebProxy;
+                webRequest.Proxy = WebRequest.GetSystemWebProxy();
+            }
+
         }
 
         #endregion

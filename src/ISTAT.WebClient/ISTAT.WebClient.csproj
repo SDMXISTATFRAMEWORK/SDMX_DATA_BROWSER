@@ -60,11 +60,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>G:\NSI_CLIENT\NSIClient_.NET_v3.5.0_2015.06.30-ultimate-capi-sdmx21\lib\EstatSdmxSourceExtension.dll</HintPath>
     </Reference>
+    <Reference Include="ISTAT.SingleSignON.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ISTAT.SingleSignON.Service\bin\Debug\ISTAT.SingleSignON.Service.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SdmxApi, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ISTAT.WebClient.Libraries\SdmxApi.dll</HintPath>
@@ -90,6 +97,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,9 +120,6 @@
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -169,6 +174,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SSOController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -197,6 +203,7 @@
     <Content Include="Content\fontello-16x16\LICENSE.txt" />
     <Content Include="Content\fontello-16x16\README.txt" />
     <Content Include="Content\style\colpick.css" />
+    <Content Include="Content\style\custom\serbia.css" />
     <Content Include="Content\style\custom\sistan.css" />
     <Content Include="Content\style\Master_old.css" />
     <Content Include="Content\style\custom\black.css" />
@@ -208,6 +215,7 @@
     <Content Include="Content\style\custom\red.css" />
     <Content Include="Content\style\custom\sport.css" />
     <Content Include="Content\style\custom\white.css" />
+    <Content Include="Content\style\metadata.css" />
     <Content Include="Content\style\query\List.css" />
     <Content Include="Content\style\dotnet-specific.css" />
     <Content Include="Content\style\jquery-layout.css" />
@@ -226,6 +234,7 @@
     <Content Include="Content\style\widgets\Login.css" />
     <Content Include="Content\style\Tree-style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Functions\functionCheck.js" />
     <Content Include="Global.asax" />
     <Content Include="Images\bgTopRight.png" />
     <Content Include="Images\category-scheme.jpg" />
@@ -285,9 +294,9 @@
     <Content Include="Images\tree-white\schema.png" />
     <Content Include="Images\wait_bar.gif" />
     <Content Include="Images\xs-dataflow.png" />
-    <Content Include="log4net.xml">
+    <None Include="log4net.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Scripts\istat-widget-metadata.js" />
     <Content Include="Scripts\istat-widget-text.js" />
     <Content Include="Scripts\istat-client.js" />
@@ -457,6 +466,7 @@
     <Content Include="Scripts\pages\split-toggler.js" />
     <Content Include="Scripts\pages\split-togglerIE8.js" />
     <Content Include="Sql\ISTAT.WebClient.DB.sql" />
+    <Content Include="Views\WebClient\Copy of Profiles.aspx" />
     <Content Include="Views\WebClient\TemplatesManagement.aspx" />
     <Content Include="Views\WebClient\Administration.aspx" />
     <Content Include="Views\WebClient\ContactForm.aspx" />
@@ -490,6 +500,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Widget\widgetChangePassword.html" />
+    <Content Include="Widget\widgetChangeUser.html" />
+    <Content Include="Widget\widgetListUser.html" />
+    <Content Include="Widget\widgetLogin.html" />
+    <Content Include="Widget\widgetRegistration.html" />
+    <Content Include="Widget\widgetResetPassword.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ISTAT.WebClient.CacheManager\ISTAT.WebClient.CacheManager.csproj">

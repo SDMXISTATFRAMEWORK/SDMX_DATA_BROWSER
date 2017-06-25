@@ -54,6 +54,13 @@ var client = {
     }
 };
 
+function clientUrlSetup(url) {
+
+    if (url != undefined) client.main.config.baseURL = url;
+
+}
+
+
 function clientSetup(url,locale,maxObs) {
 
     if (url != undefined) client.main.config.baseURL = url;
@@ -66,14 +73,16 @@ function clientSetup(url,locale,maxObs) {
 }
 
 function clientRetrieveMessages() {
+
     clientPostJSON(
         client.main.url.getMessages,
         null,
         function (jsonString) {
 
             client.main.messages = clientParseJsonToObject(jsonString);
+            clientShowWaitDialog();
             client.main.manager.widget.SetupWidgets($(".dinamic-widget"),client.main.config.locale, client.main.messages);
-
+            clientCloseWaitDialog();
         },
         null,
         true);
@@ -94,6 +103,8 @@ function clientShowWaitDialog(msg) {
         showOverlay: true,
         css: { border: 0 }
     });
+
+
 }
 function clientCloseWaitDialog() {
     $.unblockUI();
@@ -184,6 +195,7 @@ function clientPostJSON(url, data, callback, errorCallback,useWait) {
     }
     else { client.main.events.ajaxStop(); }
 }
+
 
 function clientAjaxError(event, req, options, error) {
     clientShowErrorDialog(error);

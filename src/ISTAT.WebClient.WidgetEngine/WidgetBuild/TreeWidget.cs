@@ -8,6 +8,7 @@ using ISTAT.WebClient.WidgetComplements.Model.Settings;
 using ISTAT.WebClient.WidgetEngine.Builder.Tree;
 using ISTAT.WebClient.WidgetEngine.Model;
 using log4net;
+using Newtonsoft.Json.Linq;
 using Org.Sdmxsource.Sdmx.Api.Model.Objects;
 using Org.Sdmxsource.Sdmx.Api.Model.Objects.Base;
 using Org.Sdmxsource.Sdmx.Api.Model.Objects.CategoryScheme;
@@ -38,7 +39,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         private string VirtualDataflowTypeEpAnn = "EP";
         private string VirtualDataflowTypeDescAnn = "DESC";
         private string VirtualDataflowTypeUrlAnn = "URLREF";
-        
+
+
                                                      
         public string ConnectionString { get; set; }
 
@@ -50,12 +52,22 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             ConnectionString = connectionString;
         }
 
+        public TreeWidget(EndpointSettings endpointsetting,string Locale, string connectionString)
+        {
+            //GetTreeObject TreeObj = new GetTreeObject();
+            TreeObj.Configuration = endpointsetting;
+            TreeObj.Locale = Locale;
+            // Modifico direttamente l'attributo locale usato per identificare la cultura del web service
+            //TreeObj.Configuration.Locale = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+            ConnectionString = connectionString;
+        }
+
         public TreeWidget()
         {
             // TODO: Complete member initialization
         }
 
-        public SessionImplObject GetTree()
+        public SessionImplObject GetTree(SessionQuery sessionQuery)
         {
             var ser = new JavaScriptSerializer();
             string json;
@@ -75,7 +87,17 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 if (!string.IsNullOrEmpty(JsonTree))
                     return new SessionImplObject() { SavedTree = JsonTree };
 
-                ISdmxObjects SdmxOBJ = GetSdmxObject(TreeObj.Configuration);
+                //ISdmxObjects SdmxOBJ = GetSdmxObject(TreeObj.Configuration);
+                ISdmxObjects SdmxOBJ = null;
+
+                if (sessionQuery._IGetSDMXObject == null || TreeObj.Configuration.EndPoint != sessionQuery._endpointSettings.EndPoint)
+                {
+                    SdmxOBJ = GetSdmxObject(TreeObj.Configuration,sessionQuery);
+                   sessionQuery._IGetSDMXObject = SdmxOBJ;
+                }
+                else
+                { SdmxOBJ = sessionQuery._IGetSDMXObject; }
+
 
                 //TreeObj.Configuration.Locale = decimalCulture;
 
@@ -87,7 +109,12 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 }
 
                 json = ser.Serialize(nodelist);
-                
+
+
+                JArray jobject = JArray.Parse(json);
+                string appo = jobject.ToString();   
+
+            
                 ct.SaveCachedTree(json);
 
                 return new SessionImplObject() { SavedTree = json, SdmxObject = SdmxOBJ };
@@ -112,7 +139,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             }
 
         }
-
+        /*
         public SessionImplObject GetTreeLocale()
         {
             var ser = new JavaScriptSerializer();
@@ -170,7 +197,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             }
 
         }
-
+        */
 
         public string GetTreeforCache(string TwoLetterISO)
         {
@@ -186,14 +213,32 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
 
         }
 
-
-        #region GetTree Objects from WebService
-
         private ISdmxObjects GetSdmxObject(EndpointSettings endpointSettings)
         {
             IGetSDMX GetSDMXObject = WebServiceSelector.GetSdmxImplementation(endpointSettings);
             return GetSDMXObject.RetrieveTree();
         }
+
+
+        #region GetTree Objects from WebService
+
+        private ISdmxObjects GetSdmxObject(EndpointSettings endpointSettings, SessionQuery sessionQuery)
+        {
+         //   IGetSDMX GetSDMXObject = WebServiceSelector.GetSdmxImplementation(endpointSettings);
+            IGetSDMX GetSDMXObject = null;
+            if (sessionQuery._IGetSDMX == null || (sessionQuery._endpointSettings!=null && endpointSettings.EndPoint != sessionQuery._endpointSettings.EndPoint))
+            { 
+                GetSDMXObject = WebServiceSelector.GetSdmxImplementation(endpointSettings);
+                sessionQuery._IGetSDMX = GetSDMXObject;
+            }
+            else
+            { GetSDMXObject = sessionQuery._IGetSDMX; }
+
+
+            return GetSDMXObject.RetrieveTree();
+        }
+
+
 
         #endregion
 
@@ -208,6 +253,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             // if true put it in dataflow list or in uncategorizate list
             foreach (IDataflowObject d in SdmxOBJ.Dataflows)
             {
+
                 if (!d.IsExternalReference.IsTrue 
                     && SdmxOBJ.Categorisations.Count(cat => !cat.IsExternalReference.IsTrue && cat.StructureReference.TargetReference.EnumType == d.StructureType.EnumType && MaintainableUtil<IMaintainableObject>.Match(d, cat.StructureReference)) == 0)
                     uncategorisedDataflow.Add(d);

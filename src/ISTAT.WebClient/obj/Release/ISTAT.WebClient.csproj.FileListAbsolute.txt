@@ -126,7 +126,6 @@ C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\ISTAT.WebClient.WidgetEngin
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\log4net.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\System.Data.SQLite.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\EntityFramework.xml
-C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\Newtonsoft.Json.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\System.Net.Http.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\System.Net.Http.Formatting.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\System.Net.Http.WebRequest.xml
@@ -149,3 +148,5 @@ C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\SdmxStructureRetrieval.pdb
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\SdmxParseBase.pdb
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\SdmxParseBase.xml
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\SdmxEdiParser.pdb
+C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\ISTAT.SingleSignON.Service.dll
+C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient\bin\ISTAT.SingleSignON.Service.pdb

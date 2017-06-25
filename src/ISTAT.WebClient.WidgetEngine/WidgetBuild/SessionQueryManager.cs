@@ -153,6 +153,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             return context.Session != null && context.Session[Constants.HTTPSessionQueryAttr] != null;
         }
 
+
         /// <summary>
         /// Tests to see if a query instance is saved into the HTTP session associated with specified context.
         /// </summary>
@@ -168,5 +169,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         }
 
         #endregion
+
+  
     }
 }

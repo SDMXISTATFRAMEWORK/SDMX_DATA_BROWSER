@@ -68,7 +68,7 @@ namespace ISTAT.WebClient
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            var path = Server.MapPath("~/log4net.xml");
+            var path = Server.MapPath("~/log4net.config");
             log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(path));
             Logger.Info("Application started");
 
@@ -215,14 +215,13 @@ namespace ISTAT.WebClient
 
                 var query = new SessionQuery { CurrentCulture = culture };
 
-                Utils.App_Data_Path = this.Context.Server.MapPath("~/App_Data/");
+                Utils.App_Data_Path = this.Context.Server.MapPath("~/App_Data/"); 
                 string cacheFolder = this.GetCacheFolder();
 
                 query.SetCacheFolder(cacheFolder);
                 SessionQueryManager.SaveSessionQuery(this.Context.Session, query);
                 Thread.CurrentThread.CurrentUICulture = culture;
                 Logger.Info("starting session success");
-
 
 
             }
@@ -255,6 +254,8 @@ namespace ISTAT.WebClient
         protected void Session_End(object sender, EventArgs e)
         {
             Logger.Info("ending session ...");
+            HttpSessionStateBase sessionBase = new HttpSessionStateWrapper(Session);
+            SessionQueryManager.ResetSession(sessionBase);
             try
             {
                 foreach (string SessionName in Session.Keys)
@@ -267,6 +268,23 @@ namespace ISTAT.WebClient
             catch (Exception ex)
             {
                 Logger.Error(ex.Message, ex);
+            }
+        }
+
+       protected void Application_PostAcquireRequestState(object sender, EventArgs e)
+        {
+            HttpContext context = HttpContext.Current;
+            var appUrl = VirtualPathUtility.ToAbsolute("~/");
+            if (context != null && context.Session != null)
+            {
+                if (Session.IsNewSession && !context.Request.Path.Contains("Index") && !context.Request.Path.Contains("InvalidSession")
+                    && context.Request.Path.ToString()!=VirtualPathUtility.MakeRelative("~", Request.Url.AbsolutePath))
+                {
+                    //Utils.App_Data_Path = this.Context.Server.MapPath("~/WebClient/Index");
+                    //context.Response.Redirect("~/WebClient/Index", true);
+                    
+                 //   context.Response.Redirect("~/Main/InvalidSession", true);
+                }
             }
         }
 

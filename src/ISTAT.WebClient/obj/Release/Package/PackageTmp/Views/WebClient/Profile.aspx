@@ -19,7 +19,8 @@
     </div>
     <script>
         var code = sessionStorage.user_code;
-        var _endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
+        //var _endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
+        var _endPoint = "<%=ResolveClientUrl("~/")%>";
         function OnSuccessLogin(msg) {
             alert("dal client cancellazione effettuata :" + msg);
         }
@@ -59,7 +60,7 @@
                 }
             });
         }
-        $("#userProfile").load(_endPoint + "/Widget/widgetChangeUser.html", null, function (responseTxt, statusTxt, xhr) {
+        $("#userProfile").load(_endPoint + "Widget/widgetChangeUser.html", null, function (responseTxt, statusTxt, xhr) {
             if (statusTxt == "success") {
                 var data = {
                     endpoint: _endPoint,

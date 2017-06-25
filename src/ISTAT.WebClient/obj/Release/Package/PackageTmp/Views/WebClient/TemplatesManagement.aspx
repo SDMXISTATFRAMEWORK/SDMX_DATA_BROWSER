@@ -26,6 +26,7 @@
 
         var curIdxPaging = 0;
         var elemnPaging = <%=ConfigurationManager.AppSettings["ElementInList"].ToString() %>;
+        //var elemnPaging = 2;
         //var endpoints = [];
 
         function removeQuery(queryId) {
@@ -102,6 +103,16 @@
             //var endpoint = "";
             var lista_vuota = '<%= Messages.label_queryList_empty %>';
 
+            var divTitle = document.createElement('div');
+
+            $(divTitle).addClass('query');
+            $(divTitle).append("<div class='query_titleWS'><b>Web Service</b></div>");
+            $(divTitle).append("<div class='query_title'><b>Template</b></div>");
+            $(divTitle).append("<div class='templateDataflow'><b>Dataflow</b></div>");
+            $(divTitle).append("<div class='buttons'></div>");
+
+
+
             try {
                 var dati = "";
                 var urlGetQuery = "Template/GetTemplateList";
@@ -124,7 +135,10 @@
                                 );
 
                                 $(div_pag).appendTo(dest);
-                                $(div_pag).buttonset();
+                                $(div_pag).buttonset();                               
+                                $(div_pag).append("<hr>");
+                                $(div_pag).append(divTitle); 
+
 
                                 var pagFrom = (curIdxPaging * elemnPaging);
                                 var pagTo = pagFrom + elemnPaging;
@@ -140,10 +154,14 @@
                                         strjson = JSON.stringify(this);
 
                                         var query_id = this.TemplateId;
-
+                                      
                                         var div = document.createElement('div');
+                                      
+
                                         $(div).addClass('query');
-                                        $(div).append("<div class='query_title'>" + this.Title + "</div><div class='templateDataflow'><div class='sub_templateDataflow'>" + this.Dataflow.id + "</div><div class='sub_templateDataflow'>" + this.Dataflow.agency + "</div><div class='sub_templateDataflow'>" + this.Dataflow.version + "</div></div><div class='buttons'><span class='button'><i class='icon-trash'></i><input class='button' title='delete query' type='button' id='id_button_R_" + i + "'/></span></div></div>");
+                                        $(div).append("<div class='query_titleWS'>" + this.Configuration.Domain + " </div>");
+                                        $(div).append("<div class='query_title'>" + this.Title + " </div>");
+                                        $(div).append("<div class='templateDataflow'><div class='sub_templateDataflow'> <span title='"+ this.Dataflow.name + "'>" + this.Dataflow.id + "</span></div>  <div class='sub_templateDataflowsmall'>Ag:" + this.Dataflow.agency +"- Ver:"+ this.Dataflow.version + "</div></div><div class='buttons'><span class='button'><i class='icon-trash'></i><input class='button' title='delete query' type='button' id='id_button_R_" + i + "'/></span></div></div>");
                                         $(dest).append(div);
 
                                         $("#id_button_R_" + i).val('<%= Messages.label_remove_query %>');

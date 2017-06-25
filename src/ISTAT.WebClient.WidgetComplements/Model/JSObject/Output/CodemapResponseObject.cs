@@ -20,6 +20,7 @@ namespace ISTAT.WebClient.WidgetComplements.Model.JSObject
         public bool enabledVar { get; set; }
         public bool enabledCri { get; set; }
         public bool enabledDec { get; set; }
+        public string templateId { get; set; }
 
         /*public Dictionary<string, List<string>> SliceKeyValidValues { get; set; }
         public OrderedDictionary SliceKeyValues { get; set; }

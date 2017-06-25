@@ -10,8 +10,7 @@
     <!-- HTML Widget START here-->
     <div id="widgetContainer">
         <div class="containerT" id="containerT">
-            <div id="DivLogin">
-            </div>
+            <div id="DivLogin"></div>
             <div class="nuovo_utente" id="id_nuovo_utente">
                 <i class="icon-user-add-1"></i><a  id="id_link_nuovo_utente"><%= Messages.label_loginNew %></a>
             </div>
@@ -28,7 +27,8 @@
     <script src="<%= ResolveClientUrl("~/Scripts/pages/login.js")%>"></script>
     <script type="text/javascript">
 
-        var _endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
+        //var _endPoint = "<%=ConfigurationManager.AppSettings["SingleSignOnUrl"].ToString() %>";
+        var _endPoint = "<%=ResolveClientUrl("~/")%>";
         
         $(document).ready(function () {
 
@@ -44,11 +44,9 @@
             }
         };
 
-        $("#DivLogin").load(_endPoint + "/Widget/widgetLogin.html", null, function (responseTxt, statusTxt, xhr) {
+            $("#DivLogin").load(_endPoint + "Widget/widgetLogin.html", null, function (responseTxt, statusTxt, xhr) {                  
             if (statusTxt == "success") {
-
                 SetupWidget_widgetLogin(data, OnSuccessLogin, OnFailLogin);
-
             } else if (statusTxt == "error") {
                 clientShowErrorDialog("Error: " + xhr.status + ": " + xhr.statusText);
             }
@@ -89,7 +87,7 @@
 
             $("#WidgetTitle").empty();
             $("#WidgetTitle").html("<i class='icon-user-add-1'></i> Nuovo Utente");
-            $("#containerT").load(_endPoint + "/Widget/widgetRegistration.html", null, function (responseTxt, statusTxt, xhr) {
+            $("#containerT").load(_endPoint + "Widget/widgetRegistration.html", null, function (responseTxt, statusTxt, xhr) {
 
                 if (statusTxt == "success") {
 
@@ -107,7 +105,8 @@
 
     function OnSuccessLogin(msg) {
         var strjson = JSON.stringify(msg);
-        var obj = JSON.parse(strjson);
+        //var obj = JSON.parse(strjson);
+        var obj = JSON.parse(msg);
        
         var data = {
             UserCode: obj.UserCode,
@@ -115,30 +114,37 @@
         }
         //--//
         var urlGetProfile = "Profile/Login";
-        clientPostJSON(urlGetProfile, clientParseObjectToJson(data),
-                function (jsonString) {
-                    var objProf = JSON.parse(jsonString);
-                    if (objProf.UserRole.RoleId == 500) {
-                        var mess = "Nome Utente o password non corretti";
-                        OnFailLogin(mess);
-                    } else {
-                        sessionStorage.setItem("user_code", obj.UserCode);
-                        sessionStorage.setItem("user_name", obj.Name );
-                        sessionStorage.setItem("user_surname", obj.Surname);
-                        sessionStorage.setItem("email", obj.Email);
-                        sessionStorage.setItem("user_isSA", objProf.IsSuperAdmin);
-                        sessionStorage.setItem("user_role", JSON.stringify(objProf.UserRole));
-                        window.location.href = "<%=ResolveClientUrl("~/")%>WebClient/Index";
-                    }
-                    
-                },
-                function (event, status, errorThrown) {
-                    clientShowErrorDialog('<%= Messages.label_error_data %>');
-                    //clientAjaxError(event, status);
-                    return;
-                },
-                false);
 
+        if (data.UserCode == undefined || obj.error) {
+            var mess = "Nome Utente o password non corretti";
+            OnFailLogin(mess);
+        }
+        else {
+            clientPostJSON(urlGetProfile, clientParseObjectToJson(data),
+                    function (jsonString) {
+                        //alert(jsonString);
+                        var objProf = JSON.parse(jsonString);
+                        if (objProf.UserRole.RoleId == 500) {
+                            var mess = "Nome Utente o password non corretti";
+                            OnFailLogin(mess);
+                        } else {
+                            sessionStorage.setItem("user_code", obj.UserCode);
+                            sessionStorage.setItem("user_name", obj.Name);
+                            sessionStorage.setItem("user_surname", obj.Surname);
+                            sessionStorage.setItem("email", obj.Email);
+                            sessionStorage.setItem("user_isSA", objProf.IsSuperAdmin);
+                            sessionStorage.setItem("user_role", JSON.stringify(objProf.UserRole));
+                            window.location.href = "<%=ResolveClientUrl("~/")%>WebClient/Index";
+                        }
+
+                    },
+                    function (event, status, errorThrown) {
+                        clientShowErrorDialog('<%= Messages.label_error_data %>');
+                        //clientAjaxError(event, status);
+                        return;
+                    },
+                    false);
+        }
         //--//
         
     }
@@ -157,7 +163,8 @@
                 'Ok': function () {
                     $(this).dialog("close");
                     var strjson = JSON.stringify(msg);
-                    var obj = JSON.parse(strjson);
+                    //var obj = JSON.parse(strjson);
+                    var obj = JSON.parse(msg);
                     sessionStorage.setItem("user_code", obj.UserCode);
                     sessionStorage.setItem("user_name", obj.Name);
                     sessionStorage.setItem("user_surname", obj.Surname);

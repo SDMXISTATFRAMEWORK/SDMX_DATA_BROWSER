@@ -2,6 +2,7 @@
   <Resource key="app_copyright">
     <Name LocaleIsoCode="en"><![CDATA[Copyright (c) 2010 by the European Commission, represented by Eurostat.]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[Copyright (c) 2010 European Commission, rappresentata da Eurostat.]]></Name>
+    <Name LocaleIsoCode="lo-LA"><![CDATA[Copyright teeeeetst (c) 2010 European Commission, rappresentata da Eurostat.]]></Name>
   </Resource>
   <Resource key="app_description">
     <Name LocaleIsoCode="en"><![CDATA[A simple .NET Web application for exposing / browsing dissemination environment of an NSI.]]></Name>
@@ -116,7 +117,7 @@
     <Name LocaleIsoCode="it"><![CDATA[Questo componente non dispone di un elenco dei codici associati, quindi è necessario inserire il valore manualmente. Fare clic sul pulsante <em;>Save</em;> per salvare le modifiche.]]></Name>
   </Resource>
   <Resource key="html_criteria_help_single_code">
-    <Name LocaleIsoCode="en"><![CDATA[There is only one available code. Its usage is implied without being specified in the SDMXQuery.]]></Name>
+    <Name LocaleIsoCode="en"><![CDATA[There is only one available code. Its usage is implied without being specified in the SDM]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[C'è un solo codice disponibile. Il suo utilizzo è implicito, senza essere specificato in il SDMXQuery.]]></Name>
   </Resource>
   <Resource key="html_criteria_help_time">
@@ -290,6 +291,14 @@
   <Resource key="label_deselect_all">
     <Name LocaleIsoCode="en"><![CDATA[Deselect All]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[Deseleziona Tutto]]></Name>
+  </Resource>
+  <Resource key="label_open_all">
+    <Name LocaleIsoCode="en"><![CDATA[Expand All]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Apri Tutto]]></Name>
+  </Resource>
+  <Resource key="label_close_all">
+    <Name LocaleIsoCode="en"><![CDATA[Collapse All]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Chiudi Tutto]]></Name>
   </Resource>
   <Resource key="label_time_end">
     <Name LocaleIsoCode="en"><![CDATA[To Period]]></Name>
@@ -715,7 +724,11 @@
     <Name LocaleIsoCode="en"><![CDATA[Remove]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[Cancella]]></Name>
   </Resource>
-<Resource key="label_error_data">
+  <Resource key="label_modify_query">
+    <Name LocaleIsoCode="en"><![CDATA[Modify]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Modifica]]></Name>
+  </Resource>
+  <Resource key="label_error_data">
     <Name LocaleIsoCode="en"><![CDATA[Error in server transit.<br/> Check if connection is well format.]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[Errore nella comunicazione con il server.<br/> Controllare che sia correttamente configurato il servizio.]]></Name>
   </Resource>
@@ -971,6 +984,10 @@
     <Name LocaleIsoCode="en"><![CDATA[Save Template]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[Salva Template]]></Name>
   </Resource>
+  <Resource key="label_delete_template">
+    <Name LocaleIsoCode="en"><![CDATA[Delete Template]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Cancella Template]]></Name>
+  </Resource>  
   <Resource key="label_changeSuccess">
     <Name LocaleIsoCode="en"><![CDATA[Changes successfully done]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[Modifiche effettuate con successo]]></Name>
@@ -1055,6 +1072,24 @@
     <Name LocaleIsoCode="en"><![CDATA[All fields must be inserted]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[tutti i campi devono essere valorizzati]]></Name>
   </Resource>
+  <Resource key="label_criteriaFieldsInserted">
+    <Name LocaleIsoCode="en"><![CDATA[Criteria field must be inserted]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Il campo criterio deve essere valorizzato]]></Name>
+  </Resource>
+  <Resource key="label_layoutFieldsInserted">
+    <Name LocaleIsoCode="en"><![CDATA[Layout field must be inserted]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Il campo layout deve essere valorizzato]]></Name>
+  </Resource>
+  <Resource key="label_variationFieldsInserted">
+    <Name LocaleIsoCode="en"><![CDATA[Variation field must be inserted]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Il campo variazione layout deve essere valorizzato]]></Name>
+  </Resource>
+  <Resource key="label_titleFieldsInserted">
+    <Name LocaleIsoCode="en"><![CDATA[Title field must be inserted]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Il campo titolo deve essere valorizzato]]></Name>
+  </Resource>
+
+
   <Resource key="label_addWidget">
     <Name LocaleIsoCode="en"><![CDATA[Add widget]]></Name>
     <Name LocaleIsoCode="it"><![CDATA[Inserisci widget]]></Name>
@@ -1325,7 +1360,7 @@
   </Resource>
   <Resource key="label_axe_hor">
     <Name LocaleIsoCode="en"><![CDATA[Horizzontal axis]]></Name>
-    <Name LocaleIsoCode="it"><![CDATA[Asse orizzantale]]></Name>
+    <Name LocaleIsoCode="it"><![CDATA[Asse orizzontale]]></Name>
   </Resource>
   <Resource key="label_axe_ver">
     <Name LocaleIsoCode="en"><![CDATA[Vertical axis]]></Name>

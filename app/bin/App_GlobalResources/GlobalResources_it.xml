@@ -1,0 +1,2079 @@
+<GlobalResources>
+	<Resource key="app_copyright">
+		<Name>
+			<![CDATA[Copyright (c) 2010 European Commission, rappresentata da Eurostat.]]>
+		</Name>
+	</Resource>
+	<Resource key="app_description">
+		<Name>
+			<![CDATA[Una semplice applicazione Java Web per l'esposizione / diffusione nell'ambiente di navigazione di un NSI.]]>
+		</Name>
+	</Resource>
+	<Resource key="app_title">
+		<Name>
+			<![CDATA[NSI .NET Client]]>
+		</Name>
+	</Resource>
+	<Resource key="app_version">
+		<Name>
+			<![CDATA[v3.3.1 -21-11-2014]]>
+		</Name>
+	</Resource>
+	<Resource key="confirmation_criteria_clear">
+		<Name>
+			<![CDATA[Tutti i criteri rimossi.]]>
+		</Name>
+	</Resource>
+	<Resource key="error_ajax_generic">
+		<Name>
+			<![CDATA[Impossibile inviare / ricevere dati a / da server. Si prega di ritentare l'operazione.]]>
+		</Name>
+	</Resource>
+	<Resource key="error_drag_slice_component_single">
+		<Name>
+			<![CDATA[Non è possibile trascinare e rilasciare un componente fetta con un solo valore  di asse orizzontale o verticale.]]>
+		</Name>
+	</Resource>
+	<Resource key="error_invalid_session">
+		<Name>
+			<![CDATA[La sessione HTTP è scaduta. Clicca <a href="{0}">qui</a> per andare alla home page e ricominciare.]]>
+		</Name>
+	</Resource>
+	<Resource key="error_query_not_empty">
+		<Name>
+			<![CDATA[Flusso di dati non possono essere cambiati perchè i criteri attuali non è vuoto. Utilizzare i criteri chiari prima di scegliere un altro flusso di dati.]]>
+		</Name>
+	</Resource>
+	<Resource key="error_results">
+		<Name>
+			<![CDATA[Impossibile elaborare la query e per recuperare la risposta. Prova ancora e se il problema perist contattare l'amministratore di sistema.]]>
+		</Name>
+	</Resource>
+	<Resource key="error_time_period_empty">
+		<Name>
+			<![CDATA[È necessario specificare almeno una data di inizio]]>
+		</Name>
+	</Resource>
+	<Resource key="format_codelist_code">
+		<Name>
+			<![CDATA[[{0}] - {1}]]>
+		</Name>
+	</Resource>               
+	<Resource key="format_dataflow_id">
+		<Name>
+			<![CDATA[{0}_{1}_{2}]]>
+		</Name>
+	</Resource>
+	<Resource key="format_time_interval">
+		<Name>
+			<![CDATA[Tra {0} e {1}]]>
+		</Name>
+	</Resource>
+	<Resource key="format_time_interval_end">
+		<Name>
+			<![CDATA[Prima {0}]]>
+		</Name>
+	</Resource>
+	<Resource key="format_time_interval_start">
+		<Name>
+			<![CDATA[Dopo {0}]]>
+		</Name>
+	</Resource>
+	<Resource key="help_excel_csv_layout">
+		<Name>
+			<![CDATA[Selezionare questa opzione per scaricare i dati per Excel in formato CSV utilizzando il layout selezionato]]>
+		</Name>
+	</Resource>
+	<Resource key="help_excel_csv_tabular">
+		<Name>
+			<![CDATA[Selezionare questa opzione per scaricare i dati per Excel in formato tabulare CSV. Ignora il layout.]]>
+		</Name>
+	</Resource>
+	<Resource key="help_excel_html">
+		<Name>
+			<![CDATA[Selezionare questa opzione per scaricare i dati per Excel in formato HTML. Si prega di ignorare qualsiasi avviso di Excel.]]>
+		</Name>
+	</Resource>
+	<Resource key="help_excel_separator">
+		<Name>
+			<![CDATA[Selezionare il carattere separatore che verrà  utilizzato nel file CSV]]>
+		</Name>
+	</Resource>
+	<Resource key="help_pdf_select_orientation">
+		<Name>
+			<![CDATA[Selezionare la funzione di orientamento sulle dimensioni dei dati. Se ci molte colonne selezionare Potrait altro paesaggio.]]>
+		</Name>
+	</Resource>
+	<Resource key="help_pdf_select_page_size">
+		<Name>
+			<![CDATA[Selezionare il formato di pagina per il possibile numero di colonne. Se non certo scegliere A4.]]>
+		</Name>
+	</Resource>
+	<Resource key="help_sdmxml_dataset">
+		<Name>
+			<![CDATA[Selezionare questa opzione per scaricare solo i dati. I dati saranno formato SDMX-ML]]>
+		</Name>
+	</Resource>
+	<Resource key="help_sdmxml_structure">
+		<Name>
+			<![CDATA[Selezionare questa opzione per scaricare solo il file struttura SDMX-ML. Lo struttura file include la famiglia di definizione/chiave struttura dati (DSD) e il codice depended elenchi e schemi concettuali.]]>
+		</Name>
+	</Resource>
+	<Resource key="help_sdmxml_zip">
+		<Name>
+			<![CDATA[Selezionare questa opzione per scaricare sia i dati SDMX-ML e file struttura SDMX-ML all'interno di un archivio zip.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_help_1">
+		<Name>
+			<![CDATA[Utilizzando il seguente controllo scheda è possibile specificare i criteri da utilizzare per filtrare la i dati disponibili in banche dati di diffusione. Fare clic su un elemento scheda per selezionare la pagina per specificare il filtro per una dimensione specifica.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_help_2">
+		<Name>
+			<![CDATA[Nota che quando un filtro per un componente viene modificato i filtri per i componentiprossimo sarà  automaticamente azzerato.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_help_codes">
+		<Name>
+			<![CDATA[Nota che sono elencati solo i valori per i quali esistono dati in banche dati di diffusione.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_help_simple">
+		<Name>
+			<![CDATA[Questo componente non dispone di un elenco dei codici associati, quindi è necessario inserire il valore manualmente. Fare clic sul pulsante <em;>Save</em;> per salvare le modifiche.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_help_single_code">
+		<Name>
+			<![CDATA[C'è un solo codice disponibile. Il suo utilizzo è implicito, senza essere specificato in il SDMXQuery.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_help_time">
+		<Name>
+			<![CDATA[È possibile specificare una data di inizio e, facoltativamente, una data di fine.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_select_dataflow">
+		<Name>
+			<![CDATA[Seleziona un primo flusso di dati. Dopo un flusso di dati è selezionata sarete in grado di aggiungere criteri per filtrare i dati disponibili.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_criteria_splitter">
+		<Name>
+			<![CDATA[È possibile utilizzare lo splitter per regolare le dimensioni dei pannelli. È possibile utilizzare il toggler trova nel mezzo dello splitter per mostrare / nascondere il pannello di sinistra.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_dataflows_help">
+		<Name>
+			<![CDATA[Selezionare il flusso di dati dalla struttura sottostante.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_results_help_1">
+		<Name>
+			<![CDATA[Drag & drop dei blocchi sfondo giallo corrispondente a X, Y e Z. L'asse Z è per i componenti utilizzati per filtrare i dati visibili, l'asse X è per le componenti orizzontali usate per creare l'intestazione della tabella, mentre l'asse Y è per i componenti utilizzati come prime colonne. Utilizzare il <em;>Applica</em;> per confermare le modifiche, <em;>Annulla</em;> di tornare li.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_results_help_2">
+		<Name>
+			<![CDATA[Nella tabella dei risultati di un componente può essere reso con la sua descrizione, il codice e la descrizione o solo il codice, ma questo solo se i dati sono forniti da servizio web NSI. È possibile fare clic su un'etichetta componente per alternare la modalità  di visualizzazione per tutti i suoi valori o si può fare clic su un valore del componente per passare solo le sue modalità  di visualizzazione. Utilizzare il tasto <em>Reset Modalità  di Visualizzazione</em> per ripristinare la modalità  di visualizzazione di default per tutti i valori dei componenti.]]>
+		</Name>
+	</Resource>
+	<Resource key="html_results_wait">
+		<Name>
+			<![CDATA[Attendere il recupero dei dati...]]>
+		</Name>
+	</Resource>
+	<Resource key="label_apply">
+		<Name>
+			<![CDATA[Applica]]>
+		</Name>
+	</Resource>
+	<Resource key="label_axis_x">
+		<Name>
+			<![CDATA[Orizzontale (asse X):]]>
+		</Name>
+	</Resource>
+	<Resource key="label_axis_y">
+		<Name>
+			<![CDATA[Verticale (asse Y)]]>
+		</Name>
+	</Resource>
+	<Resource key="label_axis_z">
+		<Name>
+			<![CDATA[Slice (asse Z):]]>
+		</Name>
+	</Resource>
+	<Resource key="label_cancel">
+		<Name>
+			<![CDATA[Annulla]]>
+		</Name>
+	</Resource>
+	<Resource key="label_close">
+		<Name>
+			<![CDATA[Chiudi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_clear">
+		<Name>
+			<![CDATA[Pulisci]]>
+		</Name>
+	</Resource>
+	<Resource key="label_collapse_all">
+		<Name>
+			<![CDATA[Comprimi tutto]]>
+		</Name>
+	</Resource>
+	<Resource key="label_count">
+		<Name>
+			<![CDATA[Osservazioni possibili massime:]]>
+		</Name>
+	</Resource>
+	<Resource key="label_criteria">
+		<Name>
+			<![CDATA[Criteri]]>
+		</Name>
+	</Resource>
+	<Resource key="label_csv">
+		<Name>
+			<![CDATA[CSV]]>
+		</Name>
+	</Resource>
+	<Resource key="label_delete">
+		<Name>
+			<![CDATA[Cancella]]>
+		</Name>
+	</Resource>
+	<Resource key="label_download">
+		<Name>
+			<![CDATA[Download]]>
+		</Name>
+	</Resource>
+	<Resource key="label_excel_csv_layout">
+		<Name>
+			<![CDATA[CSV (non formattato)]]>
+		</Name>
+	</Resource>
+	<Resource key="label_excel_csv_tabular">
+		<Name>
+			<![CDATA[CSV (tabulare)]]>
+		</Name>
+	</Resource>
+	<Resource key="label_excel_dialog">
+		<Name>
+			<![CDATA[Selezionare download Excel]]>
+		</Name>
+	</Resource>
+	<Resource key="label_excel_html">
+		<Name>
+			<![CDATA[HTML (formattato)]]>
+		</Name>
+	</Resource>
+	<Resource key="label_excel_separator">
+		<Name>
+			<![CDATA[Separatore]]>
+		</Name>
+	</Resource>
+	<Resource key="label_expand_all">
+		<Name>
+			<![CDATA[Espandi tutto]]>
+		</Name>
+	</Resource>
+	<Resource key="label_expand_categories">
+		<Name>
+			<![CDATA[Espandi le categorie]]>
+		</Name>
+	</Resource>
+	<Resource key="label_html">
+		<Name>
+			<![CDATA[HTML]]>
+		</Name>
+	</Resource>
+	<Resource key="label_invert_selection">
+		<Name>
+			<![CDATA[Inverti]]>
+		</Name>
+	</Resource>
+	<Resource key="label_pdf">
+		<Name>
+			<![CDATA[PDF]]>
+		</Name>
+	</Resource>
+	<Resource key="label_pdf_dialog">
+		<Name>
+			<![CDATA[Selezionare Opzioni PDF download]]>
+		</Name>
+	</Resource>
+	<Resource key="label_pdf_select_orientation">
+		<Name>
+			<![CDATA[Selezionare orientamento]]>
+		</Name>
+	</Resource>
+	<Resource key="label_pdf_select_page_size">
+		<Name>
+			<![CDATA[Selezionare le dimensioni della pagina]]>
+		</Name>
+	</Resource>
+	<Resource key="label_query_clear">
+		<Name>
+			<![CDATA[Criteri chiari]]>
+		</Name>
+	</Resource>
+	<Resource key="label_query_download">
+		<Name>
+			<![CDATA[Scarica Query]]>
+		</Name>
+	</Resource>
+	<Resource key="label_remove">
+		<Name>
+			<![CDATA[Rimuovi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_reset_display_mode">
+		<Name>
+			<![CDATA[Reset Modalità  di visualizzazione]]>
+		</Name>
+	</Resource>
+	<Resource key="label_sdmxml_dataset">
+		<Name>
+			<![CDATA[File di dati SDMX-ML]]>
+		</Name>
+	</Resource>
+	<Resource key="label_sdmxml_dialog">
+		<Name>
+			<![CDATA[Selezionare download SDMX-ML]]>
+		</Name>
+	</Resource>
+	<Resource key="label_sdmxml_structure">
+		<Name>
+			<![CDATA[File struttura SDMX-ML]]>
+		</Name>
+	</Resource>
+	<Resource key="label_sdmxml_zip">
+		<Name>
+			<![CDATA[Tutto in un file zip]]>
+		</Name>
+	</Resource>
+	<Resource key="label_select_all">
+		<Name>
+			<![CDATA[Seleziona Tutto]]>
+		</Name>
+	</Resource>
+	<Resource key="label_deselect_all">
+		<Name>
+			<![CDATA[Deseleziona Tutto]]>
+		</Name>
+	</Resource>
+	<Resource key="label_open_all">
+		<Name>
+			<![CDATA[Apri Tutto]]>
+		</Name>
+	</Resource>
+	<Resource key="label_close_all">
+		<Name>
+			<![CDATA[Chiudi Tutto]]>
+		</Name>
+	</Resource>
+	<Resource key="label_time_end">
+		<Name>
+			<![CDATA[Per Periodo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_time_start">
+		<Name>
+			<![CDATA[Dal Periodo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_view_results">
+		<Name>
+			<![CDATA[Guarda i risultati]]>
+		</Name>
+	</Resource>
+	<Resource key="label_xls">
+		<Name>
+			<![CDATA[XLS]]>
+		</Name>
+	</Resource>
+	<Resource key="label_xml">
+		<Name>
+			<![CDATA[SDMX-ML]]>
+		</Name>
+	</Resource>
+	<Resource key="question_criteria_clear">
+		<Name>
+			<![CDATA[Vuoi cancellare i criteri attuali?]]>
+		</Name>
+	</Resource>
+	<Resource key="question_criteria_update">
+		<Name>
+			<![CDATA[L'aggiornamento di questa procedura consentirà  di ripristinare i criteri per tutti i componenti che sono elencati dopo questo uno. Vuoi continuare?]]>
+		</Name>
+	</Resource>
+	<Resource key="question_truncate_dataset">
+		<Name>
+			<![CDATA[Il numero di set di dati richiesta di osservazioni ({0}) supera il numero consentito di osservazioni ({1}).
+  Selezionare 'OK ' per ricevere un set di dati troncati con ({1}) osservazioni.
+  Scegliere 'Annulla ' per annullare e inserire più criteri per ridurre la dimensione del dataset.]]>
+		</Name>
+	</Resource>
+	<Resource key="text_dataflows_uncategorized">
+		<Name>
+			<![CDATA[Alcuna Categoria]]>
+		</Name>
+	</Resource>
+	<Resource key="text_wait">
+		<Name>
+			<![CDATA[Attendere prego...]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_biannual">
+		<Name>
+			<![CDATA[Semestrale]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_monthly">
+		<Name>
+			<![CDATA[Mensili]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_quarterly">
+		<Name>
+			<![CDATA[Trimestrale]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_single_biannual">
+		<Name>
+			<![CDATA[Semestre]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_single_monthly">
+		<Name>
+			<![CDATA[Mese]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_single_quarterly">
+		<Name>
+			<![CDATA[Quartiere]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_single_trianual">
+		<Name>
+			<![CDATA[Trimestre]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_single_weekly">
+		<Name>
+			<![CDATA[Settimana]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_triannual">
+		<Name>
+			<![CDATA[Triennale]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_weekly">
+		<Name>
+			<![CDATA[Settimanale]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_year">
+		<Name>
+			<![CDATA[Anno]]>
+		</Name>
+	</Resource>
+	<Resource key="time_period_yearly">
+		<Name>
+			<![CDATA[Annuale]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_home">
+		<Name>
+			<![CDATA[Home Page]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_copyright">
+		<Name>
+			<![CDATA[Copyright]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_contacts">
+		<Name>
+			<![CDATA[Contatti]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_links">
+		<Name>
+			<![CDATA[Links Utili]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_W3C">
+		<Name>
+			<![CDATA[W3C Check]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_manual">
+		<Name>
+			<![CDATA[Manuale]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_sitemap">
+		<Name>
+			<![CDATA[Site Map]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_settings">
+		<Name>
+			<![CDATA[Impostazioni]]>
+		</Name>
+	</Resource>
+	<Resource key="footer_help">
+		<Name>
+			<![CDATA[Help]]>
+		</Name>
+	</Resource>
+	<Resource key="label_vaccessible">
+		<Name>
+			<![CDATA[Versione Accessibile]]>
+		</Name>
+	</Resource>
+	<Resource key="label_login">
+		<Name>
+			<![CDATA[Accedi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_logout">
+		<Name>
+			<![CDATA[Esci]]>
+		</Name>
+	</Resource>
+	<Resource key="label_fontsize">
+		<Name>
+			<![CDATA[Selezione la dimensione del testo]]>
+		</Name>
+	</Resource>
+	<Resource key="header_text">
+		<Name>
+			<![CDATA[Web Client SDMX]]>
+		</Name>
+	</Resource>
+	<Resource key="img_logo">
+		<Name>
+			<![CDATA[Logo ISTAT]]>
+		</Name>
+	</Resource>
+	<Resource key="label_language">
+		<Name>
+			<![CDATA[Seleziona Lingua]]>
+		</Name>
+	</Resource>
+	<Resource key="label_ENlang">
+		<Name>
+			<![CDATA[Inglese]]>
+		</Name>
+	</Resource>
+	<Resource key="label_ITlang">
+		<Name>
+			<![CDATA[Italiano]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomFonts">
+		<Name>
+			<![CDATA[Personalizzazione dei Caratteri]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomScreen">
+		<Name>
+			<![CDATA[Larghezza del contenitore]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomFolder">
+		<Name>
+			<![CDATA[Directory di lavoro]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomColors">
+		<Name>
+			<![CDATA[Personalizzazione dei colori]]>
+		</Name>
+	</Resource>
+	<Resource key="input_Folder">
+		<Name>
+			<![CDATA[Inserisci il percorso della cartella di lavoro]]>
+		</Name>
+	</Resource>
+	<Resource key="tag_Description">
+		<Name>
+			<![CDATA[NSI .NET Client]]>
+		</Name>
+	</Resource>
+	<Resource key="tag_Keywords">
+		<Name>
+			<![CDATA[SDMX, Istat, Eurostat, ASP.Net, Javascript, JQuery]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomMainColor">
+		<Name>
+			<![CDATA[Colore Principale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomSecondaryColor">
+		<Name>
+			<![CDATA[Colore Secondario]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomFontHFColor">
+		<Name>
+			<![CDATA[Colore del testo Header/footer]]>
+		</Name>
+	</Resource>
+	<Resource key="label_CustomBodyColor">
+		<Name>
+			<![CDATA[Colore del testo principale]]>
+		</Name>
+	</Resource>
+	<Resource key="help_Manual">
+		<Name>
+			<![CDATA[Manuale]]>
+		</Name>
+	</Resource>
+	<Resource key="help_DimAtt">
+		<Name>
+			<![CDATA[Dimensioni e Attributi]]>
+		</Name>
+	</Resource>
+	<Resource key="help_Data">
+		<Name>
+			<![CDATA[Come arrivare al dato]]>
+		</Name>
+	</Resource>
+	<Resource key="help_WS">
+		<Name>
+			<![CDATA[Come scegliere il Web Service]]>
+		</Name>
+	</Resource>
+	<Resource key="help_Graphic">
+		<Name>
+			<![CDATA[Come impostare la grafica]]>
+		</Name>
+	</Resource>
+	<Resource key="help_SDMX">
+		<Name>
+			<![CDATA[Concetti generali SDMX]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Name">
+		<Name>
+			<![CDATA[Nominativo]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Email">
+		<Name>
+			<![CDATA[E-mail]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Message">
+		<Name>
+			<![CDATA[Messaggio]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Subject">
+		<Name>
+			<![CDATA[Soggetto]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Send">
+		<Name>
+			<![CDATA[Invia]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Agree">
+		<Name>
+			<![CDATA[Accetto i termini e le condizoni]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Name_tp">
+		<Name>
+			<![CDATA[Il tuo nome]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Email_tp">
+		<Name>
+			<![CDATA[La tua e-mail]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Message_tp">
+		<Name>
+			<![CDATA[Il tuo messaggio]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Subject_tp">
+		<Name>
+			<![CDATA[Il soggetto del messaggio]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Send_tp">
+		<Name>
+			<![CDATA[Invia il modulo]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Agree_tp">
+		<Name>
+			<![CDATA[Accetto tutti i Termini e Condizioni sul Trattamento dei Dati Personali]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Name_alert">
+		<Name>
+			<![CDATA[Inserisci un nominativo valido]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Email_alert">
+		<Name>
+			<![CDATA[Inserisci un'e-mail valida]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Message_alert">
+		<Name>
+			<![CDATA[Inserisci un messaggio]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Subject_alert">
+		<Name>
+			<![CDATA[Inserisci il soggetto]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Send_alert">
+		<Name>
+			<![CDATA[Invia il messaggio]]>
+		</Name>
+	</Resource>
+	<Resource key="form_Agree_alert">
+		<Name>
+			<![CDATA[Devi accettare i Termini e Condizioni sul Trattamento dei Dati Personali]]>
+		</Name>
+	</Resource>
+	<Resource key="contact_Numbers">
+		<Name>
+			<![CDATA[Recapiti]]>
+		</Name>
+	</Resource>
+	<Resource key="contact_Phone">
+		<Name>
+			<![CDATA[telefono]]>
+		</Name>
+	</Resource>
+	<Resource key="contact_Fax">
+		<Name>
+			<![CDATA[fax]]>
+		</Name>
+	</Resource>
+	<Resource key="contact_Details">
+		<Name>
+			<![CDATA[indirizzi]]>
+		</Name>
+	</Resource>
+	<Resource key="contact_Address">
+		<Name>
+			<![CDATA[indirizzo]]>
+		</Name>
+	</Resource>
+	<Resource key="contact_Email">
+		<Name>
+			<![CDATA[e-mail]]>
+		</Name>
+	</Resource>
+	<Resource key="label_Dashboard">
+		<Name>
+			<![CDATA[Dashboard]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_Profile">
+		<Name>
+			<![CDATA[Profilo]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_Queries">
+		<Name>
+			<![CDATA[Queries]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_RegUsers">
+		<Name>
+			<![CDATA[Utenti Registrati]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_Statistics">
+		<Name>
+			<![CDATA[Statistiche]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_SetHomePage">
+		<Name>
+			<![CDATA[Modifica Home Page]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_Template">
+		<Name>
+			<![CDATA[Template]]>
+		</Name>
+	</Resource>  
+	<Resource key="dashboard_menu">
+		<Name>
+			<![CDATA[<span id="dashboard_menu"><a href="/WebClient/Profile"><i class="icon-user"></i>Profilo</a><a href="/WebClient/Queries"><i class="icon-doc-text-inv"></i>Queries</a><a href="/WebClient/RegUsers"><i class="icon-users"></i>Utenti Registrati</a><a href="/WebClient/Statistics"><i class="icon-chart-line"></i>Statistiche</a><a href="/WebClient/Dashboard"><i class="icon-gauge"></i>Dashboard</a></span>]]>
+		</Name>
+	</Resource>
+	<Resource key="label_open_criteria">
+		<Name>
+			<![CDATA[Criteri]]>
+		</Name>
+	</Resource>
+	<Resource key="label_open_layout">
+		<Name>
+			<![CDATA[Assi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dialog_criteria">
+		<Name>
+			<![CDATA[Criteri]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dialog_layout">
+		<Name>
+			<![CDATA[Assi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_min_date">
+		<Name>
+			<![CDATA[Data inizio]]>
+		</Name>
+	</Resource>
+	<Resource key="label_max_date">
+		<Name>
+			<![CDATA[Data fine]]>
+		</Name>
+	</Resource>
+	<Resource key="label_error_dataParsing">
+		<Name>
+			<![CDATA[Errore nella comunicazione con il server.<br/>Controllare che sia correttamente configurato il servizio.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_query">
+		<Name>
+			<![CDATA[Salva Query]]>
+		</Name>
+	</Resource>
+	<Resource key="label_title_query">
+		<Name>
+			<![CDATA[Nome Query]]>
+		</Name>
+	</Resource>
+	<Resource key="label_ok">
+		<Name>
+			<![CDATA[Ok]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save">
+		<Name>
+			<![CDATA[Ok]]>
+		</Name>
+	</Resource>
+	<Resource key="label_queryList_empty">
+		<Name>
+			<![CDATA[Non sono presenti queries]]>
+		</Name>
+	</Resource>
+	<Resource key="text_remove_query">
+		<Name>
+			<![CDATA[Operazione completata]]>
+		</Name>
+	</Resource>
+	<Resource key="label_open_query">
+		<Name>
+			<![CDATA[Apri]]>
+		</Name>
+	</Resource>
+	<Resource key="label_remove_query">
+		<Name>
+			<![CDATA[Cancella]]>
+		</Name>
+	</Resource>
+	<Resource key="label_modify_query">
+		<Name>
+			<![CDATA[Modifica]]>
+		</Name>
+	</Resource>
+	<Resource key="label_error_data">
+		<Name>
+			<![CDATA[Errore nella comunicazione con il server.<br/> Controllare che sia correttamente configurato il servizio.]]>
+		</Name>
+	</Resource>
+	<Resource key="query_saved">
+		<Name>
+			<![CDATA[Query salvata]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_userList">
+		<Name>
+			<![CDATA[Lista Utenti]]>
+		</Name>
+	</Resource>
+	<Resource key="button_userListChange">
+		<Name>
+			<![CDATA[Modifica]]>
+		</Name>
+	</Resource>
+	<Resource key="button_userListChangePsw">
+		<Name>
+			<![CDATA[Modifica PDW]]>
+		</Name>
+	</Resource>
+	<Resource key="button_userListRemove">
+		<Name>
+			<![CDATA[Cancella]]>
+		</Name>
+	</Resource>
+	<Resource key="text_errorListUser">
+		<Name>
+			<![CDATA[Errore nella comunicazione con il server.<br/> Controllare che sia correttamente configurato il servizio.]]>
+		</Name>
+	</Resource>
+	<Resource key="text_emptyList">
+		<Name>
+			<![CDATA[Nessun utente è presente]]>
+		</Name>
+	</Resource>
+	<Resource key="text_confirmDelUser">
+		<Name>
+			<![CDATA[Sei sicuro di voler cancellare l'utente selezionato?]]>
+		</Name>
+	</Resource>
+	<Resource key="text_userRemoved">
+		<Name>
+			<![CDATA[Utente cancellato correttamente]]>
+		</Name>
+	</Resource>
+	<Resource key="text_operationKO">
+		<Name>
+			<![CDATA[Operazione Fallita]]>
+		</Name>
+	</Resource>
+	<Resource key="text_confirmDelQuery">
+		<Name>
+			<![CDATA[Sei sicuro di voler cancellare la query selezionata?]]>
+		</Name>
+	</Resource>
+	<Resource key="label_psw">
+		<Name>
+			<![CDATA[Nuova Password]]>
+		</Name>
+	</Resource>
+	<Resource key="label_oldPsw">
+		<Name>
+			<![CDATA[Password]]>
+		</Name>
+	</Resource>
+	<Resource key="label_confirmPsw">
+		<Name>
+			<![CDATA[Conferma Nuova Password ]]>
+		</Name>
+	</Resource>
+	<Resource key="label_sendButton">
+		<Name>
+			<![CDATA[Invia]]>
+		</Name>
+	</Resource>
+	<Resource key="label_registrationSuccess">
+		<Name>
+			<![CDATA[Registrazione avvenuta con successo.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_changePswOk">
+		<Name>
+			<![CDATA[Password correttamente modificata.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_changePswKO">
+		<Name>
+			<![CDATA[Operazione fallita.]]>
+		</Name>
+	</Resource>
+	<Resource key="text_msgCampiObbl">
+		<Name>
+			<![CDATA[Compila tutti i campi]]>
+		</Name>
+	</Resource>
+	<Resource key="text_msglengthPsw">
+		<Name>
+			<![CDATA[La password deve contenere almeno 8 caratteri]]>
+		</Name>
+	</Resource>
+	<Resource key="label_confPsw">
+		<Name>
+			<![CDATA[Il campo "Conferma Nuova Password" deve essere uguale al campo "Nuova Password"]]>
+		</Name>
+	</Resource>
+	<Resource key="label_errorloadDat">
+		<Name>
+			<![CDATA[Si è verificato un errore nel caricamento dei dati]]>
+		</Name>
+	</Resource>
+	<Resource key="label_utenteNoPres">
+		<Name>
+			<![CDATA[Errore: Utente Non Presente]]>
+		</Name>
+	</Resource>
+	<Resource key="text_fieldsChangeUser">
+		<Name>
+			<![CDATA[Compila i tutti i campi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_changeUserOk">
+		<Name>
+			<![CDATA[Registrazione avvenuta con successo.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_changeUserKO">
+		<Name>
+			<![CDATA[Operazione fallita.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userName">
+		<Name>
+			<![CDATA[Nome]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userSurname">
+		<Name>
+			<![CDATA[Cognome]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userSex">
+		<Name>
+			<![CDATA[Sesso]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userAge">
+		<Name>
+			<![CDATA[Età]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userResidence">
+		<Name>
+			<![CDATA[Residenza]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userEduQual">
+		<Name>
+			<![CDATA[Titolo di studio]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userProfStatus">
+		<Name>
+			<![CDATA[Condizione Professionale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userEconomicSector">
+		<Name>
+			<![CDATA[Settore Economico]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userLang">
+		<Name>
+			<![CDATA[Lingua preferita per le comunicazioni]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userThemes">
+		<Name>
+			<![CDATA[Temi di interesse (opzionale)]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userEmail">
+		<Name>
+			<![CDATA[Indirizzo di posta elettronica]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userPsw">
+		<Name>
+			<![CDATA[Password]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userConfPsw">
+		<Name>
+			<![CDATA[Confermare la password]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userPrivacy">
+		<Name>
+			<![CDATA[I dati verranno trattati nel rispetto della disciplina dettata dal ription.lgs. n. 196/2003. Il titolare del trattamento dei dati è l'Istituto nazionale di statistica, via Cesare Balbo n. 16 - 00184 Roma]]>
+		</Name>
+	</Resource>
+	<Resource key="label_userTreatDat">
+		<Name>
+			<![CDATA[Autorizzo il trattamento dei dati]]>
+		</Name>
+	</Resource>
+	<Resource key="button_userChange">
+		<Name>
+			<![CDATA[Modifica]]>
+		</Name>
+	</Resource>
+	<Resource key="label_settingsDialogTitle">
+		<Name>
+			<![CDATA[Impostazioni cambiate con successo.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_settingsDialogMsg">
+		<Name>
+			<![CDATA[Le tue impostazioni sono state salvate con successo.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_settingsDialogText">
+		<Name>
+			<![CDATA[Il tuo profilo ha un nuovo tema.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_loginNew">
+		<Name>
+			<![CDATA[Crea un account]]>
+		</Name>
+	</Resource>
+	<Resource key="label_loginPwd">
+		<Name>
+			<![CDATA[Hai dimenticato la password?]]>
+		</Name>
+	</Resource>
+	<Resource key="label_loginRegistered">
+		<Name>
+			<![CDATA[Nuovo utente registrato]]>
+		</Name>
+	</Resource>
+	<Resource key="label_loginGenError">
+		<Name>
+			<![CDATA[Errore]]>
+		</Name>
+	</Resource>
+	<Resource key="label_queryDelete">
+		<Name>
+			<![CDATA[Eliminazione query]]>
+		</Name>
+	</Resource>  
+	<Resource key="dashboard_Profiles">
+		<Name>
+			<![CDATA[Amministrazione]]>
+		</Name>
+	</Resource>
+	<Resource key="label_open_chart">
+		<Name>
+			<![CDATA[Grafici]]>
+		</Name>
+	</Resource>
+	<Resource key="label_loginUser">
+		<Name>
+			<![CDATA[E-mail]]>
+		</Name>
+	</Resource>
+	<Resource key="label_loginPassword">
+		<Name>
+			<![CDATA[Password]]>
+		</Name>
+	</Resource>
+	<Resource key="label_pageDesc">
+		<Name>
+			<![CDATA[Pagina]]>
+		</Name>
+	</Resource>
+	<Resource key="label_numBackward">
+		<Name>
+			<![CDATA[Pagina precedente]]>
+		</Name>
+	</Resource>
+	<Resource key="label_numForward">
+		<Name>
+			<![CDATA[Pagine successiva]]>
+		</Name>
+	</Resource>
+	<Resource key="label_linkIO">
+		<Name>
+			<![CDATA[Organizzazioni internazionali]]>
+		</Name>
+	</Resource>
+	<Resource key="label_linkOC">
+		<Name>
+			<![CDATA[Istituzioni statistiche di altri paesi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_linkAPE">
+		<Name>
+			<![CDATA[Amministrazioni ed Enti pubblici]]>
+		</Name>
+	</Resource>
+	<Resource key="label_linkOS">
+		<Name>
+			<![CDATA[Altri siti]]>
+		</Name>
+	</Resource>
+	<Resource key="label_ISTAT">
+		<Name>
+			<![CDATA[Istat - Istituto nazionale di statistica]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_template">
+		<Name>
+			<![CDATA[Salva Template]]>
+		</Name>
+	</Resource>
+	<Resource key="label_delete_template">
+		<Name>
+			<![CDATA[Cancella Template]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_changeSuccess">
+		<Name>
+			<![CDATA[Modifiche effettuate con successo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dashAdministration">
+		<Name>
+			<![CDATA[Amministrazione]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dashManagement">
+		<Name>
+			<![CDATA[Gestione Dashboards]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dashProfiles">
+		<Name>
+			<![CDATA[Gestione Utenti]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dashLayout">
+		<Name>
+			<![CDATA[Gestione Layout]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dashboardTitle">
+		<Name>
+			<![CDATA[Titolo dashboard]]>
+		</Name>
+	</Resource>
+	<Resource key="label_rowsNumber">
+		<Name>
+			<![CDATA[Numero righe]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_continue">
+		<Name>
+			<![CDATA[Continua]]>
+		</Name>
+	</Resource>
+	<Resource key="label_nullValue">
+		<Name>
+			<![CDATA[Valore nullo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_numericValue">
+		<Name>
+			<![CDATA[Il numero di righe deve essere un valore numerico]]>
+		</Name>
+	</Resource>
+	<Resource key="label_widgetSelection">
+		<Name>
+			<![CDATA[Selezione widget]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wdgChart">
+		<Name>
+			<![CDATA[Grafico]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wdgText">
+		<Name>
+			<![CDATA[Testo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wdgTable">
+		<Name>
+			<![CDATA[Tabella]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wdgContent">
+		<Name>
+			<![CDATA[Contenuto]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wdgConfiguration">
+		<Name>
+			<![CDATA[Configurazione widget]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wdgRemove">
+		<Name>
+			<![CDATA[Rimuovi widget]]>
+		</Name>
+	</Resource>
+	<Resource key="label_rowRemove">
+		<Name>
+			<![CDATA[Rimuovi riga]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_wdgConfirmRemove">
+		<Name>
+			<![CDATA[Conferma cancellazione del widget?]]>
+		</Name>
+	</Resource>
+	<Resource key="label_rowConfirmRemove">
+		<Name>
+			<![CDATA[Conferma cancellazione della riga?]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_allFieldsInserted">
+		<Name>
+			<![CDATA[tutti i campi devono essere valorizzati]]>
+		</Name>
+	</Resource>
+	<Resource key="label_criteriaFieldsInserted">
+		<Name>
+			<![CDATA[Il campo criterio deve essere valorizzato]]>
+		</Name>
+	</Resource>
+	<Resource key="label_layoutFieldsInserted">
+		<Name>
+			<![CDATA[Il campo layout deve essere valorizzato]]>
+		</Name>
+	</Resource>
+	<Resource key="label_variationFieldsInserted">
+		<Name>
+			<![CDATA[Il campo variazione layout deve essere valorizzato]]>
+		</Name>
+	</Resource>
+	<Resource key="label_titleFieldsInserted">
+		<Name>
+			<![CDATA[Il campo titolo deve essere valorizzato]]>
+		</Name>
+	</Resource>
+	<Resource key="label_addWidget">
+		<Name>
+			<![CDATA[Inserisci widget]]>
+		</Name>
+	</Resource>    
+	<Resource key="label_out_max_results">
+		<Name>
+			<![CDATA[Attenzione le combinazione possibili superano il massimo consentito.Ridurre le casistiche di ricerca.]]>
+		</Name>
+	</Resource>
+	<Resource key="labelBlock">
+		<Name>
+			<![CDATA[Block]]>
+		</Name>
+	</Resource>
+	<Resource key="labelDimension">
+		<Name>
+			<![CDATA[Dimensioni]]>
+		</Name>
+	</Resource>
+	<Resource key="titleSaveTemplate">
+		<Name>
+			<![CDATA[Titolo]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_addDashboard">
+		<Name>
+			<![CDATA[Aggiungi Dashboard]]>
+		</Name>
+	</Resource>
+	<Resource key="label_anotherDashboard">
+		<Name>
+			<![CDATA[&Egrave; necessario salvare o cancellare la dashboard corrente per crearne un'altra]]>
+		</Name>
+	</Resource>
+	<Resource key="label_buttonSave">
+		<Name>
+			<![CDATA[Salva]]>
+		</Name>
+	</Resource>
+	<Resource key="label_buttonDelete">
+		<Name>
+			<![CDATA[Cancella]]>
+		</Name>
+	</Resource>
+	<Resource key="label_buttonPreview">
+		<Name>
+			<![CDATA[Anteprima]]>
+		</Name>
+	</Resource>
+	<Resource key="label_buttonEdit">
+		<Name>
+			<![CDATA[Modifica]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_buttonActive">
+		<Name>
+			<![CDATA[Attiva]]>
+		</Name>
+	</Resource>
+	<Resource key="label_delDashBoard">
+		<Name>
+			<![CDATA[Impossibili eliminare Dashboard attiva.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_sureDelDashBoard">
+		<Name>
+			<![CDATA[Sei sicuro di voler eliminare questa dashboard?]]>
+		</Name>
+	</Resource>
+	<Resource key="label_title">
+		<Name>
+			<![CDATA[Titolo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wbsChoose">
+		<Name>
+			<![CDATA[Scegli WebService]]>
+		</Name>
+	</Resource>
+	<Resource key="label_wbsAdd">
+		<Name>
+			<![CDATA[Aggiungi WebService]]>
+		</Name>
+	</Resource>
+	<Resource key="label_type">
+		<Name>
+			<![CDATA[Tipo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_variation">
+		<Name>
+			<![CDATA[Variazione]]>
+		</Name>
+	</Resource>
+	<Resource key="label_varValue">
+		<Name>
+			<![CDATA[Valore]]>
+		</Name>
+	</Resource>
+	<Resource key="label_varTrend">
+		<Name>
+			<![CDATA[Tendenziale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_varCyclical">
+		<Name>
+			<![CDATA[Congiuntura]]>
+		</Name>
+	</Resource>
+	<Resource key="insertWebService">
+		<Name>
+			<![CDATA[Seleziona almeno un web service]]>
+		</Name>
+	</Resource>
+	<Resource key="webServiceMod">
+		<Name>
+			<![CDATA[Modifiche effettuate con successo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_reset_pdw_Ok">
+		<Name>
+			<![CDATA[Controlla la tua mail: <br/>ti è stata inviata la nuova password.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_reset_pdw_Ko">
+		<Name>
+			<![CDATA[Operazione Non Riuscita]]>
+		</Name>
+	</Resource>
+	<Resource key="label_sender_mail">
+		<Name>
+			<![CDATA[mittente@mittente.it]]>
+		</Name>
+	</Resource>
+	<Resource key="label_text_mail">
+		<Name>
+			<![CDATA[Ciao la tua nuova password è: ]]>
+		</Name>
+	</Resource>
+	<Resource key="label_subject_reset_pdw">
+		<Name>
+			<![CDATA[Invio nuova password]]>
+		</Name>
+	</Resource>
+	<Resource key="label_mailSMTPServer">
+		<Name>
+			<![CDATA[SMTP.ISTAT.IT]]>
+		</Name>
+	</Resource>
+	<Resource key="label_insert_mail">
+		<Name>
+			<![CDATA[Inserisci una mail]]>
+		</Name>
+	</Resource>
+	<Resource key="label_mail">
+		<Name>
+			<![CDATA[Email]]>
+		</Name>
+	</Resource>
+	<Resource key="log_OK">
+		<Name>
+			<![CDATA[Login Effettuato]]>
+		</Name>
+	</Resource>
+	<Resource key="log_KO">
+		<Name>
+			<![CDATA[Nome Utente o Password Non Corretti]]>
+		</Name>
+	</Resource>
+	<Resource key="label_test_query">
+		<Name>
+			<![CDATA[Test Query]]>
+		</Name>
+	</Resource>
+	<Resource key="noRemWebService">
+		<Name>
+			<![CDATA[Deve essere presente almeno un Web Service]]>
+		</Name>
+	</Resource>
+	<Resource key="confRemWS">
+		<Name>
+			<![CDATA[Conferma Eliminazione Web Service]]>
+		</Name>
+	</Resource>
+	<Resource key="confRemDashBoard">
+		<Name>
+			<![CDATA[Conferma Eliminazione Dashboard]]>
+		</Name>
+	</Resource>
+	<Resource key="label_msgGenError">
+		<Name>
+			<![CDATA[Errore]]>
+		</Name>
+	</Resource>
+	<Resource key="label_invalidFields">
+		<Name>
+			<![CDATA[I campi inseriti non sono validi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_webService">
+		<Name>
+			<![CDATA[WebService]]>
+		</Name>
+	</Resource>
+	<Resource key="label_endPoint">
+		<Name>
+			<![CDATA[EndPoint]]>
+		</Name>
+	</Resource>
+	<Resource key="label_endpointType">
+		<Name>
+			<![CDATA[EndPointType]]>
+		</Name>
+	</Resource>
+	<Resource key="label_endPointV20">
+		<Name>
+			<![CDATA[EndPointV20]]>
+		</Name>
+	</Resource>
+	<Resource key="label_id">
+		<Name>
+			<![CDATA[Id]]>
+		</Name>
+	</Resource>
+	<Resource key="label_agency">
+		<Name>
+			<![CDATA[Agenzia]]>
+		</Name>
+	</Resource>
+	<Resource key="label_version">
+		<Name>
+			<![CDATA[Versione]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_ManagementTemplate">
+		<Name>
+			<![CDATA[Gestione Templates]]>
+		</Name>
+	</Resource>
+	<Resource key="emptylistTemplate">
+		<Name>
+			<![CDATA[Non sono presenti templates]]>
+		</Name>
+	</Resource>
+	<Resource key="emptylistQuery">
+		<Name>
+			<![CDATA[Non sono presenti queries]]>
+		</Name>
+	</Resource>
+	<Resource key="template_saved">
+		<Name>
+			<![CDATA[Template salvato]]>
+		</Name>
+	</Resource>
+	<Resource key="label_templateDelete">
+		<Name>
+			<![CDATA[Eliminazione template]]>
+		</Name>
+	</Resource>
+	<Resource key="text_confirmDelTemplate">
+		<Name>
+			<![CDATA[Conferma cancellazione template]]>
+		</Name>
+	</Resource>
+	<Resource key="text_remove_template">
+		<Name>
+			<![CDATA[Operazione completata]]>
+		</Name>
+	</Resource>
+	<Resource key="dashboard_Themes">
+		<Name>
+			<![CDATA[Temi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_invalidWidgets">
+		<Name>
+			<![CDATA[&Egrave; necessario configurare tutti i widget per il salvataggio della Dashboard]]>
+		</Name>
+	</Resource>
+	<Resource key="label_tree_display">
+		<Name>
+			<![CDATA[Visualizza Albero]]>
+		</Name>
+	</Resource>
+	<Resource key="label_tree_display_request">
+		<Name>
+			<![CDATA[Visualizza albero su richiesta]]>
+		</Name>
+	</Resource>
+	<Resource key="label_more_web_services">
+		<Name>
+			<![CDATA[Visualizza più webservices]]>
+		</Name>
+	</Resource>
+	<Resource key="label_addWebService">
+		<Name>
+			<![CDATA[Aggiungi Web Service]]>
+		</Name>
+	</Resource>
+	<Resource key="label_new_WS">
+		<Name>
+			<![CDATA[Nuovo Web Service]]>
+		</Name>
+	</Resource>
+	<Resource key="dataset_request_filters">
+		<Name>
+			<![CDATA[Richiesta filtri]]>
+		</Name>
+	</Resource>
+	<Resource key="dataset_request_layout">
+		<Name>
+			<![CDATA[Richiesta layout]]>
+		</Name>
+	</Resource>
+	<Resource key="dataset_request_data">
+		<Name>
+			<![CDATA[Richiesta dati]]>
+		</Name>
+	</Resource>
+	<Resource key="query_savError">
+		<Name>
+			<![CDATA[Operazione non riuscita. Inserire un altro titolo.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_checkLayout">
+		<Name>
+			<![CDATA[Devi selezionare un layout]]>
+		</Name>
+	</Resource>
+	<Resource key="label_fixed_data">
+		<Name>
+			<![CDATA[Dati fissi]]>
+		</Name>
+	</Resource>
+	<Resource key="label_axe_hor">
+		<Name>
+			<![CDATA[Asse orizzontale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_axe_ver">
+		<Name>
+			<![CDATA[Asse verticale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_data_grid">
+		<Name>
+			<![CDATA[Griglia dati]]>
+		</Name>
+	</Resource> 
+	<Resource key="label_obs_value_desc">
+		<Name>
+			<![CDATA[Valori da visualizzare]]>
+		</Name>
+	</Resource>      
+	<Resource key="label_chart_type_desc">
+		<Name>
+			<![CDATA[Tipo grafico]]>
+		</Name>
+	</Resource>        
+	<Resource key="label_check_obs_desc">
+		<Name>
+			<![CDATA[Selezionare 1 o 2 tipologie di dato da visualizzare]]>
+		</Name>
+	</Resource>            
+	<Resource key="label_check_chart_type_desc">
+		<Name>
+			<![CDATA[Selezionare tipo di grafico]]>
+		</Name>
+	</Resource>             
+	<Resource key="label_dimoutlimit_desc">
+		<Name>
+			<![CDATA[Possono essere selezionati più valori solo di una sola dimensione]]>
+		</Name>
+	</Resource>
+	<Resource key="label_titleWS">
+		<Name>
+			<![CDATA[Titolo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_endPointWS">
+		<Name>
+			<![CDATA[EndPoint]]>
+		</Name>
+	</Resource>
+	<Resource key="label_endPointV20WS">
+		<Name>
+			<![CDATA[EndPointV20]]>
+		</Name>
+	</Resource>
+	<Resource key="label_endPointTypeWS">
+		<Name>
+			<![CDATA[EndPointType]]>
+		</Name>
+	</Resource>
+	<Resource key="label_localeWS">
+		<Name>
+			<![CDATA[Locale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_enableHttpWS">
+		<Name>
+			<![CDATA[AbilitaAutenticazioneHTTP]]>
+		</Name>
+	</Resource>
+	<Resource key="label_domainWS">
+		<Name>
+			<![CDATA[Dominio]]>
+		</Name>
+	</Resource>
+	<Resource key="label_UsernameWS">
+		<Name>
+			<![CDATA[UserName]]>
+		</Name>
+	</Resource>
+	<Resource key="label_PasswordWS">
+		<Name>
+			<![CDATA[Password]]>
+		</Name>
+	</Resource>
+	<Resource key="label_enablePoxyWS">
+		<Name>
+			<![CDATA[AbilitaProxy]]>
+		</Name>
+	</Resource>
+	<Resource key="label_useSystemProxyWS">
+		<Name>
+			<![CDATA[UseSystemProxy]]>
+		</Name>
+	</Resource>
+	<Resource key="label_proxyServerWS">
+		<Name>
+			<![CDATA[ProxyServer]]>
+		</Name>
+	</Resource>
+	<Resource key="label_proxyServerPortWS">
+		<Name>
+			<![CDATA[ProxyServerPort]]>
+		</Name>
+	</Resource>
+	<Resource key="label_proxyUsernameWS">
+		<Name>
+			<![CDATA[ProxyUserName]]>
+		</Name>
+	</Resource>
+	<Resource key="label_proxyPasswordWS">
+		<Name>
+			<![CDATA[ProxyPassword]]>
+		</Name>
+	</Resource>
+	<Resource key="button_showTree">
+		<Name>
+			<![CDATA[Mostra/Nascondi albero]]>
+		</Name>
+	</Resource>
+	<Resource key="button_openTree">
+		<Name>
+			<![CDATA[apri albero]]>
+		</Name>
+	</Resource>
+	<Resource key="messageWorkProg">
+		<Name>
+			<![CDATA[Lavori in corso]]>
+		</Name>
+	</Resource>
+	<Resource key="label_removeWidget">
+		<Name>
+			<![CDATA[Elimina il widget]]>
+		</Name>
+	</Resource>
+	<Resource key="label_removeRow">
+		<Name>
+			<![CDATA[Elimina la riga]]>
+		</Name>
+	</Resource>
+	<Resource key="label_addRow">
+		<Name>
+			<![CDATA[Aggiungi riga]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_configureWidget">
+		<Name>
+			<![CDATA[Configura il widget]]>
+		</Name>
+	</Resource>
+	<Resource key="label_errorDeleteRow">
+		<Name>
+			<![CDATA[La dashboard deve essere composta da una o più righe]]>
+		</Name>
+	</Resource>
+	<Resource key="label_time_plus">
+		<Name>
+			<![CDATA[Ultimo periodo finale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_buttonDefault">
+		<Name>
+			<![CDATA[Imposta default]]>
+		</Name>
+	</Resource>
+	<Resource key="label_error_dash_save">
+		<Name>
+			<![CDATA[Errore nel salvataggio della dashboard. Controllare la configurazione dei widget.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_TIME_PERIOD">
+		<Name>
+			<![CDATA[Periodo]]>
+		</Name>
+	</Resource>
+	<Resource key="label_varSerie">
+		<Name>
+			<![CDATA[Serie]]>
+		</Name>
+	</Resource>
+	<Resource key="label_dimension_axe">
+		<Name>
+			<![CDATA[Dimensione asse X]]>
+		</Name>
+	</Resource>
+	<Resource key="label_serie_label">
+		<Name>
+			<![CDATA[Personalizza etichette]]>
+		</Name>
+	</Resource>
+	<Resource key="no_result_found">
+		<Name>
+			<![CDATA[Nessun risultato, vi preghiamo di selezionare altri criteri.]]>
+		</Name>
+	</Resource>    
+	<Resource key="label_view_uncategorised">
+		<Name>
+			<![CDATA[Mostra dataflow non categorizzati.]]>
+		</Name>
+	</Resource>     
+	<Resource key="label_dimoutlimit_desc_2">
+		<Name>
+			<![CDATA[Non si possono selezionare codici da più di due dimensioni.]]>
+		</Name>
+	</Resource>     
+	<Resource key="label_dimoutlimit_time_fixed">
+		<Name>
+			<![CDATA[Selezionare solo un periodo di tempo.]]>
+		</Name>
+	</Resource>        
+	<Resource key="label_save_csv_tabular">
+		<Name>
+			<![CDATA[CSV (tabulare)]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_csv_not_formatted">
+		<Name>
+			<![CDATA[CSV (non formattato)]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_xls">
+		<Name>
+			<![CDATA[XLS]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_pdf">
+		<Name>
+			<![CDATA[PDF]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_html">
+		<Name>
+			<![CDATA[HTML]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_sdmx_data">
+		<Name>
+			<![CDATA[SDMX-ML Dati.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_sdmx_query">
+		<Name>
+			<![CDATA[SDMX-ML Query.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_save_sdmx_structure">
+		<Name>
+			<![CDATA[Sdmx-ML Struttura.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_csv_tabular">
+		<Name>
+			<![CDATA[Scarica un file csv di tipo tabellare.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_csv_not_formatted">
+		<Name>
+			<![CDATA[csv di tipo listato.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_xls">
+		<Name>
+			<![CDATA[XLS file.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_pdf">
+		<Name>
+			<![CDATA[file PDF.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_html">
+		<Name>
+			<![CDATA[Scarica in formato tabella HTML.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_sdmx_data">
+		<Name>
+			<![CDATA[Scarica XML Sdmx-ML Dati.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_sdmx_query">
+		<Name>
+			<![CDATA[Scarica XML Sdmx-ML Query.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_desc_save_sdmx_structure">
+		<Name>
+			<![CDATA[Sdmx-ML Struttura.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_select_download">
+		<Name>
+			<![CDATA[Seleziona download]]>
+		</Name>
+	</Resource>
+	<Resource key="label_landscape">
+		<Name>
+			<![CDATA[Orizzontale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_separator">
+		<Name>
+			<![CDATA[Separatore]]>
+		</Name>
+	</Resource>
+	<Resource key="label_separator_outlimit">
+		<Name>
+			<![CDATA[Selezione un separatore per il csv.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_with_quote">
+		<Name>
+			<![CDATA[Con apici]]>
+		</Name>
+	</Resource>                                              
+	<Resource key="label_separator_decimal">
+		<Name>
+			<![CDATA[Separatore decimale]]>
+		</Name>
+	</Resource>
+	<Resource key="label_select_df">
+		<Name>
+			<![CDATA[Selezionare un Dataflow]]>
+		</Name>
+	</Resource>
+	<Resource key="label_layout_x_missing">
+		<Name>
+			<![CDATA[È necessario inserire almeno un elemento sull'asse X.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_layout_y_missing">
+		<Name>
+			<![CDATA[È necessario inserire almeno un elemento sull'asse Y.]]>
+		</Name>
+	</Resource>
+	<Resource key="label_hide_row">
+		<Name>
+			<![CDATA[Raggruppare righe]]>
+		</Name>
+	</Resource>
+	<Resource key="label_useUncategorysed">
+		<Name>
+			<![CDATA[Mostra Dataflow non categorizzati]]>
+		</Name>
+	</Resource>
+	<Resource key="label_useVirtualDF">
+		<Name>
+			<![CDATA[Mostra Dataflow virtuali]]>
+		</Name>
+	</Resource>      
+	<Resource key="label_endPointSourceWS">
+		<Name>
+			<![CDATA[Sorgente dati]]>
+		</Name>
+	</Resource>
+	<Resource key="label_decimalSeparator">
+		<Name>
+			<![CDATA[Separatore decimale]]>
+		</Name>
+	</Resource>  
+	<Resource key="label_description">
+		<Name>
+			<![CDATA[Descrizione]]>
+		</Name>
+	</Resource>   
+	<Resource key="label_error_network">
+		<Name>
+			<![CDATA[Errore di rete nella comunicazione con il Web Services.]]>
+		</Name>
+	</Resource>   
+	<Resource key="label_idWS">
+		<Name>
+			<![CDATA[ID Agenzia]]>
+		</Name>
+	</Resource>
+	<Resource key="labelOptionVar">
+		<Name>
+			<![CDATA[Abilità calcolo variazioni.]]>
+		</Name>
+	</Resource>
+	<Resource key="labelOptionCri">
+		<Name>
+			<![CDATA[Abilita il form delle selezioni]]>
+		</Name>
+	</Resource>
+	<Resource key="labelOptionDec">
+		<Name>
+			<![CDATA[Abilita forzatura cifra decimale.]]>
+		</Name>
+	</Resource>
+</GlobalResources>

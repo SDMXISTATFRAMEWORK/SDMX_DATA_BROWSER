@@ -127,6 +127,7 @@ function WidgetDataset(options) {
                         EndPointType: settings.widget.data.query.dataflow.configuration.EndPointType,
                         EndPointV20: settings.widget.data.query.dataflow.configuration.EndPointV20,
                         EndPointSource: settings.widget.data.query.dataflow.configuration.EndPointSource,
+                        Title: settings.widget.data.query.dataflow.configuration.Title
                     },
                     layout: settings.widget.data.query.layout,
                     criteria: settings.widget.data.query.criteria
@@ -270,8 +271,7 @@ function WidgetDataset(options) {
                 //alert(jsonString);
                 var result = clientParseJsonToObject(jsonString);
 
-                if (!isValidDataOutput_Filter(result)) {
-
+                if (!isValidDataOutput_Filter(result)) {                    
                     clientCloseWaitDialog();
 
                     // Log error if admin loged in show complex message
@@ -287,6 +287,10 @@ function WidgetDataset(options) {
                     }
                     return;
                 }
+
+                if (settings.widget.store.templateId == undefined)
+                    settings.widget.store.templateId = result.templateId;
+                //alert(settings.widget.store.templateId);
 
                 if (settings.widget.store.dataflow.name == undefined)
                     //fabio 4/11/2015
@@ -930,8 +934,8 @@ function WidgetDataset(options) {
             var html = "<div id='chart_datatable' class='dinamic-widget' " +
                             " data-widget-template='chart'" +
                             " data-widget-stylecss='chart'" +
-                            " data-widget-configuration='" + str_config + "'" +
-                            " data-widget-data='" + str_data + "'></div>";
+                            " data-widget-configuration='" + str_config.replace("'", "&#39;") + "'" +
+                            " data-widget-data='" + str_data.replace("'", "&#39;") + "'></div>";
 
             $(chart_container).append(html);
 
@@ -1010,6 +1014,7 @@ function WidgetDataset(options) {
                 DrawHTML_ButtonSaveQuery(settings.$items.button_bar);
                 var usRole = JSON.parse(sessionStorage.user_role);
                 if (usRole.RoleId == 1) DrawHTML_ButtonSaveTemplate(settings.$items.button_bar);
+                if (usRole.RoleId == 1 && settings.widget.store.templateId!="") DrawHTML_ButtonDeleteTemplate(settings.$items.button_bar);
             }
 
             DrawHTML_TableModeSwitch(settings.$items.viewmode_bar);
@@ -1066,7 +1071,7 @@ function WidgetDataset(options) {
                     settings.widget.messages,
                     time_dimension_key,
                     client.main.maxObs,
-                    settings.widget.store.hideDimension);
+                    settings.widget.store.hideDimension,"generic");
             }
         }
 
@@ -1229,15 +1234,17 @@ function WidgetDataset(options) {
                                 if ($("#check_z").prop("checked")) {
                                     block_sel.push($("#check_z").val());
                                 }
-
+                                var chk_opt_var = $("#chk_opt_var").prop('checked');
+                                var chk_opt_cri = $("#chk_opt_cri").prop('checked');
+                                //var chk_opt_dec = $("#chk_opt_dec").prop('checked');
                                 SaveTemplate(sessionStorage.user_code,
                                     $(inputmes).val(),// title
                                     cbox_sel,
                                     block_sel,// dimension selezionate
-                                    $("#chk_opt_var").prop('checked'),
+                                    chk_opt_var,
                                     //$("#chk_opt_dec").prop('checked'),
                                     false,
-                                    $("#chk_opt_cri").prop('checked'),
+                                    chk_opt_cri,
                                     settings.widget.store.dataflow,
                                     settings.widget.store.criteria,
                                     settings.widget.store.layout,
@@ -1264,14 +1271,15 @@ function WidgetDataset(options) {
         // btn open pop up 
         var btn_load_template = document.createElement("a");
         $(btn_load_template).addClass(settings.cssClass.btn_tool_bar);
-        $(btn_load_template).html("<i class='icon-download-alt'></i>" + settings.widget.messages.label_load_template);
+        $(btn_load_template).html("<i class='icon-download-alt'></i>" + settings.widget.messages.label_delete_template);
         $(btn_load_template).click(function (event) {
 
             // popup
             var div_popup = document.createElement("div");
             var labmes = document.createElement("label");
             $(labmes).css('width', '100%');
-            $(labmes).text(settings.widget.messages.titleLoadTemplate);//inserire valore label
+            //$(labmes).text(settings.widget.messages.titleLoadTemplate);//inserire valore label
+            $(labmes).text(settings.widget.messages.text_confirmDelTemplate);//inserire valore label
             $(labmes).appendTo(div_popup);
 
             $(div_popup).dialog({
@@ -1286,7 +1294,7 @@ function WidgetDataset(options) {
                     {
                         text: settings.widget.messages.label_ok,
                         click: function () {
-                            DeleteTemplate(sessionStorage.user_code,
+                            DeleteTemplate(
                                 settings.widget.store.dataflow,
                                 settings.widget.store.configuration);
                             $(this).dialog('destroy').remove();
@@ -1764,7 +1772,7 @@ function WidgetDataset(options) {
                     settings.widget.messages,
                     time_dimension_key,
                     client.main.maxObs,
-                    settings.widget.store.hideDimension);
+                    settings.widget.store.hideDimension,"generic");
             }
         });
         $(btn_open_criteria).appendTo(dest);
@@ -1903,7 +1911,8 @@ function WidgetDataset(options) {
                     if (settings.widget.store.criteria.hasOwnProperty(concept)) {
 
                         code = settings.widget.store.criteria[concept][0];
-                        var name = codemap[concept].codes[code].name;
+                        //var name = codemap[concept].codes[code].name;
+                        var name = (codemap[concept].codes[code] != undefined) ? codemap[concept].codes[code].name : null;
 
                         var p = document.createElement('p');
                         $(p).text("[" + code + "] " + name);
@@ -2145,7 +2154,8 @@ function WidgetDataset(options) {
                     if (settings.widget.store.criteria.hasOwnProperty(concept)) {
 
                         code = settings.widget.store.criteria[concept][0];
-                        var name = codemap[concept].codes[code].name;
+                        //var name = codemap[concept].codes[code].name;
+                        var name = (codemap[concept].codes[code] != undefined) ? codemap[concept].codes[code].name : null;
 
                         var p = document.createElement('p');
                         $(p).text("[" + code + "] " + name);
@@ -2537,23 +2547,24 @@ function WidgetDataset(options) {
         },
         false);
     }
-    function DeleteTemplate(cod, dataflow, configuration) {
+    function DeleteTemplate(dataflow, configuration) {
 
         clientShowWaitDialog();
 
         var data = {
-            UserCode: cod,
-            TemplateId: 0,
+            //UserCode: cod,
+            //TemplateId: 0,
             Template: {
-                Title: title,
+                //Title: title,
+                //Title: dataflow.title,
                 DataFlow: dataflow,
-                Layout: layout,
-                Criteria: filters,
-                Configuration: configuration,
-                HideDimension: cbox_sel,
-                BlockXAxe: (inArray('x', block_sel) < 0) ? false : true,
-                BlockYAxe: (inArray('y', block_sel) < 0) ? false : true,
-                BlockZAxe: (inArray('z', block_sel) < 0) ? false : true
+                //Layout: layout,
+                //Criteria: filters,
+                Configuration: configuration//,
+                //HideDimension: cbox_sel,
+                //BlockXAxe: (inArray('x', block_sel) < 0) ? false : true,
+                //BlockYAxe: (inArray('y', block_sel) < 0) ? false : true,
+                //BlockZAxe: (inArray('z', block_sel) < 0) ? false : true
             }
         }
 
@@ -2571,7 +2582,7 @@ function WidgetDataset(options) {
 
                 var msg_p = document.createElement("p");
 
-                $(msg_p).text(settings.widget.messages.query_delete);
+                $(msg_p).text(settings.widget.messages.label_templateDelete);
 
                 $(msg_p).appendTo(msg_container);
 
@@ -2605,6 +2616,7 @@ function WidgetDataset(options) {
         $(dest).empty();
         settings.widget.store.chartCustom = {};
         settings.widget.store.chartFilters = {};
+        settings.widget.store.chartFiltersTimePeriod = [];
         var setDefaultTypeChartSpline = 'selected="selected"';
         var setDefaultTypeChartColumn = '';
 
@@ -2613,7 +2625,13 @@ function WidgetDataset(options) {
             settings.widget.store.chartFilters[i] = [];
 
             if (i == time_dimension_key) {
-                settings.widget.store.chartFilters[i] = settings.widget.store.filters[i];
+                //settings.widget.store.chartFilters[i] = settings.widget.store.filters[i];
+                //settings.widget.store.chartFiltersTimePeriod = settings.widget.store.filters[i];
+                //prima cerco nei criteri se non valirizzati si va nel filtro
+                settings.widget.store.chartFiltersTimePeriod = settings.widget.store.criteria[i];
+                if (settings.widget.store.chartFiltersTimePeriod == undefined)
+                { settings.widget.store.chartFiltersTimePeriod = settings.widget.store.filters[i]; }
+
                 if (settings.widget.store.filters[i][0] == settings.widget.store.filters[i][1]) {
                     setDefaultTypeChartSpline = '';
                     setDefaultTypeChartColumn = 'selected="selected"';
@@ -2752,7 +2770,7 @@ function WidgetDataset(options) {
                             settings.widget.store.chartFilters[idx] =
                                 $.map(filter.codes, function (Code, idxCode) { return idxCode; });
                     }
-                    if (settings.widget.store.chartFilters[idx].length > 1) dimSelection++;
+                    if (settings.widget.store.chartFilters[idx].length > 1 && idx != time_dimension_key) dimSelection++;
                 }
             });
             if (dimSelection > 1) {
@@ -2824,8 +2842,39 @@ function WidgetDataset(options) {
                 var dest = $(ui.newPanel);
                 if (concept == undefined) {
 
-                } else if (concept == time_dimension_key) {
-                    var codes = settings.widget.store.dimension[concept].codes;
+                }
+                else if (concept == time_dimension_key) {
+
+                   // var codes = settings.widget.store.dimension[concept].codes;
+                    var codes = {};
+                    for (var key in settings.widget.store.dimension[concept].codes) {
+                        var value = settings.widget.store.dimension[concept].codes[key];
+
+                        //codes[key] = settings.widget.store.dimension[concept].codes[key];
+                        var marDown = settings.widget.store.criteria[concept] ? settings.widget.store.criteria[concept].sort()[0] : settings.widget.store.filters[concept][0];
+                        var marUp = settings.widget.store.criteria[concept] ? settings.widget.store.criteria[concept].slice(-1) : settings.widget.store.filters[concept].slice(-1);
+
+
+                        if (value.name >= marDown
+                          && value.name <= marUp
+                          )
+                        { codes[key] = settings.widget.store.dimension[concept].codes[key]; }
+
+
+                    }
+
+
+
+                    //alert('s');
+                    for (var key in codes) {
+                        var value = codes[key];
+                        if (value.name < settings.widget.store.chartFiltersTimePeriod[0]
+                            || value.name > settings.widget.store.chartFiltersTimePeriod.slice(-1)
+                            )
+                        { delete codes[key]; }
+                    }
+
+                    //alert(codes);
                     AppendFiltersTime(
                         dest,
                         concept,
@@ -3831,7 +3880,8 @@ function AppendFiltersCodedCostraint(
             text: "[" + code_id + "] " + node.name,
             parent: par,
             state: {
-                opened: true,
+                //opened: true,//
+                opened: false,
                 checked: (inArray(code_id, outCriteria[concept]) >= 0),
                 //types: "mandatory",
             },
@@ -3954,9 +4004,8 @@ function AppendFiltersCodedCostraint(
             return;
         })
         .on("check_all.jstree", function (event, data) {
-
-            var currConcept = data.instance.settings.sdmxConcept;
-
+            $.blockUI();           
+            var currConcept = data.instance.settings.sdmxConcept;            
             $.each(data.instance._model.data, function (idCode) {
                 var node = data.instance.get_node(idCode);
                 if (node.original != undefined) {
@@ -3991,13 +4040,15 @@ function AppendFiltersCodedCostraint(
             var count_sel = (outCriteria[currConcept] != undefined) ? outCriteria[currConcept].length : 0
             $(h3).find('a').text(currConcept + " (" + count_sel + "/" + codelist.length + ")");
 
+            $.unblockUI();
+
             event.preventDefault();
             event.stopImmediatePropagation();
 
             return;
         })
         .on("uncheck_all.jstree", function (event, data) {
-
+            $.blockUI();
             var currConcept = data.instance.settings.sdmxConcept;
             delete outCriteria[currConcept];
 
@@ -4028,11 +4079,12 @@ function AppendFiltersCodedCostraint(
 
             event.preventDefault();
             event.stopImmediatePropagation();
-
+            $.unblockUI();
             return;
         })
         .on("loaded.jstree", function (event, data) {
 
+            //alert(data.toSource());
             if (codelist.length > 1) {
                 // BUTTON BAR - div > span
                 var button_filters = document.createElement("div");
@@ -4053,8 +4105,26 @@ function AppendFiltersCodedCostraint(
                     $(jstree_filters).jstree("uncheck_all");
                 });
 
+                var btn_open_all = document.createElement("span");
+                $(btn_open_all).html('<i class=" icon-expand"></i>');//(messages.label_select_all);
+                $(btn_open_all).attr('title', messages.label_open_all);
+                $(btn_open_all).button()
+                .click(function (event) {
+                    $(jstree_filters).jstree("open_all");
+                });
+
+                var btn_close_all = document.createElement("span");
+                $(btn_close_all).html('<i class=" icon-collapse"></i>');//(messages.label_select_all);
+                $(btn_close_all).attr('title', messages.label_close_all);
+                $(btn_close_all).button()
+                .click(function (event) {
+                    $(jstree_filters).jstree("close_all");
+                });
+
                 $(btn_check_all).appendTo(button_filters);
                 $(btn_uncheck_all).appendTo(button_filters);
+                $(btn_open_all).appendTo(button_filters);
+                $(btn_close_all).appendTo(button_filters);
 
                 $(button_filters).appendTo(dest);
 
@@ -4074,8 +4144,7 @@ function AppendFiltersCodedCostraint(
             $(div_scroll).addClass("scroller_y");
             $(div_scroll).appendTo(dest);
             $(jstree_filters).appendTo(div_scroll);
-            $(jstree_filters).jstree().redraw(true);
-
+            $(jstree_filters).jstree().redraw(true);                      
         })
         .jstree({
             'plugins': ["themes", "checkbox", "types", "ui"],//, , "state""json_data"],
@@ -4088,6 +4157,7 @@ function AppendFiltersCodedCostraint(
             },
             'ui': { "select_limit": 1 },
             'core': {
+                "animation": 0,
                 'themes': { "theme": "default", dots: true, "icons": true },
                 "data": codelist,
                 "progressive_render": true
@@ -4305,8 +4375,20 @@ function OpenPopUpFiltersCostraint(
     messages,
     time_dimension_key,
     MaxResults,
-    hideDimension) {
+    hideDimension,
+    widget) {
 
+    //alert(hideDimension);
+    //alert(widget);
+    if (widget == "dashboard")
+    {
+        //getSpecificCodemapurl = "Main/GetSpecificCodemapDashboard";
+        getSpecificCodemapurl = "Main/GetSpecificCodemap";
+    }
+    else
+    { getSpecificCodemapurl = "Main/GetSpecificCodemap"; }
+    //alert(widget);
+    //alert(getSpecificCodemapurl);
     clientShowWaitDialog();
 
     // popup
@@ -4371,7 +4453,8 @@ function OpenPopUpFiltersCostraint(
         clientShowWaitDialog();
 
         clientPostJSON(
-            "Main/GetSpecificCodemap",
+            //"Main/GetSpecificCodemap",
+            getSpecificCodemapurl,
             clientParseObjectToJson(_data),
             function (jsonString) {
 
@@ -4524,7 +4607,6 @@ function OpenPopUpFiltersCostraint(
                             if (!allCriteriaSet) {
 
                                 var div_alert = document.createElement('div');
-                                //$(div_alert).html("Please choise a selection for tab: " + str_concept);
                                 $(div_alert).html("Please choise a selection for tab: " + str_concept);
                                 $(div_alert).dialog({
                                     title: messages.label_dialog_criteria,
@@ -4556,7 +4638,7 @@ function OpenPopUpFiltersCostraint(
 
                     }//end if globale
                     else { alert('sono stati superati il numero di record max visualizzabili'); }
-
+                    //clientCloseWaitDialog();
                 }
             },
             {
@@ -4583,7 +4665,7 @@ function SetCodeCostraint(dataflow, configuration, concept, criteria, codemap, c
         Codelist: concept,
         PreviusCostraint: criteria
     }
-    clientShowWaitDialog();
+    //clientShowWaitDialog();
 
     clientPostJSON(
         "Main/SetCostraint",
@@ -4595,10 +4677,10 @@ function SetCodeCostraint(dataflow, configuration, concept, criteria, codemap, c
                 if (callBack != undefined && callBack != null)
                     callBack(result);
             }
-            clientCloseWaitDialog();
+      //      clientCloseWaitDialog();
         },
         function (event, status, errorThrown) {
-            clientCloseWaitDialog();
+            //clientCloseWaitDialog();
             clientShowErrorDialog(settings.widget.messages.label_error_dataParsing);
             //clientAjaxError(event, status);
             return;

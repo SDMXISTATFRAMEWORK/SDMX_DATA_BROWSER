@@ -63,8 +63,13 @@
             
             clientShowWaitDialog("<%= Messages.text_wait%>");
 
+            var baseURL= location.protocol + "//" + location.hostname + ":" + location.port + "/" + location.pathname.substring(1, location.pathname.indexOf("/", 2) + 1);
+            clientUrlSetup('<%=ResolveClientUrl("~/")%>');
+
             clientPostJSON(
-                "Settings/GetSettings", null,
+                'Settings/GetSettings',
+                //'Settings/GetSettings', 
+                null,
                 function (jsonString){
 
                     var _sett_obj = clientParseJsonToObject(jsonString);
@@ -112,26 +117,26 @@
                                 $('#main-treeview').data('widgetConfiguration', _end[0]);
                             }
                         }
-
+                        var baseURL= location.protocol + "//" + location.hostname + ":" + location.port + "/" + location.pathname.substring(1, location.pathname.indexOf("/", 2) + 1);
                         clientSetup(
-                            "<%=ResolveClientUrl("~/")%>",
+                            '<%=ResolveClientUrl("~/")%>',
+                            //baseURL,
                             '<%= System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName%>',
                             <%=ISTAT.WebClient.WidgetComplements.Model.Settings.WebClientSettings.Instance.MaxResultObs %>);
                         
                         SetupMasterPage();
 
                     }else{
-
                         clientSetup(
-                            "<%=ResolveClientUrl("~/")%>",
+                            '<%=ResolveClientUrl("~/")%>',
+                            //baseURL,
                             '<%= System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName%>',
                             <%=ISTAT.WebClient.WidgetComplements.Model.Settings.WebClientSettings.Instance.MaxResultObs %>);
-                        
                         SetupMasterPage();
                     }
                 },
                 null, false);
-
+            
         });
 
     </script>

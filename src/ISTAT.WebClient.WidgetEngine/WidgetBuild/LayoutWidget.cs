@@ -31,15 +31,34 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.LayObj.Configuration);
         }
 
+        public LayoutWidget(GetCodemapObject layoutObj, SessionImplObject sessionObj,SessionQuery sessionQuery)
+        {
+            LayObj = layoutObj;
+            SessionObj = sessionObj;
+
+            if (sessionQuery._IGetSDMX == null || (sessionQuery._endpointSettings!=null && this.LayObj.Configuration.EndPoint != sessionQuery._endpointSettings.EndPoint))
+            {
+                GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.LayObj.Configuration);
+                sessionQuery._IGetSDMX = GetSDMXObject;
+            }
+            else
+            { GetSDMXObject = sessionQuery._IGetSDMX; }
+
+        }
         
 
-        public SessionImplObject GetLayout()
+
+        public SessionImplObject GetLayout(SessionQuery query)
         {
             try
             {
-                ISdmxObjects structure = GetKeyFamily();
-                IDataflowObject df = structure.Dataflows.First();
-                IDataStructureObject kf = structure.DataStructures.First();
+                //ISdmxObjects structure = GetKeyFamily();
+                //IDataflowObject df = structure.Dataflows.First();
+                //IDataStructureObject kf = structure.DataStructures.First();
+
+                ISdmxObjects structure = query.Structure;
+                IDataflowObject df = query.Dataflow;
+                IDataStructureObject kf = query.KeyFamily;
 
                 if (kf == null || df == null)
                     throw new InvalidOperationException("DataStructure is not set");
@@ -78,13 +97,19 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             }
         }
 
-        public SessionImplObject GetLayout(ConnectionStringSettings connectionStringSetting)
+        public SessionImplObject GetLayout(SessionQuery query,ConnectionStringSettings connectionStringSetting)
         {
             try
             {
+                /*
                 ISdmxObjects structure = GetKeyFamily();
                 IDataflowObject df = structure.Dataflows.First();
                 IDataStructureObject kf = structure.DataStructures.First();
+                */
+                ISdmxObjects structure = query.Structure;
+                IDataflowObject df = query.Dataflow;
+                IDataStructureObject kf = query.KeyFamily;
+
 
                 if (kf == null || df == null)
                     throw new InvalidOperationException("DataStructure is not set");

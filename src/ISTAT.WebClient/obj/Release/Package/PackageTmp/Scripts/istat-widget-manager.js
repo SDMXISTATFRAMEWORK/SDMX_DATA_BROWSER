@@ -15,14 +15,17 @@
 
         $.each(selector, function (i, widget) {
 
+
             var _idCSS=$(widget).attr('id');
             var _classCSS = $(widget).data('widgetStylecss');
             var _template = $(widget).data('widgetTemplate');
             var _target = $(widget).data('widgetTarget');
             var _data = $(widget).data('widgetData');
             var _configuration = $(widget).data('widgetConfiguration');
-            //alert($(widget).data('widgetConfiguration'));
+            
             //alert(_template);
+            //alert($(widget).data('widgetConfiguration'));
+            //alert($('#main-treeview').data('widgetConfiguration'));
             if (q != undefined && q["#" + _idCSS] != undefined) {
                 if (_data == undefined)_data = {};
                 _data.query = q["#" + _idCSS];

@@ -49,6 +49,7 @@
         public bool UseUncategorysed { get; set; }
         public bool UseVirtualDf { get; set; }
         public int Ordinamento { get; set; }
+        public int SettingID { get; set; }
 
         [JsonIgnore]
         public EndpointType _TypeEndpoint

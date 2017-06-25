@@ -251,7 +251,7 @@
                 state.Table.AddElement(state.VerticalKeyTitles);
             }
 
-            state.VerticalOrderedRows.Sort(new VerticalKeyComparer(state.Model.VerticalKeys.Count));
+            //state.VerticalOrderedRows.Sort(new VerticalKeyComparer(state.Model.VerticalKeys.Count));
             SetupVerticalRowSpan(state);
             state.Table.Add(state.VerticalOrderedRows);
         }

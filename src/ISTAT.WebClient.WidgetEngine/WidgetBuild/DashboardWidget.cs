@@ -552,6 +552,123 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         #endregion
 
         #region Widget Methods
+        public WidgetObject AddWidgetPortfolio(WidgetObject widgetObject)
+        {
+            try
+            {
+
+                using (SqlCommand oComm = new SqlCommand())
+                {
+
+                    if (Sqlconn.State == ConnectionState.Closed)
+                        Sqlconn.Open();
+                    oComm.Connection = Sqlconn;
+                    oComm.CommandType = CommandType.StoredProcedure;
+                    oComm.CommandText = "DashBoard.AddWidget";
+
+                    SqlParameter pWdgClass = new SqlParameter("@WDG_CLASS", SqlDbType.NVarChar);
+                    pWdgClass.Value = widgetObject.cssClass;
+                    oComm.Parameters.Add(pWdgClass);
+
+                    SqlParameter pRowID = new SqlParameter("@WDG_ROW_ID", SqlDbType.Int);
+                    pRowID.Value = widgetObject.rowID;
+                    oComm.Parameters.Add(pRowID);
+
+                    SqlParameter pWdgCell = new SqlParameter("@WDG_CELL", SqlDbType.Int);
+                    pWdgCell.Value = widgetObject.cell;
+                    oComm.Parameters.Add(pWdgCell);
+
+                    SqlParameter pType = new SqlParameter("@WDG_TYPE", SqlDbType.NVarChar);
+                    pType.Value = widgetObject.type;
+                    oComm.Parameters.Add(pType);
+
+                    SqlParameter pChartType = new SqlParameter("@WDG_CHARTTYPE", SqlDbType.NVarChar);
+                    pChartType.Value = widgetObject.chartype;
+                    oComm.Parameters.Add(pChartType);
+
+                    SqlParameter pV = new SqlParameter("@WDG_V", SqlDbType.Bit);
+                    pV.Value = widgetObject.v;
+                    oComm.Parameters.Add(pV);
+
+                    SqlParameter pVT = new SqlParameter("@WDG_VT", SqlDbType.Bit);
+                    pVT.Value = widgetObject.vt;
+                    oComm.Parameters.Add(pVT);
+
+                    SqlParameter pVC = new SqlParameter("@WDG_VC", SqlDbType.Bit);
+                    pVC.Value = widgetObject.vc;
+                    oComm.Parameters.Add(pVC);
+
+                    SqlParameter pEndPoint = new SqlParameter("@WDG_ENDPOINT", SqlDbType.NVarChar);
+                    pEndPoint.Value = widgetObject.endPoint;
+                    oComm.Parameters.Add(pEndPoint);
+
+                    SqlParameter pEndPointType = new SqlParameter("@WDG_ENDPOINTTYPE", SqlDbType.NVarChar);
+                    pEndPointType.Value = widgetObject.endPointType;
+                    oComm.Parameters.Add(pEndPointType);
+
+                    SqlParameter pEndPointV20 = new SqlParameter("@WDG_ENDPOINTV20", SqlDbType.NVarChar);
+                    pEndPointV20.Value = widgetObject.endPointV20;
+                    oComm.Parameters.Add(pEndPointV20);
+
+                    SqlParameter pEndPointSource = new SqlParameter("@WDG_ENDPOINTSOURCE", SqlDbType.NVarChar);
+                    pEndPointSource.Value = widgetObject.endPointSource;
+                    oComm.Parameters.Add(pEndPointSource);
+
+                    SqlParameter pEndPointDecimal = new SqlParameter("@WDG_ENDPOINTDECIMAL", SqlDbType.NVarChar);
+                    pEndPointDecimal.Value = widgetObject.endPointDecimalSeparator;
+                    oComm.Parameters.Add(pEndPointDecimal);
+
+                    SqlParameter pDataFlowID = new SqlParameter("@WDG_DATAFLOW_ID", SqlDbType.NVarChar);
+                    pDataFlowID.Value = widgetObject.dataflow_id;
+                    oComm.Parameters.Add(pDataFlowID);
+
+                    SqlParameter pAgencyID = new SqlParameter("@WDG_DATAFLOW_AGENCY_ID", SqlDbType.NVarChar);
+                    pAgencyID.Value = widgetObject.dataflow_agency_id;
+                    oComm.Parameters.Add(pAgencyID);
+
+                    SqlParameter pVersion = new SqlParameter("@WDG_DATAFLOW_VERSION", SqlDbType.NVarChar);
+                    pVersion.Value = widgetObject.dataflow_version;
+                    oComm.Parameters.Add(pVersion);
+
+                    SqlParameter pCriteria = new SqlParameter("@WDG_CRITERIA", SqlDbType.NText);
+                    pCriteria.Value = widgetObject.criteria;
+                    oComm.Parameters.Add(pCriteria);
+
+                    SqlParameter pLayout = new SqlParameter("@WDG_LAYOUT", SqlDbType.NText);
+                    pLayout.Value = widgetObject.layout;
+                    oComm.Parameters.Add(pLayout);
+
+                    SqlParameter pWDGID = new SqlParameter("@WDG_ID", SqlDbType.Int);
+                    pWDGID.Direction = ParameterDirection.Output;
+                    oComm.Parameters.Add(pWDGID);
+
+                    oComm.ExecuteNonQuery();
+
+                    widgetObject.id = (int)pWDGID.Value;
+
+                    foreach (TextLocalised tl in widgetObject.text)
+                    {
+                        AddWidgetText(widgetObject.id, tl);
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (Sqlconn.State == ConnectionState.Open)
+                    Sqlconn.Close();
+            }
+
+            return widgetObject;
+        }
+
+
+
 
         public WidgetObject AddWidget(WidgetObject widgetObject)
         {

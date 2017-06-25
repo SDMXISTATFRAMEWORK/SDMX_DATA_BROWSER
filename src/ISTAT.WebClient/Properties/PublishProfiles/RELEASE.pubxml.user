@@ -14,7 +14,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:45:30</publishTime>
     </File>
     <File Include="bin/App_GlobalResources/GlobalResources.xml">
-      <publishTime>03/30/2016 17:18:24</publishTime>
+      <publishTime>02/08/2017 10:58:37</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/16/2015 15:45:30</publishTime>
@@ -28,17 +28,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/EstatSdmxSourceExtension.dll">
       <publishTime>06/30/2015 18:31:56</publishTime>
     </File>
+    <File Include="bin/ISTAT.SingleSignON.Service.dll">
+      <publishTime>02/08/2017 10:58:39</publishTime>
+    </File>
     <File Include="bin/ISTAT.WebClient.CacheManager.dll">
-      <publishTime>06/24/2016 16:48:27</publishTime>
+      <publishTime>02/10/2017 14:29:23</publishTime>
     </File>
     <File Include="bin/ISTAT.WebClient.dll">
-      <publishTime>06/24/2016 16:48:28</publishTime>
+      <publishTime>02/10/2017 14:29:24</publishTime>
     </File>
     <File Include="bin/ISTAT.WebClient.WidgetComplements.dll">
-      <publishTime>06/21/2016 11:15:08</publishTime>
+      <publishTime>02/10/2017 14:29:21</publishTime>
     </File>
     <File Include="bin/ISTAT.WebClient.WidgetEngine.dll">
-      <publishTime>06/24/2016 16:48:26</publishTime>
+      <publishTime>02/10/2017 14:29:22</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>09/16/2015 15:45:26</publishTime>
@@ -80,10 +83,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:45:24</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>09/16/2015 15:45:31</publishTime>
+      <publishTime>06/14/2016 00:05:44</publishTime>
     </File>
     <File Include="bin/Org.Sdmx.Resources.SdmxMl.Schemas.V10.dll">
-      <publishTime>09/16/2015 15:45:26</publishTime>
+      <publishTime>06/30/2015 18:31:39</publishTime>
     </File>
     <File Include="bin/Org.Sdmx.Resources.SdmxMl.Schemas.V20.dll">
       <publishTime>09/16/2015 15:45:26</publishTime>
@@ -235,8 +238,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/style/custom/red.css">
       <publishTime>09/16/2015 15:45:11</publishTime>
     </File>
+    <File Include="Content/style/custom/serbia.css">
+      <publishTime>09/16/2016 08:35:02</publishTime>
+    </File>
     <File Include="Content/style/custom/sistan.css">
-      <publishTime>09/16/2015 15:45:11</publishTime>
+      <publishTime>01/10/2017 09:18:13</publishTime>
     </File>
     <File Include="Content/style/custom/sport.css">
       <publishTime>09/16/2015 15:45:11</publishTime>
@@ -257,16 +263,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:45:11</publishTime>
     </File>
     <File Include="Content/style/main.css">
-      <publishTime>09/16/2015 15:45:11</publishTime>
+      <publishTime>01/09/2017 14:56:26</publishTime>
     </File>
     <File Include="Content/style/Master.css">
-      <publishTime>10/13/2015 12:24:06</publishTime>
+      <publishTime>01/09/2017 14:57:24</publishTime>
     </File>
     <File Include="Content/style/MasterIE8.css">
       <publishTime>09/16/2015 15:45:11</publishTime>
     </File>
     <File Include="Content/style/Master_old.css">
       <publishTime>09/16/2015 15:45:11</publishTime>
+    </File>
+    <File Include="Content/style/metadata.css">
+      <publishTime>09/19/2016 12:30:52</publishTime>
     </File>
     <File Include="Content/style/pdf.css">
       <publishTime>09/16/2015 15:45:11</publishTime>
@@ -290,22 +299,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:45:11</publishTime>
     </File>
     <File Include="Content/style/widgets/Layout.css">
-      <publishTime>09/16/2015 15:45:11</publishTime>
+      <publishTime>08/30/2016 15:08:04</publishTime>
     </File>
     <File Include="Content/style/widgets/Login.css">
       <publishTime>09/16/2015 15:45:11</publishTime>
     </File>
     <File Include="Content/style/widgets/TemplateList.css">
-      <publishTime>09/16/2015 15:45:11</publishTime>
+      <publishTime>08/31/2016 16:05:18</publishTime>
     </File>
     <File Include="Content/style/widgets/UserList.css">
       <publishTime>09/16/2015 15:45:11</publishTime>
     </File>
+    <File Include="Copy of EndPoints.config">
+      <publishTime>06/30/2016 15:00:58</publishTime>
+    </File>
     <File Include="EndPoints.config">
-      <publishTime>06/22/2016 11:54:46</publishTime>
+      <publishTime>02/03/2017 12:40:35</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>09/16/2015 15:44:59</publishTime>
+    </File>
+    <File Include="Functions/functionCheck.js">
+      <publishTime>09/21/2016 17:13:08</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>09/16/2015 15:44:58</publishTime>
@@ -368,7 +383,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:44:59</publishTime>
     </File>
     <File Include="Images/Logo/logo_sistan.png">
-      <publishTime>09/16/2015 15:44:59</publishTime>
+      <publishTime>06/24/2016 16:58:30</publishTime>
     </File>
     <File Include="Images/Logo/logo_sport.png">
       <publishTime>09/16/2015 15:44:59</publishTime>
@@ -485,31 +500,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:44:59</publishTime>
     </File>
     <File Include="log4net.xml">
-      <publishTime>06/20/2016 17:15:57</publishTime>
+      <publishTime>11/17/2016 12:33:33</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>11/02/2016 08:21:00</publishTime>
     </File>
     <File Include="Scripts/Copy of istat-widget-dataset.js">
       <publishTime>03/02/2016 12:43:41</publishTime>
     </File>
     <File Include="Scripts/istat-client.js">
-      <publishTime>06/14/2016 13:47:38</publishTime>
+      <publishTime>11/04/2016 12:02:49</publishTime>
     </File>
     <File Include="Scripts/istat-widget-chart.js">
       <publishTime>11/04/2015 14:38:18</publishTime>
     </File>
     <File Include="Scripts/istat-widget-dashboard.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>08/29/2016 16:09:06</publishTime>
     </File>
     <File Include="Scripts/istat-widget-dataflows.js">
-      <publishTime>06/22/2016 10:14:24</publishTime>
+      <publishTime>02/06/2017 11:41:49</publishTime>
     </File>
     <File Include="Scripts/istat-widget-dataset.js">
-      <publishTime>06/21/2016 15:26:07</publishTime>
+      <publishTime>01/10/2017 10:04:24</publishTime>
     </File>
     <File Include="Scripts/istat-widget-manager.js">
-      <publishTime>06/22/2016 10:13:12</publishTime>
+      <publishTime>08/25/2016 11:12:12</publishTime>
     </File>
     <File Include="Scripts/istat-widget-metadata.js">
       <publishTime>09/16/2015 15:44:58</publishTime>
@@ -734,343 +749,343 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:44:58</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/.gitignore">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/bower.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/component.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/composer.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/basic/index.html">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/basic/root.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/.htaccess">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/asdf/ajax_children.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/asdf/ajax_children2.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/asdf/asdf asdf">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/asdf/asdfasdf">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/asdf/asdfasdfasdfasdfasdf">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/asdf/New file4">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/asdf/New Text Document.txt">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/ajax_children.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/ajax_demo_children.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/ajax_demo_roots.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/ajax_nodes.html">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/ajax_roots.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/apple-touch-icon-precomposed.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/css/bootstrap-theme.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/css/bootstrap-theme.min.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/css/bootstrap.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/css/bootstrap.min.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/fonts/glyphicons-halflings-regular.eot">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/fonts/glyphicons-halflings-regular.svg">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/fonts/glyphicons-halflings-regular.woff">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/js/bootstrap.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/bootstrap/js/bootstrap.min.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/jstree.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/jstree.min.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/libs/jquery.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/libs/jquery.ui.touch.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/libs/require.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/themes/default/32px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/themes/default/40px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/themes/default/style.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/themes/default/style.min.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/dist/themes/default/throbber.gif">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/docs.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/docs.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/favicon.ico">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/html5.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/images/ajax_children2.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/images/browsers.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/images/find.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/images/logo.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/images/tree.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/images/tree_icon.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/jquery-1.10.2.min.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/jquery.address-1.6.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/respond.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/assets/vakata.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/index.html">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/data/root/jstree.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/file_sprite.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/filebrowser/index.php">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/sitebrowser/class.db.php">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/sitebrowser/class.tree.php">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/sitebrowser/data.sql">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/demo/sitebrowser/index.php">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/jstree.js">
-      <publishTime>03/25/2016 15:07:45</publishTime>
+      <publishTime>02/09/2017 11:47:57</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/jstree.min.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default-dark/32px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default-dark/40px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default-dark/style.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default-dark/style.min.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default-dark/throbber.gif">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default/32px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default/40px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default/style.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default/style.min.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/dist/themes/default/throbber.gif">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/gruntfile.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/jstree.jquery.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/LICENSE-MIT">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/package.json">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/README.md">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/intro.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.checkbox.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.contextmenu.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.dnd.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.massload.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.search.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.sort.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.state.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.types.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.unique.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/jstree.wholerow.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/misc.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/outro.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/sample.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/base.less">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default-dark/32px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default-dark/40px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default-dark/style.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default-dark/style.less">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default-dark/throbber.gif">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default/32px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default/40px.png">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default/style.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default/style.less">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/default/throbber.gif">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/main.less">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/mixins.less">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/themes/responsive.less">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/src/vakata-jstree.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/test/unit/index.html">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/test/unit/libs/qunit.css">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/test/unit/libs/qunit.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/jquery/jstree-master/test/unit/test.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>10/31/2016 02:49:20</publishTime>
     </File>
     <File Include="Scripts/pages/check.js">
       <publishTime>09/16/2015 15:44:58</publishTime>
@@ -1079,7 +1094,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:44:58</publishTime>
     </File>
     <File Include="Scripts/pages/dashboardElements.js">
-      <publishTime>09/16/2015 15:44:58</publishTime>
+      <publishTime>11/04/2016 08:56:35</publishTime>
     </File>
     <File Include="Scripts/pages/help.js">
       <publishTime>09/16/2015 15:44:58</publishTime>
@@ -1091,7 +1106,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:44:58</publishTime>
     </File>
     <File Include="Scripts/pages/masterPage.js">
-      <publishTime>06/21/2016 09:32:28</publishTime>
+      <publishTime>10/18/2016 14:34:14</publishTime>
     </File>
     <File Include="Scripts/pages/settings.js">
       <publishTime>09/16/2015 15:44:58</publishTime>
@@ -1109,13 +1124,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 15:44:58</publishTime>
     </File>
     <File Include="Views/Shared/ViewMasterPage.Master">
-      <publishTime>06/21/2016 09:33:28</publishTime>
+      <publishTime>02/10/2017 14:09:25</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>03/31/2016 12:34:55</publishTime>
     </File>
     <File Include="Views/WebClient/Administration.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>09/26/2016 16:53:31</publishTime>
     </File>
     <File Include="Views/WebClient/ContactForm.aspx">
       <publishTime>01/15/2016 11:03:20</publishTime>
@@ -1123,32 +1138,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/WebClient/Contacts.aspx">
       <publishTime>09/16/2015 15:44:58</publishTime>
     </File>
+    <File Include="Views/WebClient/Copy of Profiles.aspx">
+      <publishTime>09/27/2016 14:31:15</publishTime>
+    </File>
     <File Include="Views/WebClient/Copyright.aspx">
       <publishTime>09/16/2015 15:44:58</publishTime>
     </File>
     <File Include="Views/WebClient/DashboardsManagement.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>10/03/2016 14:49:34</publishTime>
     </File>
     <File Include="Views/WebClient/Help.aspx">
       <publishTime>01/15/2016 11:03:20</publishTime>
     </File>
     <File Include="Views/WebClient/Index.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>02/06/2017 11:36:30</publishTime>
     </File>
     <File Include="Views/WebClient/Layout.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>02/10/2017 14:18:21</publishTime>
     </File>
     <File Include="Views/WebClient/Login.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>09/26/2016 16:21:15</publishTime>
     </File>
     <File Include="Views/WebClient/Manual.aspx">
       <publishTime>09/16/2015 15:44:58</publishTime>
     </File>
     <File Include="Views/WebClient/Profile.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>09/26/2016 12:00:44</publishTime>
     </File>
     <File Include="Views/WebClient/Profiles.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>10/03/2016 14:50:05</publishTime>
     </File>
     <File Include="Views/WebClient/Queries.aspx">
       <publishTime>01/15/2016 11:03:20</publishTime>
@@ -1163,10 +1181,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/15/2016 11:03:20</publishTime>
     </File>
     <File Include="Views/WebClient/Templates.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>09/15/2016 17:14:31</publishTime>
     </File>
     <File Include="Views/WebClient/TemplatesManagement.aspx">
-      <publishTime>01/15/2016 11:03:20</publishTime>
+      <publishTime>08/31/2016 16:06:02</publishTime>
     </File>
     <File Include="Views/WebClient/UseLinks.aspx">
       <publishTime>09/16/2015 15:44:58</publishTime>
@@ -1178,7 +1196,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/31/2016 12:27:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/24/2016 16:48:29</publishTime>
+      <publishTime>02/10/2017 14:31:08</publishTime>
+    </File>
+    <File Include="Widget/widgetChangePassword.html">
+      <publishTime>10/03/2016 14:58:55</publishTime>
+    </File>
+    <File Include="Widget/widgetChangeUser.html">
+      <publishTime>10/03/2016 14:59:05</publishTime>
+    </File>
+    <File Include="Widget/widgetListUser.html">
+      <publishTime>10/03/2016 14:59:13</publishTime>
+    </File>
+    <File Include="Widget/widgetLogin.html">
+      <publishTime>10/03/2016 14:58:27</publishTime>
+    </File>
+    <File Include="Widget/widgetRegistration.html">
+      <publishTime>09/26/2016 12:20:30</publishTime>
+    </File>
+    <File Include="Widget/widgetResetPassword.html">
+      <publishTime>10/03/2016 14:58:46</publishTime>
     </File>
   </ItemGroup>
 </Project>

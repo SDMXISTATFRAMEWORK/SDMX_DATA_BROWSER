@@ -67,6 +67,9 @@ namespace ISTAT.WebClient.Controllers
                 return CS.ReturnForJQuery(JSONConst.Error);
             }
         }
+
+  
+
         public ActionResult PreviewDashboard()
         {
             try

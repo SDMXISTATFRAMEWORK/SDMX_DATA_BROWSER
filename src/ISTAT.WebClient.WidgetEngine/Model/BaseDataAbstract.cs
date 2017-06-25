@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using ISTAT.WebClient.WidgetComplements.Model.JSObject;
+using ISTAT.WebClient.WidgetEngine.WidgetBuild;
 
 namespace ISTAT.WebClient.WidgetEngine.Model
 {
@@ -155,6 +156,76 @@ namespace ISTAT.WebClient.WidgetEngine.Model
             }
             return query;
         }
+
+        internal IDataSetStore GetDataset(IDataflowObject df, IDataStructureObject kf, List<DataCriteria> Criterias, ref Dictionary<string, List<DataChacheObject>> DataCache, bool useAttr,SessionQuery query)
+        {
+            // if it is not time series then assume it is cross
+            SDMXWSFunction op = SDMXWSFunction.GetCompactData;
+            bool cross = (DataObjConfiguration._TypeEndpoint == EndpointType.V21 || DataObjConfiguration._TypeEndpoint == EndpointType.REST)
+                          ? NsiClientHelper.DataflowDsdIsCrossSectional(kf) : !Utils.IsTimeSeries(kf);
+            if (cross)
+                op = SDMXWSFunction.GetCrossSectionalData;
+
+            var ser = new JavaScriptSerializer();
+            ser.MaxJsonLength = int.MaxValue;
+            try
+            {
+                #region Connessione e Creazione DB SQLLite FABIO se nullo lo istanzio
+                string table = null;
+                IGetSDMX GetSDMXObject = (query._IGetSDMX == null) ? WebServiceSelector.GetSdmxImplementation(DataObjConfiguration) : query._IGetSDMX;
+                GetSDMXObject.ExecuteQuery(CreateQueryBean(df, kf, Criterias), op, FileTmpData);
+
+                #region Connessione e Creazione DB SQLLite
+                table = Path.Combine(Utils.GetAppPath(), string.Format(CultureInfo.InvariantCulture, "{0}-{1}.sqlite", Utils.MakeKey(df).Replace("+", "_").Replace(".", ""), Guid.NewGuid()));
+                string ConnectionString = string.Format(CultureInfo.InvariantCulture, Constants.FileDBSettingsFormat, table);
+                var info = new DBInfo(ConnectionString);
+                string tempTable = "table_" + Utils.MakeKey(df).Replace("+", "_").Replace(".", "");
+                IDataSetStore store = new DataSetStoreDB(info, tempTable, kf, true, useAttr);
+                #endregion
+
+                using (var dataLocation = new FileReadableDataLocation(FileTmpData))
+                {
+                    switch (op)
+                    {
+                        case SDMXWSFunction.GetCompactData:
+                            var compact = new CompactDataReaderEngine(dataLocation, df, kf);
+                            var readerCompact = new SdmxDataReader(kf, store);
+                            readerCompact.ReadData(compact);
+                            break;
+
+                        case SDMXWSFunction.GetCrossSectionalData:
+                            var dsdCrossSectional = (ICrossSectionalDataStructureObject)kf;
+                            var crossSectional = new CrossSectionalDataReaderEngine(dataLocation, dsdCrossSectional, df);
+                            var reader = new SdmxDataReader(kf, store);
+                            reader.ReadData(crossSectional);
+                            break;
+
+                        default:
+                            throw new ArgumentException(Resources.ExceptionUnsupported_operation + op.ToString(), "operation");
+                    }
+                }
+
+                #endregion FABIO
+
+
+
+                return store;
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex.Message, ex);
+                throw ex;
+            }
+            finally
+            {
+                //delete the temporary file
+                if (File.Exists(FileTmpData))
+                    File.Delete(FileTmpData);
+
+
+            }
+        }
+
 
         internal IDataSetStore GetDataset(IDataflowObject df, IDataStructureObject kf, List<DataCriteria> Criterias, ref Dictionary<string, List<DataChacheObject>> DataCache,bool useAttr)
         {

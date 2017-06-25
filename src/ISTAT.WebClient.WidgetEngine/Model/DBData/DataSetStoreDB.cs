@@ -708,7 +708,8 @@
                         param.Value = UseTo;
                         dbCommand.Parameters.Add(param);
 
-                    parameters.Add(string.Format(" ({0}) ", string.Join(" or ", parametersOR)));
+                    //parameters.Add(string.Format(" ({0}) ", string.Join(" or ", parametersOR)));
+                        parameters.Add(string.Format(" ({0}) ", string.Join(" and ", parametersOR)));
                 
                 }
                 else

@@ -21,6 +21,7 @@
 
                 <div class="dash-info-box-icon">
                     <a href="<%=ResolveClientUrl("~/WebClient/Profiles")%>" class="info-link">
+                    <!--<a href="#" onClick="alert('Function disabled.')" class="info-link">-->
                         <i class="icon-group-circled profile"></i>
                     </a>
                 </div>

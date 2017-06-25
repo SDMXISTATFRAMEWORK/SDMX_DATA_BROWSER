@@ -55,3 +55,4 @@ C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetEngine\obj\Release\ISTAT.
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetEngine\obj\Release\ISTAT.WebClient.WidgetEngine.pdb
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetEngine\bin\Release\Estat.Nsi.Client.dll
 C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetEngine\bin\Release\Estat.Nsi.Client.pdb
+C:\prova_publish\WEB_BROWSER\src\ISTAT.WebClient.WidgetEngine\bin\Release\Newtonsoft.Json.dll

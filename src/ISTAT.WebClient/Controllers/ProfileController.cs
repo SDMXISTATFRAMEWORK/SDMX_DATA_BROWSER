@@ -2,6 +2,7 @@
 using ISTAT.WebClient.WidgetComplements.Model.Enum;
 using ISTAT.WebClient.WidgetComplements.Model.JSObject.Input;
 using ISTAT.WebClient.WidgetEngine.WidgetBuild;
+using ISTAT.SingleSignON.Service;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,7 +25,7 @@ namespace ISTAT.WebClient.Controllers
             {
                 GetUserProfileObject PostDataArrived = CS.GetPostData<GetUserProfileObject>(this.Request);
 
-                ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings["ISTATWebClientConnection"];
+                ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings["ISTATWebClientSSO"];
                 if (connectionStringSetting == null || string.IsNullOrEmpty(connectionStringSetting.ConnectionString))
                     throw new Exception("ConnectionString not set");
 
@@ -35,6 +36,7 @@ namespace ISTAT.WebClient.Controllers
                 }
                 else
                 {
+                    connectionStringSetting = ConfigurationManager.ConnectionStrings["ISTATWebClientConnection"]; 
                     ProfileWidget pw = new ProfileWidget(connectionStringSetting.ConnectionString);
                     PostDataArrived.UserRole = pw.GetRole(PostDataArrived);
                 }
@@ -68,13 +70,13 @@ namespace ISTAT.WebClient.Controllers
          
         public ActionResult GetUserList()
         {
-            string SingleSignOnConf;
+            /*string SingleSignOnConf;
             using (Stream receiveStream = this.Request.InputStream)
                 using (StreamReader readStream = new StreamReader(receiveStream, this.Request.ContentEncoding))
                 {
                     SingleSignOnConf = readStream.ReadToEnd();
                 }
-
+            */
             if (Session[ProfileSession] == null)
                 throw new Exception("No logged user");
             GetUserProfileObject LoggedUser = (GetUserProfileObject)Session[ProfileSession];
@@ -89,8 +91,11 @@ namespace ISTAT.WebClient.Controllers
 
             //Prendo tutti gli utenti su SingleSignON
             //Prendo tutti i Ruoli dal localDB
-            var JsonRet = new { UserList = pw.GetUserList(SingleSignOnConf), Roles = pw.GetRoles() };
+            //var JsonRet = new { UserList = pw.GetUserList(SingleSignOnConf), Roles = pw.GetRoles() };
 
+            SingleSignONService ssoService = new SingleSignONService();
+            var JsonRet = new {UserList = ssoService.GetUserList(), Roles = pw.GetRoles() };
+            
             return CS.ReturnForJQuery(new JavaScriptSerializer().Serialize(JsonRet));
         }
 

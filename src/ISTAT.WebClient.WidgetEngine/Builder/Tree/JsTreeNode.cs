@@ -14,7 +14,7 @@ namespace ISTAT.WebClient.WidgetEngine.Builder.Tree
 {
     using System.Collections.Generic;
     using System.Text;
-
+    using System;
     /// <summary>
     /// This class represents a JSTree node
     /// </summary>
@@ -29,6 +29,7 @@ namespace ISTAT.WebClient.WidgetEngine.Builder.Tree
         private readonly Dictionary<string, object> _classes = new Dictionary<string, object>();
 
         private readonly StringBuilder _classesBuffer = new StringBuilder();
+
 
         private JSTreeMetadata _metadata;
         private Dictionary<string, object> _metadata_li;
@@ -119,9 +120,18 @@ namespace ISTAT.WebClient.WidgetEngine.Builder.Tree
         /// <param name="id">
         /// The ID
         /// </param>
-        public void SetId(string id)
+        public void SetIdOld(string id)
         {
             this._attributes["id"] = id;
+        }
+
+
+        public void SetId(string id)
+        {
+            Guid guid = Guid.NewGuid();
+            string str = guid.ToString();
+
+            this._attributes["id"] = id + "_" + str.Replace("-","");
         }
 
         /// <summary>

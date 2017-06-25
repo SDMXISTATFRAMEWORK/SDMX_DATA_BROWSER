@@ -189,6 +189,25 @@
 				        </tbody>
 				    </table>
 			    </div>
+                <div class="color-option">
+				    <input name="admin_color" id="Radio1" type="radio" value="fresh" class="tog">
+				    <input type="hidden" class="css_url" name="css_url" value="Content/style/custom/serbia.css">
+				    <input type="hidden" class="icon_colors" value="{&quot;icons&quot;:{&quot;base&quot;:&quot;#999&quot;,&quot;focus&quot;:&quot;#2ea2cc&quot;,&quot;current&quot;:&quot;#fff&quot;}}">
+				    <label class="color-desc">Serbia</label>
+				    <table class="color-palette">
+					    <tbody>
+                            <tr>
+                                <td style="background-color: #F39700">
+                                    <div class="td-blank">&nbsp;</div>
+                                </td>
+                                <td style="background-color: #F39700">&nbsp;</td>
+                                <td style="background-color: #00295A">&nbsp;</td>
+                                <td style="background-color: #E6E6E6">&nbsp;</td>
+						    </tr>
+				        </tbody>
+				    </table>
+                </div>
+
             </div>
         </div>
     </div>

@@ -70,6 +70,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
 
                             tmpObj.Title = (string)dtReader["Title"];
 
+                            //tmpObj._QueryUniqueKeyString = (string)dtReader["tmplKey"];
+
                             tmpObj.Configuration = new JavaScriptSerializer().Deserialize<EndpointSettings>((string)dtReader["Configuration"]);
 
                             tmpObj.Dataflow = new JavaScriptSerializer().Deserialize<MaintenableObj>((string)dtReader["Dataflow"]);
@@ -289,10 +291,11 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         {
             try
             {
-                if (string.IsNullOrEmpty(PostDataArrived.TemplateId))
+                //if (string.IsNullOrEmpty(PostDataArrived.TemplateId))
+                if (string.IsNullOrEmpty(PostDataArrived.Template._QueryUniqueKeyString))                
                     throw new Exception("Input Error");
 
-                string sqlquery = string.Format(@"DELETE FROM Template WHERE [TemplateId]={0}", PostDataArrived.TemplateId);
+                string sqlquery = string.Format(@"DELETE FROM Template WHERE [tmplKey]='{0}'", PostDataArrived.Template._QueryUniqueKeyString);
 
                 Sqlconn.Open();
                 try

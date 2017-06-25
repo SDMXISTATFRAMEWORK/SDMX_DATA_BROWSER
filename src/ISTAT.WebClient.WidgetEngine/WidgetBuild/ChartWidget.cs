@@ -61,12 +61,21 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         private CultureInfo cFrom;
         private CultureInfo cTo;
 
-        public ChartWidget(GetChartObject chartObj, SessionImplObject sessionObj, CultureInfo cFrom, CultureInfo cTo)
+        public ChartWidget(GetChartObject chartObj, SessionImplObject sessionObj, CultureInfo cFrom, CultureInfo cTo,SessionQuery sessionQuery)
         {
             ChartObj = chartObj;
             SessionObj = sessionObj;
-            GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.ChartObj.Configuration);
-            //sessionObj.SdmxObject.
+            //GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.ChartObj.Configuration);
+
+            if (sessionQuery._IGetSDMX == null || (sessionQuery._endpointSettings!=null && this.ChartObj.Configuration.EndPoint != sessionQuery._endpointSettings.EndPoint))
+            {
+                GetSDMXObject = WebServiceSelector.GetSdmxImplementation(this.ChartObj.Configuration);
+                sessionQuery._IGetSDMX = GetSDMXObject;
+            }
+            else
+            { GetSDMXObject = sessionQuery._IGetSDMX; }
+
+
             BDO = new BaseDataObject(chartObj.Configuration, System.IO.Path.GetTempFileName());
 
             this.cFrom = cFrom;
@@ -74,7 +83,7 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
         }
 
 
-        public SessionImplObject GetDataChart()
+        public SessionImplObject GetDataChart(SessionQuery sessionQuery)
         {
             try
             {
@@ -114,13 +123,19 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                     new GetCodemapObject() {
                     PreviusCostraint=this.ChartObj.Criteria,
                     Configuration = this.ChartObj.Configuration, 
-                    Dataflow = this.ChartObj.Dataflow }, 
-                    this.SessionObj);
+                    Dataflow = this.ChartObj.Dataflow },
+                    this.SessionObj, sessionQuery);
 
 
-                ISdmxObjects structure = codemapWidget.GetDsd();
-                IDataflowObject df = structure.Dataflows.FirstOrDefault();
-                IDataStructureObject kf = structure.DataStructures.First();
+                //ISdmxObjects structure = codemapWidget.GetDsd();
+                //IDataflowObject df = structure.Dataflows.FirstOrDefault();
+                //IDataStructureObject kf = structure.DataStructures.First();
+                ISdmxObjects structure = sessionQuery.Structure;
+                //IDataflowObject df = structure.Dataflows.First();
+                IDataflowObject df = sessionQuery.Dataflow;
+                //IDataStructureObject kf = structure.DataStructures.First();
+                IDataStructureObject kf = sessionQuery.KeyFamily;
+
                 if (kf == null) throw new InvalidOperationException("DSD is not set");
                 if (df == null) throw new InvalidOperationException("Dataflow is not set");
 
@@ -150,8 +165,11 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                 this.SessionObj.MergeObject(codemapWidget.SessionObj);
 
                 #region Gestione last period
+                int num1;
                 if (this.ChartObj.Criteria.ContainsKey(kf.TimeDimension.Id)
-                 && this.ChartObj.Criteria[kf.TimeDimension.Id].Count == 1)
+                 && this.ChartObj.Criteria[kf.TimeDimension.Id].Count == 1
+                 && int.TryParse(this.ChartObj.Criteria[kf.TimeDimension.Id].First(),out num1)
+                 )
                 {
                     int offsetTime = int.Parse(this.ChartObj.Criteria[kf.TimeDimension.Id].First());
                     var codMap = codemap;
@@ -173,15 +191,35 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
                         this.ChartObj.Criteria[kf.TimeDimension.Id].Add(codemap[kf.TimeDimension.Id].Last().Key);
                     }
                 }
+                
                 #endregion
 
                 List<DataCriteria> Criterias = BDO.InitCriteria(kf, this.ChartObj.Criteria);
-
+                //List<DataCriteria> Criterias = sessionQuery.GetCriteria();
                 Dictionary<string, List<DataChacheObject>> DataCache = SessionObj.DataCache;
 
-                IDataSetStore store = BDO.GetDataset(df, kf, Criterias, ref DataCache, false);
 
-                string DBFileName = null;
+                //aggiunta da fabio               
+                //IDataSetStore store = BDO.GetDataset(df, kf, Criterias, ref DataCache, false, sessionQuery);
+
+                IDataSetStore store = sessionQuery._store;
+                store.SetCriteria(Criterias);
+                /*
+                IDataSetStore store;
+                if (sessionQuery._store != null)
+                { store = sessionQuery._store; }
+                else
+                {
+                    //store = BDO.GetDataset(df, kf, Criterias, ref DataCache, _useAttr);
+                    store = BDO.GetDataset(df, kf, Criterias, ref DataCache, false, sessionQuery);
+                    sessionQuery._store = store;
+                }
+                 */
+                //fine nuovo
+
+                
+
+                //string DBFileName = null;
                 //IDataSetStore store = BDO.FindDataCache(df, kf, Criterias, ref DataCache, false, out DBFileName);
                 //if (store == null) store = BDO.GetDataset(df, kf, Criterias, ref DataCache);                
                 //if (store == null) store = BDO.GetDataset(df, kf, Criterias, ref DataCache, false);
@@ -371,7 +409,8 @@ namespace ISTAT.WebClient.WidgetEngine.WidgetBuild
             List<serieType> series_s = new List<serieType>();
             var v = new Dictionary<string, decimal>();
 
-            IDataReader datareader = store.CreateDataReader(true);
+            //IDataReader datareader = store.CreateDataReader(true);
+            IDataReader datareader = store.CreateDataReader(false);
             while (datareader.Read())
             {
                 decimal obs = 0;
